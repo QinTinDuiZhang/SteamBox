@@ -1,5 +1,13 @@
-# Welcome to your organization's demo respository
-This code repository (or "repo") is designed to demonstrate the best GitHub has to offer with the least amount of noise.
+# 蒸汽盒游戏论坛
 
-The repo includes an `index.html` file (so it can render a web page), two GitHub Actions workflows, and a CSS stylesheet dependency.
-test
+## 采用技术:mybatis、tomcat、javaee、mysql
+
+## 开发日期:11.29
+
+## 开发人员:[DTC-007](https://github.com/DTC-007)、[LIAOMC](https://github.com/LIAOMC)、[I-have-a](https://github.com/I-have-a)
+
+## 更新日志
+
+### 11.29
+
+框架搭建，技术提出
