@@ -20,6 +20,7 @@
 </head>
 
 <body>
+<a href="fabu.jsp">dianci</a>
 <jsp:include page="common/header.jsp" flush="true"></jsp:include>
 <div id="bq">
     <span id="zi1">全球最开放的、最简洁的</span><br>
