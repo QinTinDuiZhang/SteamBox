@@ -1,4 +1,4 @@
 package com.niuma.dao;
 
-public class CategoryDao {
+public interface CategoryDao {
 }

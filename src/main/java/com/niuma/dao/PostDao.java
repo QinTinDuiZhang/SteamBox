@@ -1,5 +1,5 @@
 package com.niuma.dao;
 
-public class PostDao {
+public interface PostDao {
 
 }
