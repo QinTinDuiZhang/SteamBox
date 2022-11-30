@@ -9,7 +9,7 @@ img {
 
 .navbar-brand {
     background-image: url(../img/蒸汽盒LOGO.jpg);
-    width: 50px;
+    width: 120px;
     background-size: 75%;
     background-repeat: no-repeat;
     background-position: center center;
@@ -20,13 +20,41 @@ img, .side-bar .list-group-item, .side-bar-card {
 }
 
 .side-bar .list-group-item {
+    border-radius: 50px;
+    text-align: center;
+    color:black;
     border: 0;
     margin-bottom: 5px;
 }
 
+
 .side-bar .list-group-item.active {
-    background-color: #EA0C3C;
+    background:linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3d, #03a9f4);
 }
+.side-bar .list-group-item.active::before{
+    content: "";
+    position: absolute;
+    left: -5px;
+    right: -5px;
+    top: -5px;
+    bottom: -5px;
+    background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3d, #03a9f4);
+    background-size: 400%;
+    border-radius: 50px;
+    filter: blur(20px);
+    z-index: -1;
+}
+.side-bar .list-group-item.active:hover::before{
+    animation: sun 8s infinite;
+}
+.side-bar .list-group-item.active:hover{
+    animation: sun 8s infinite;
+}
+@keyframes sun {
+    100% {
+      background-position: -400%;
+    }
+  }
 
 .news-list-item .title {
     display: block;
@@ -44,8 +72,6 @@ img, .side-bar .list-group-item, .side-bar-card {
 .news-list-item .info {
     color: #888888;
 }
-
-
 
 .avatar img {
     display: inline-block;
@@ -130,8 +156,17 @@ img, .side-bar .list-group-item, .side-bar-card {
     padding-left: 0;
     padding-right: 0;
 }
-
+.footer1{
+    position: absolute;
+    top: 1000px;
+    /* margin-top: 20px;
+    padding: 50px 0; */
+    text-align: center;
+    color: #999999;
+}
 .footer {
+    /* position: absolute;
+    top: 1000px; */
     margin-top: 20px;
     padding: 50px 0;
     text-align: center;
@@ -143,14 +178,11 @@ img, .side-bar .list-group-item, .side-bar-card {
 }
 
 .btn-primary {
-    background-color: #EA0C3C;
-    border-color: #db0d3a;
+    color: black;
+    background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3d, #03a9f4);
 }
 
-.btn-primary:hover {
-    background-color: #d50c37;
-    border-color: #d50c37;
-}
+
 
 /*当toggle-checkbox勾选时，它下面的兄弟的样式，!important使优先级最高*/
 #toggle-checkbox:checked ~ div {
@@ -169,4 +201,14 @@ img, .side-bar .list-group-item, .side-bar-card {
 
 #toggle-label:hover {
     color: #333333;
+}
+#remember{
+    position: relative;
+    top: 11px;
+    left: 395px;
+}
+#rep{
+    position: relative;
+    left: 400px;
+    top: 8px;
 }
