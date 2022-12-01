@@ -12,6 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AdminDaoImpl implements AdminDao {
+    /**
+     *
+     * @param account 管理员账号
+     * @param password 管理员密码
+     * @return 返回一个管理员对象
+     */
     @Override
     public Admin login(String account, String password) {               //管理员登陆
         SqlSession sqlSession= SqlSessionUtils.getSqlSession();
@@ -20,6 +26,11 @@ public class AdminDaoImpl implements AdminDao {
         return admin;
     }
 
+    /**
+     *
+     * @param community 传入一个community对象
+     * @return 返回一个布尔值
+     */
     @Override
     public Boolean addCommunity(Community community) {                  //添加社区
         Map<String,Object> map=new HashMap<>();
@@ -31,6 +42,12 @@ public class AdminDaoImpl implements AdminDao {
         return aBoolean;
     }
 
+    /**
+     *
+     * @param community 传入一个community对象
+     * @return 返回一个布尔值
+     */
+
     @Override
     public Boolean updateCommunity(Community community) {                            //修改社区
         Map<String,Object> map=new HashMap<>();
@@ -41,6 +58,13 @@ public class AdminDaoImpl implements AdminDao {
         Boolean aBoolean = adminMapper.updateCommunity(map);
         return aBoolean;
     }
+
+    /**
+     *
+     * @param hidden 为0/1的数字，0位不可见，1为可见
+     * @param id 需要修改的帖子id
+     * @return 返回一个布尔值
+     */
     public Boolean setPostLook(int hidden,int id){              //设置帖子可见与否,hidden为可见与否参数，第二个为帖子id
         SqlSession sqlSession= SqlSessionUtils.getSqlSession();
         AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);

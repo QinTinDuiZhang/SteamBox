@@ -35,9 +35,6 @@
 
     </environments>
     <mappers>
-        <!-- 映射文件 -->
-<!--        <mapper resource="mybatis/AdminMapper.xml"/>-->
-<!--        <mapper resource="mybatis/UserMapper.xml"/>-->
         <package name="mybatis"/>
     </mappers>
 </configuration>

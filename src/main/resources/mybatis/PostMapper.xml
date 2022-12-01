@@ -16,5 +16,4 @@
         delete from steambox.post
                where id=#{id}
     </delete>
-
 </mapper>

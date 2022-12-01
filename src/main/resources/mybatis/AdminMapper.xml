@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace= "mybatis.AdminMapper">
-#     login(String account, String password)
     <select id="login" resultType="com.niuma.model.Admin">
         select * from steambox.admin where account=#{account} and password=#{password}
     </select>
