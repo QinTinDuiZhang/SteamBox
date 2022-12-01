@@ -36,7 +36,6 @@
     </environments>
     <mappers>
         <!-- 映射文件 -->
-        <mapper resource="mybatis/AdminMapper.xml"/>
         <package name="mybatis"/>
     </mappers>
 </configuration>

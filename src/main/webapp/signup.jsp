@@ -20,7 +20,7 @@
     <h1>注册
         <small>已有帐号，<a href="signup.jsp">登录</a></small>
     </h1>
-    <form>
+    <form action="User/Signup">
         <div class="form-group">
             <label for="email">QQ邮箱</label>
             <input id="email" type="text" class="form-control">

@@ -27,6 +27,9 @@ public class User {
         this.forbidden = forbidden;
     }
 
+    public User() {
+    }
+
     public int getId() {
         return id;
     }
