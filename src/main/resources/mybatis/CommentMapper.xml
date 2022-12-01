@@ -9,29 +9,24 @@
         values (#{content}, #{pubDate}, #{ipAddress}, #{hidden}, #{likeNum}, #{disLikeNum}, #{replyForId}, #{creator},
                 #{postId})
     </insert>
-
     <update id="updateLikeNum">
         update steambox.comment
         set likenum=#{likenum}
         where id=#{id}
     </update>
-
     <update id="updateDislikeNum">
         update steambox.comment
         set dislikeNum=#{dislikenum}
         where id=#{id}
     </update>
-
     <select id="selectLikeNum" resultType="int">
         select likenum
         from steambox.comment
         where id = #{id}
     </select>
-
     <select id="selectDisLikeNum" resultType="int">
         select dislikenum
         from steambox.comment
         where id = #{id}
     </select>
-
 </mapper>
