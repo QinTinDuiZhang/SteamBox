@@ -3,9 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace= "mybatis.UserMapper">
-    <!--login(String account, String password)-->
-    <!--    <select id="login" resultType="boolean">-->
-    <!--        select * from admin where account=#{account} and password=#{password}-->
-    <!--    </select>-->
+    <!--User getUser(String account, String password)-->
+    <select id="getUser" resultType="com.niuma.model.User">
+        select * from steambox.user where account= #{param1} and password= #{param2} and forbidden=0
+    </select>
+    <insert id="addUser">
+        insert into steambox.user(account,password,nickname,photo,birthday,email,mobile,regDate,forbidden)
+        values (#{account},#{password},#{nickname},#{photo},#{birthday},#{email},#{mobile},#{regDate},#{forbidden})
+    </insert>
+    <select id="getLikeCommunity" resultType="community">
+        select c.id,c.`name`,c.shoplink
+        from steambox.user
+         join steambox.user_community uc on user.id = uc.user_id
+         join steambox.community c on c.id = uc.community_id
+        where user.id = 1;
+    </select>
+    <update id="updateUser">
 
+    </update>
 </mapper>

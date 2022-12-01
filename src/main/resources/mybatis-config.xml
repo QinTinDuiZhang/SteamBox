@@ -17,7 +17,7 @@
                 <property name="url"
                           value="jdbc:mysql://localhost:3306/steambox?serverTimezone=Hongkong&amp;useSSL=false&amp;useServerPrepStmts=true"/>
                 <property name="username" value="root"/>
-                <property name="password" value="986a188f"/>
+                <property name="password" value="root"/>
             </dataSource>
         </environment>
 
@@ -25,18 +25,19 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <!-- 数据库信息 -->
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
                 <property name="url"
-                          value="jdbc:mysql://localhost:3306/test?serverTimezone=Hongkong&amp;useSSL=false&amp;useServerPrepStmts=true"/>
+                          value="jdbc:mysql://localhost:3306/steambox?serverTimezone=Hongkong&amp;useSSL=false&amp;useServerPrepStmts=true"/>
                 <property name="username" value="root"/>
-                <property name="password" value="986a188f"/>
+                <property name="password" value="root"/>
             </dataSource>
         </environment>
 
     </environments>
     <mappers>
         <!-- 映射文件 -->
-        <mapper resource="mybatis/AdminMapper.xml"/>
+<!--        <mapper resource="mybatis/AdminMapper.xml"/>-->
+<!--        <mapper resource="mybatis/UserMapper.xml"/>-->
         <package name="mybatis"/>
     </mappers>
 </configuration>
