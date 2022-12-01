@@ -10,28 +10,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>发布页面</title>
-<link href="css/admin.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="./kindeditor/themes/default/default.css"/>
-<link rel="stylesheet" href="./kindeditor/plugins/code/prettify.css"/>
-<script charset="utf-8" src="./kindeditor/kindeditor-all-min.js"></script>
-<script charset="utf-8" src="./kindeditor/kindeditor-all.js"></script>
-<script charset="utf-8" src="./kindeditor/lang/zh-CN.js"></script>
-<script charset="utf-8" src="./kindeditor/plugins/code/prettify.js"></script>
-<script type="application/javascript">
-    //配置KindEditor 初始化参数
-    KindEditor.create('#editor_id', {
-        filePostName: "imgFile",//设置上传图片的名称
-        uploadJson: "${path}/essay/contentUpload",  //指定上传图片的路径
-        allowFileManager: true, //是否展示浏览图片空间
-    });
-</script>
-<script>
-    KindEditor.ready(function (K) {
-        window.editor = K.create('#editor_id');
-    });
-</script>
+    <meta charset="UTF-8">
+    <title>发布页面</title>
+    <link href="css/admin.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script>
+        import {Quill} from "./js/quill.min";
+
+        let quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+    </script>
 </head>
 <body>
 <div id="main">
@@ -60,18 +52,11 @@
             </p>
             <p>
                 <label for="content"> 内容 </label>
-                <textarea name="content" id="content" cols="100" rows="8"
-                          style="width:700px;height:400px;visibility:hidden;"></textarea>
-                <span id="productIntroduceId"></span> <!--将要显示文本编辑器内容部分-->
-                <input id="productIntroduce" th:value="${product.productIntroduce}" hidden="hidden"><!--获取文本编辑器内容部分-->
-                <script type="text/javascript">
-                    window.onload = function () {//将文本编辑器内容 用js进行替换显示
-                        document.getElementById("productIntroduceId").innerHTML = $("#productIntroduce").val();
-                    }
-                </script>
+                <div id="editor"></div>
+                <input type="hidden" name="content" id="content">
             </p>
             <p>
-                <label> 上传图片 </label>
+                <label> 选择封面 </label>
                 <input type="file" name="nfile"/>
             </p>
             <input name="action" type="hidden" value="addnews"/>
@@ -81,33 +66,57 @@
     </div>
 </div>
 <div id="footer">
-</div><script type="text/javascript">
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script>
+    const toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],
+        ['blockquote', 'code-block'],
 
-    let editor1;
-    /**页面初始化 创建文本编辑器工具**/
-    KindEditor.ready(function (K) {
-        //定义生成编辑器的文本类型
-        editor1 = K.create('textarea[name="content"]', {
-            cssPath: './kindeditor/plugins/code/prettify.css',
-            allowImageUpload: true, //上传图片框本地上传的功能，false为隐藏，默认为true
-            allowImageRemote: false, //上传图片框网络图片的功能，false为隐藏，默认为true
-            formatUploadUrl: false,
-            uploadJson: '/kindEditor/upLoad',//文件上传请求后台路径
-            allowFileManager: true,
-            afterCreate: function () {
-                let self = this;
-                K.ctrl(document, 13, function () {
-                    self.sync();
-                    document.forms['example'].submit();
-                });
-                K.ctrl(self.edit.doc, 13, function () {
-                    self.sync();
-                    document.forms['example'].submit();
-                });
-            }
-        });
-        prettyPrint();
-    });
+        [{'header': 1}, {'header': 2}],
+        [{'list': 'ordered'}, {'list': 'bullet'}],
+        [{'script': 'sub'}, {'script': 'super'}],
+        [{'indent': '-1'}, {'indent': '+1'}],
+        [{'direction': 'rtl'}],
+
+        [{'size': ['small', false, 'large', 'huge']}],
+        [{'header': [1, 2, 3, 4, 5, 6, false]}],
+
+        ['link', 'image'],
+
+        [{'color': []}, {'background': []}],
+        [{'font': []}],
+        [{'align': []}],
+
+        ['clean']
+    ];
+    let options = {
+        debug: 'info',
+        modules: {
+            toolbar: toolbarOptions
+        },
+        history: {
+            delay: 2000,
+            maxStack: 500,
+            userOnly: true
+        },
+        placeholder: "你好吗",
+        theme: 'bubble'
+    };
+    let quill = new Quill('#editor', options);
+
+    function test(){
+        if(quill && quill.getLength() > 1){
+            $("#content").val(quill.root.innerHTML);
+            return true;
+        } else{
+            alert("内容不能为空！")
+            return false;
+        }
+    }
 </script>
 </body>
 </html>
