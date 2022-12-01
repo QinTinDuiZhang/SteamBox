@@ -31,7 +31,7 @@
         <h1 id="opt_type"> 添加游戏文章： </h1>
         <form name="AddForm" action="User/Publish" method="post">
             <p>
-                <label for="ntid"> 主题 </label>
+                <label for="ntid"> 分类 </label>
                 <select name="ntid" id="ntid">
                     <c:forEach var="TopicItem" items="${AllTopic}">
                         <option value="${TopicItem.tid}">${TopicItem.tname}</option>
@@ -43,15 +43,11 @@
                 <input name="ntitle" id="ntitle" type="text" class="opt_input"/>
             </p>
             <p>
-                <label for="nauthor"> 作者 </label>
-                <input name="nauthor" id="nauthor" type="text" class="opt_input"/>
-            </p>
-            <p>
-                <label for="nsummary"> 摘要 </label>
+                <label for="nsummary"> 简介 </label>
                 <textarea name="nsummary" id="nsummary" cols="40" rows="3"></textarea>
             </p>
             <p>
-                <label for="content"> 内容 </label>
+                <label for="content"> 正文 </label>
                 <div id="editor"></div>
                 <input type="hidden" name="content" id="content">
             </p>
@@ -103,8 +99,7 @@
             maxStack: 500,
             userOnly: true
         },
-        placeholder: "你好吗",
-        theme: 'bubble'
+        theme: 'snow'
     };
     let quill = new Quill('#editor', options);
 

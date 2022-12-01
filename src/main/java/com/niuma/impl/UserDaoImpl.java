@@ -74,14 +74,24 @@ public class UserDaoImpl implements UserDao {
     }
 
     /**
-     *
+     * 修改密码
      * @param account 用户账号
      * @return 返回一个布尔值
      */
-    public Boolean changePassword(String account,String password){                  //修改密码
+    public Boolean changePassword(String account,String password){
         SqlSession sqlSession= SqlSessionUtils.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         return userMapper.changePassword(account,Md5Util.md5(password));
+    }
+
+    @Override
+    public User getSingleOne(String email, String email1) {
+        return null;
+    }
+
+    @Override
+    public boolean update(User userT) {
+        return false;
     }
 
 }

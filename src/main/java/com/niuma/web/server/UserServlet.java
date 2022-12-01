@@ -128,7 +128,7 @@ public class UserServlet extends BaseServlet {
         String account = request.getParameter("account");
         String password = Md5Util.md5(request.getParameter("password"));
         UserDaoImpl userDao = new UserDaoImpl();
-        User user = userDao.login(account);
+        User user = userDao.login(account,password);
         if (user != null && password.equals(user.getPassword())) {
             if (user.isForbidden()) {
                 HttpSession session = request.getSession();
