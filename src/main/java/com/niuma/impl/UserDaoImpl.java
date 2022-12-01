@@ -3,6 +3,7 @@ package com.niuma.impl;
 import com.niuma.dao.UserDao;
 import com.niuma.model.Community;
 import com.niuma.model.User;
+import com.niuma.tool.Md5Util;
 import com.niuma.tool.SqlSessionUtils;
 import mybatis.UserMapper;
 import org.apache.ibatis.session.SqlSession;
@@ -18,7 +19,7 @@ public class UserDaoImpl implements UserDao {
     public User getUser(String account , String password) {         //登陆
         SqlSession sqlSession= SqlSessionUtils.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        User user =userMapper.getUser(account, password);
+        User user =userMapper.getUser(account, Md5Util.md5(password));
         return user;
     }
 

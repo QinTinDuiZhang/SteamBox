@@ -13,6 +13,9 @@ public class Admin {
         this.name = name;
     }
 
+    public Admin() {
+    }
+
     public int getId() {
         return id;
     }

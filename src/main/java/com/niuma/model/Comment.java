@@ -27,6 +27,9 @@ public class Comment {
         this.postId = postId;
     }
 
+    public Comment() {
+    }
+
     public int getId() {
         return id;
     }
