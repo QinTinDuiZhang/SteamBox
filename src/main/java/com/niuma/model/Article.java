@@ -2,7 +2,7 @@ package com.niuma.model;
 
 import java.util.Date;
 
-public class Post {
+public class Article {
     private int id;                 //发帖ID
     private String title;           //标题
     private String img;             //图片
@@ -14,7 +14,7 @@ public class Post {
     private int communityId;        //发帖的社区ID
     private boolean hidden;         //是否可见
 
-    public Post(int id, String title, String img, String content, Date pubDate, int clickCount, int creator, int auditor, int communityId, boolean hidden) {
+    public Article(int id, String title, String img, String content, Date pubDate, int clickCount, int creator, int auditor, int communityId, boolean hidden) {
         this.id = id;
         this.title = title;
         this.img = img;
@@ -27,7 +27,7 @@ public class Post {
         this.hidden = hidden;
     }
 
-    public Post() {
+    public Article() {
     }
 
     public int getId() {
@@ -112,7 +112,7 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" +
+        return "Article{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", img='" + img + '\'' +

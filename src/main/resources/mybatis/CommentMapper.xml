@@ -5,7 +5,7 @@
 <mapper namespace="mybatis.CommentMapper">
     <insert id="addComment">
         insert into steambox.comment(content, pubdate, ipaddress, hidden, likenum, dislikenum, reply_for_id, creator,
-                                     post_id)
+                                     article_id)
         values (#{content}, #{pubDate}, #{ipAddress}, #{hidden}, #{likeNum}, #{disLikeNum}, #{replyForId}, #{creator},
                 #{postId})
     </insert>

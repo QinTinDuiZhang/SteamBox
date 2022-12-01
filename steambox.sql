@@ -73,7 +73,7 @@ CREATE TABLE `comment`  (
   INDEX `post_id`(`post_id`) USING BTREE,
   INDEX `creator`(`creator`) USING BTREE,
   CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`reply_for_id`) REFERENCES `comment` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`post_id`) REFERENCES `article` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `comment_ibfk_4` FOREIGN KEY (`creator`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
@@ -105,10 +105,10 @@ INSERT INTO `community` VALUES (4, '双人成行', 'https://store.steampowered.c
 INSERT INTO `community` VALUES (5, '艾尔登法环', 'https://store.steampowered.com/app/1245620/');
 
 -- ----------------------------
--- Table structure for post
+-- Table structure for article
 -- ----------------------------
-DROP TABLE IF EXISTS `post`;
-CREATE TABLE `post`  (
+DROP TABLE IF EXISTS `article`;
+CREATE TABLE `article`  (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '标题',
   `img` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '图片',
@@ -128,9 +128,9 @@ CREATE TABLE `post`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of post
+-- Records of article
 -- ----------------------------
-INSERT INTO `post` VALUES (1, '《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录', 'post.jpg', 'R星传说级巨作《荒野大镖客：救赎2》最近迎来新的荣光。根据SteamDB数据显示，昨日在Steam平台同时玩该游戏的人数高达59991人，将近6万人！原先的同时在线记录为5.5万，在2019年12月游戏刚发售时创下。有人可能会问，6万这个数字也不算高呀，原因其实很简单。该游戏的PC版最开始只登陆R星自家平台和Epic商城，很多玩家为了第一时间玩到PC版游戏，而选择在其他平台购买。PC版发布的一个月后，《荒野大镖客2》才在Steam上发售。遗憾的是，R星早已宣布《荒野大镖客2》停止内容更新，将全力开发《GTA6》并持续运营《GTA OL》。玩家们期待的DLC、次世代版等可能长时间内都无望了。\r\n', '2021-12-30 17:16:44', 0, 1, 1, 1);
+INSERT INTO `article` VALUES (1, '《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录', 'article.jpg', 'R星传说级巨作《荒野大镖客：救赎2》最近迎来新的荣光。根据SteamDB数据显示，昨日在Steam平台同时玩该游戏的人数高达59991人，将近6万人！原先的同时在线记录为5.5万，在2019年12月游戏刚发售时创下。有人可能会问，6万这个数字也不算高呀，原因其实很简单。该游戏的PC版最开始只登陆R星自家平台和Epic商城，很多玩家为了第一时间玩到PC版游戏，而选择在其他平台购买。PC版发布的一个月后，《荒野大镖客2》才在Steam上发售。遗憾的是，R星早已宣布《荒野大镖客2》停止内容更新，将全力开发《GTA6》并持续运营《GTA OL》。玩家们期待的DLC、次世代版等可能长时间内都无望了。\r\n', '2021-12-30 17:16:44', 0, 1, 1, 1);
 
 -- ----------------------------
 -- Table structure for post_category
@@ -141,7 +141,7 @@ CREATE TABLE `post_category`  (
   `category_id` int(0) NOT NULL COMMENT '分类编号',
   PRIMARY KEY (`post_id`, `category_id`) USING BTREE,
   INDEX `category_id`(`category_id`) USING BTREE,
-  CONSTRAINT `post_category_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `post_category_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `article` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `post_category_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 

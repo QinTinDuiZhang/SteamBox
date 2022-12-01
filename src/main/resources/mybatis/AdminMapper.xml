@@ -3,20 +3,35 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace= "mybatis.AdminMapper">
+
     <select id="login" resultType="com.niuma.model.Admin">
-        select * from steambox.admin where account=#{account} and password=#{password}
+        select *
+        from steambox.admin
+        where account=#{account}
+          and password=#{password}
     </select>
+
     <update id="changePassword">
-        update steambox.admin set password=#{password} where account=#{account}
+        update steambox.admin
+        set password=#{password}
+        where account=#{account}
     </update>
+
     <insert id="addCommunity">
         insert into steambox.community(name,shoplink)
         values (#{name},#{shopLink})
     </insert>
+
     <update id="updateCommunity">
-       update steambox.community set name=#{name},shoplink=#{shopLink} where id=#{id}
+       update steambox.community
+       set name=#{name},shoplink=#{shopLink}
+       where id=#{id}
     </update>
+
     <update id="setPostLook">
-        update steambox.post set hidden=#{hidden} where id=#{id}
+        update steambox.article
+        set article.hidden=#{hidden}
+        where id=#{id}
     </update>
+
 </mapper>

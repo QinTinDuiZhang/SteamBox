@@ -4,16 +4,16 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace= "mybatis.PostMapper">
     <insert id="publish">
-        insert into steambox.post(title,img,content,pubdate,click_count,creator,auditor,community_id,hidden)
+        insert into steambox.article(title,img,content,pubdate,click_count,creator,auditor,community_id,hidden)
         values (#{title},#{img},#{content},#{pubdate},#{click_count},#{creator},#{auditor},#{community_id},0)
     </insert>
     <update id="updatePost">
-        update steambox.post
+        update steambox.article
         set title=#{title}, img=#{img}, content=#{content}, pubdate=#{pubdate}, click_count=#{click_count},creator=#{creator},auditor=#{auditor},community_id=#{community_id}
         where id=#{id}
     </update>
     <delete id="deletePost">
-        delete from steambox.post
+        delete from steambox.article
                where id=#{id}
     </delete>
 </mapper>

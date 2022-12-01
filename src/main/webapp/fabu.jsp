@@ -40,7 +40,7 @@
             </p>
             <p>
                 <label for="ntitle"> 标题 </label>
-                <input name="ntitle" id="ntitle" type="text" class="opt_input"/>
+                <input name="ntitle" id="ntitle" type="text" class="opt_input">
             </p>
             <p>
                 <label for="nsummary"> 简介 </label>
@@ -49,15 +49,15 @@
             <p>
                 <label for="content"> 正文 </label>
                 <div id="editor"></div>
-                <input type="hidden" name="content" id="content">
+                <input id="content" type="hidden" name="content">
             </p>
             <p>
                 <label> 选择封面 </label>
-                <input type="file" name="nfile"/>
+                <input type="file" name="nfile">
             </p>
-            <input name="action" type="hidden" value="addnews"/>
-            <input type="submit" value="提交" class="opt_sub"/>
-            <input type="reset" value="重置" class="opt_sub"/>
+            <input name="action" type="hidden" value="addnews">
+            <input type="submit" value="提交" class="opt_sub">
+            <input type="reset" value="重置" class="opt_sub">
         </form>
     </div>
 </div>
@@ -104,13 +104,7 @@
     let quill = new Quill('#editor', options);
 
     function test(){
-        if(quill && quill.getLength() > 1){
-            $("#content").val(quill.root.innerHTML);
-            return true;
-        } else{
-            alert("内容不能为空！")
-            return false;
-        }
+        quill && quill.getLength() > 1 ? $("#content").val(quill.root.innerHTML) : alert("内容不能为空！")
     }
 </script>
 </body>

@@ -333,7 +333,7 @@ Class AnUpLoad
 	Private Function checkEntryType()
 		Dim ContentType, ctArray, bArray,RequestMethod
 		RequestMethod=trim(LCase(Request.ServerVariables("REQUEST_METHOD")))
-		if RequestMethod="" or RequestMethod<>"post" then
+		if RequestMethod="" or RequestMethod<>"article" then
 			checkEntryType = False
 			exit function
 		end if

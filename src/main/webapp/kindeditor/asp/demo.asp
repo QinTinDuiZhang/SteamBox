@@ -51,7 +51,7 @@ End Function
 </head>
 <body>
 	<%=htmlData%>
-	<form name="example" method="post" action="demo.asp">
+	<form name="example" method="article" action="demo.asp">
 		<textarea name="content1" style="width:700px;height:200px;visibility:hidden;"><%=htmlspecialchars(htmlData)%></textarea>
 		<br />
 		<input type="submit" name="button" value="提交内容" /> (提交快捷键: Ctrl + Enter)

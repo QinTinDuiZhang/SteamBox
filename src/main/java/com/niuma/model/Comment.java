@@ -12,9 +12,9 @@ public class Comment {
     private int disLikeNum;               //点踩数
     private int replyForId;               //父评论ID
     private int creator;                  //创作者
-    private int postId;                   //发送者ID
+    private int articleId;                //帖子ID
 
-    public Comment(int id, String content, Date pubDate, String ipAddress, boolean hidden, int likeNum, int disLikeNum, int replyForId, int creator, int postId) {
+    public Comment(int id, String content, Date pubDate, String ipAddress, boolean hidden, int likeNum, int disLikeNum, int replyForId, int creator, int articleId) {
         this.id = id;
         this.content = content;
         this.pubDate = pubDate;
@@ -24,7 +24,7 @@ public class Comment {
         this.disLikeNum = disLikeNum;
         this.replyForId = replyForId;
         this.creator = creator;
-        this.postId = postId;
+        this.articleId = articleId;
     }
 
     public Comment() {
@@ -102,12 +102,12 @@ public class Comment {
         this.creator = creator;
     }
 
-    public int getPostId() {
-        return postId;
+    public int getArticleId() {
+        return articleId;
     }
 
-    public void setPostId(int postId) {
-        this.postId = postId;
+    public void setArticleId(int articleId) {
+        this.articleId = articleId;
     }
 
     @Override
@@ -122,7 +122,7 @@ public class Comment {
                 ", disLikeNum=" + disLikeNum +
                 ", replyForId=" + replyForId +
                 ", creator=" + creator +
-                ", postId=" + postId +
+                ", articleId=" + articleId +
                 '}';
     }
 }

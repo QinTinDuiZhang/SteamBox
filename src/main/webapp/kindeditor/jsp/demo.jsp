@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("UTF-8");
 String htmlData = request.getParameter("content1") != null ? request.getParameter("content1") : "";
@@ -10,7 +10,6 @@ String htmlData = request.getParameter("content1") != null ? request.getParamete
 	<title>KindEditor JSP</title>
 	<link rel="stylesheet" href="../themes/default/default.css" />
 	<link rel="stylesheet" href="../plugins/code/prettify.css" />
-	<script charset="utf-8" src="../kindeditor.js"></script>
 	<script charset="utf-8" src="../lang/zh-CN.js"></script>
 	<script charset="utf-8" src="../plugins/code/prettify.js"></script>
 	<script>
@@ -38,7 +37,7 @@ String htmlData = request.getParameter("content1") != null ? request.getParamete
 </head>
 <body>
 	<%=htmlData%>
-	<form name="example" method="post" action="demo.jsp">
+	<form name="example" method="article" action="demo.jsp">
 		<textarea name="content1" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;"><%=htmlspecialchars(htmlData)%></textarea>
 		<br />
 		<input type="submit" name="button" value="提交内容" /> (提交快捷键: Ctrl + Enter)

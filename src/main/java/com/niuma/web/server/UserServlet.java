@@ -89,7 +89,7 @@ public class UserServlet extends BaseServlet {
         userT.setMobile(request.getParameter("mobile"));
         userT.setAccount(request.getParameter("account"));
         UserDaoImpl userDao = new UserDaoImpl();
-        if (userDao.update(userT)) {
+        if (userDao.updateUser(userT)) {
             session.setAttribute("user", userT);
             response.sendRedirect(request.getContextPath() + "/index.jsp");
         } else {
@@ -128,7 +128,7 @@ public class UserServlet extends BaseServlet {
         String account = request.getParameter("account");
         String password = Md5Util.md5(request.getParameter("password"));
         UserDaoImpl userDao = new UserDaoImpl();
-        User user = userDao.login(account,password);
+        User user = userDao.login(account, password);
         if (user != null && password.equals(user.getPassword())) {
             if (user.isForbidden()) {
                 HttpSession session = request.getSession();
@@ -151,7 +151,7 @@ public class UserServlet extends BaseServlet {
         String newPassword = request.getParameter("newPassword");
         user.setPassword(Md5Util.md5(newPassword));
         UserDaoImpl userDao = new UserDaoImpl();
-        if (userDao.update(user)) response.sendRedirect(request.getContextPath() + "/index.jsp");
+        if (userDao.updateUser(user)) response.sendRedirect(request.getContextPath() + "/index.jsp");
         else response.sendRedirect(request.getContextPath() + "/changePassword.jsp");
     }
 
