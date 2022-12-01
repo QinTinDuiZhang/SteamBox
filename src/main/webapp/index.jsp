@@ -63,7 +63,7 @@
     </div>
 </div>
 <script>
-    document.getElementById("title").style.display="none";
+    document.getElementById("title").style.display = "none";
 </script>
 </body>
 </html>

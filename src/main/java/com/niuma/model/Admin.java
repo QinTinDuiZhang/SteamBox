@@ -1,7 +1,7 @@
 package com.niuma.model;
 
 public class Admin {
-    private  int id;                    //管理员ID
+    private int id;                    //管理员ID
     private String account;             //管理员账号
     private String password;            //管理员密码
     private String name;                //管理员名字

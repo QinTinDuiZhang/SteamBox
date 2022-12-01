@@ -18,7 +18,7 @@
 <jsp:include page="common/header.jsp" flush="true"></jsp:include>
 <div class="container container-small">
     <h1>登录
-        <small>没有帐号？<a href="signup.jsp">注册</a></small>
+        <small>没有账号？<a href="signup.jsp">注册</a></small>
     </h1>
     <form action="User/Login">
         <div class="form-group">
@@ -27,7 +27,8 @@
         </div>
         <div class="form-group">
             <label for="password">密码</label>
-            <input id="password" type="password" class="form-control"><input type="checkbox" id="remember"><span id="rep">记住密码？</span>
+            <input id="password" type="password" class="form-control"><input type="checkbox" id="remember"><span
+                id="rep">记住密码？</span>
         </div>
 
         <div class="form-group">
