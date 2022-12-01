@@ -11,6 +11,9 @@ public class Community {
         this.shopLink = shopLink;
     }
 
+    public Community() {
+    }
+
     public int getId() {
         return id;
     }

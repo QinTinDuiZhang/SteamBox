@@ -1,7 +1,8 @@
 <%@ page import="com.niuma.dao.UserDao" %>
 <%@ page import="com.niuma.impl.UserDaoImpl" %>
 <%@ page import="com.niuma.model.Community" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.niuma.model.User" %><%--
   Created by IntelliJ IDEA.
   User: 23686
   Date: 2022/11/30
@@ -24,13 +25,15 @@
                 <%
                     String community = request.getParameter("community"); // 获取新闻分类参数
                     UserDao userDao = new UserDaoImpl();
-                    List<Community> communities = userDao.getLikeCommunity();
+                    User user = (User) request.getAttribute("user");
+                    List<Community> communities = userDao.getLikeCommunity(user.getId());
                 %>
                 <li <%if (community == null) {%> class="active"<%}%>><a href="index.jsp">首页</a></li>
                 <% for (Community c : communities) {%>
-                    <li <%if(community!=null && c.getId() == Integer.parseInt(community)){%>class="active"<%}%>>
-                        <a href="index.jsp?category=<%=c.getId()%>"><%=c.getName()%></a>
-                    </li>
+                <li <%if(community!=null && c.getId() == Integer.parseInt(community)){%>class="active"<%}%>>
+                    <a href="index.jsp?category=<%=c.getId()%>"><%=c.getName()%>
+                    </a>
+                </li>
                 <%}%>
             </ul>
             <ul class="nav navbar-nav navbar-right">

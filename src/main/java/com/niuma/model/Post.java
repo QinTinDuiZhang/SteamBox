@@ -27,6 +27,9 @@ public class Post {
         this.hidden = hidden;
     }
 
+    public Post() {
+    }
+
     public int getId() {
         return id;
     }

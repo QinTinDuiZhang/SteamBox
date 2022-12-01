@@ -14,9 +14,6 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 //这回修改了一下文件结构，用反射的方式
@@ -114,7 +111,7 @@ public class UserServlet extends BaseServlet {
             user.setPhoto("1.jpg");
             user.setRegDate(new Date());
             UserDaoImpl userDao = new UserDaoImpl();
-            if (userDao.addUser(user) != 0) {
+            if (userDao.signup(user)) {
                 session.setAttribute("user", user);
                 response.sendRedirect(request.getContextPath() + "/index.jsp");
             } else {
@@ -131,7 +128,7 @@ public class UserServlet extends BaseServlet {
         String account = request.getParameter("account");
         String password = Md5Util.md5(request.getParameter("password"));
         UserDaoImpl userDao = new UserDaoImpl();
-        User user = userDao.getSingleOne("account", account);
+        User user = userDao.login(account);
         if (user != null && password.equals(user.getPassword())) {
             if (user.isForbidden()) {
                 HttpSession session = request.getSession();
@@ -158,5 +155,6 @@ public class UserServlet extends BaseServlet {
         else response.sendRedirect(request.getContextPath() + "/changePassword.jsp");
     }
 
-    public void Publish(HttpServletRequest request, HttpServletResponse response) throws IOException{}
+    public void Publish(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    }
 }
