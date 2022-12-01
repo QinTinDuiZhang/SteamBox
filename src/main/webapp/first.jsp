@@ -15,30 +15,7 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-<div class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <a href="index.html" class="navbar-brand"></a>
-        </div>
-        <!-- class="visible-xs-inline-block"：在超小屏幕上显示-->
-        <label for="toggle-checkbox" id="toggle-label" class="visible-xs-inline-block">菜单</label>
-        <input type="checkbox" class="hidden" id="toggle-checkbox">
-        <div class="hidden-xs">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">首页</a></li>
-                <li><a href="#">英雄联盟</a></li>
-                <li><a href="#">魔兽</a></li>
-                <li><a href="#">黑魂</a></li>
-                <li><a href="#">艾尔登</a></li>
-                <li><a href="#">战地5</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="login.html">登陆</a></li>
-                <li><a href="signup.html">注册</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+<jsp:include page="common/header.jsp" flush="true"></jsp:include>
 <div class="container">
     <div class="row">
         <div class="col-sm-2">
@@ -58,12 +35,12 @@
             <div class="news-list">
                 <div class="news-list-item clearfix">
                     <div class="col-xs-5">
-                        <img src="img/game.png">
+                        <img src="img/game.png" alt="">
                     </div>
                     <div class="col-xs-7">
                         <a href="news.html" class="title">游戏商城的下一场黑色星期五特卖即将来临</a>
                         <div class="info">
-                            <span class="avatar"><img src="img/game.png"></span>
+                            <span class="avatar"><img src="img/game.png" alt=""></span>
                             <span>sadhkj-xicuo</span>•
                             <span>25k评论</span>•
                             <span>10分钟前</span>
@@ -72,12 +49,12 @@
                 </div>
                 <div class="news-list-item clearfix">
                     <div class="col-xs-5">
-                        <img src="img/game.png">
+                        <img src="img/game.png" alt="">
                     </div>
                     <div class="col-xs-7">
                         <a href="news.html" class="title">游戏商城的下一场黑色星期五特卖即将来临</a>
                         <div class="info">
-                            <span class="avatar"><img src="img/game.png"></span>
+                            <span class="avatar"><img src="img/game.png" alt=""></span>
                             <span>sadhkj-xicuo</span>•
                             <span>25k评论</span>•
                             <span>10分钟前</span>
@@ -86,12 +63,12 @@
                 </div>
                 <div class="news-list-item clearfix">
                     <div class="col-xs-5">
-                        <img src="img/game.png">
+                        <img src="img/game.png" alt="">
                     </div>
                     <div class="col-xs-7">
                         <a href="news.html" class="title">游戏商城的下一场黑色星期五特卖即将来临</a>
                         <div class="info">
-                            <span class="avatar"><img src="img/game.png"></span>
+                            <span class="avatar"><img src="img/game.png" alt=""></span>
                             <span>sadhkj-xicuo</span>•
                             <span>25k评论</span>•
                             <span>10分钟前</span>
@@ -100,12 +77,12 @@
                 </div>
                 <div class="news-list-item clearfix">
                     <div class="col-xs-5">
-                        <img src="img/game.png">
+                        <img src="img/game.png" alt="">
                     </div>
                     <div class="col-xs-7">
                         <a href="news.html" class="title">游戏商城的下一场黑色星期五特卖即将来临</a>
                         <div class="info">
-                            <span class="avatar"><img src="img/game.png"></span>
+                            <span class="avatar"><img src="img/game.png" alt=""></span>
                             <span>sadhkj-xicuo</span>•
                             <span>25k评论</span>•
                             <span>10分钟前</span>
@@ -114,12 +91,12 @@
                 </div>
                 <div class="news-list-item clearfix">
                     <div class="col-xs-5">
-                        <img src="img/game.png">
+                        <img src="img/game.png" alt="">
                     </div>
                     <div class="col-xs-7">
                         <a href="news.html" class="title">游戏商城的下一场黑色星期五特卖即将来临</a>
                         <div class="info">
-                            <span class="avatar"><img src="img/game.png"></span>
+                            <span class="avatar"><img src="img/game.png" alt=""></span>
                             <span>sadhkj-xicuo</span>•
                             <span>25k评论</span>•
                             <span>10分钟前</span>
@@ -128,12 +105,12 @@
                 </div>
                 <div class="news-list-item clearfix">
                     <div class="col-xs-5">
-                        <img src="img/game.png">
+                        <img src="img/game.png" alt="">
                     </div>
                     <div class="col-xs-7">
                         <a href="news.html" class="title">游戏商城的下一场黑色星期五特卖即将来临</a>
                         <div class="info">
-                            <span class="avatar"><img src="img/game.png"></span>
+                            <span class="avatar"><img src="img/game.png" alt=""></span>
                             <span>sadhkj-xicuo</span>•
                             <span>25k评论</span>•
                             <span>10分钟前</span>
@@ -142,12 +119,12 @@
                 </div>
                 <div class="news-list-item clearfix">
                     <div class="col-xs-5">
-                        <img src="img/game.png">
+                        <img src="img/game.png" alt="">
                     </div>
                     <div class="col-xs-7">
                         <a href="news.html" class="title">游戏商城的下一场黑色星期五特卖即将来临</a>
                         <div class="info">
-                            <span class="avatar"><img src="img/game.png"></span>
+                            <span class="avatar"><img src="img/game.png" alt=""></span>
                             <span>sadhkj-xicuo</span>•
                             <span>25k评论</span>•
                             <span>10分钟前</span>
@@ -156,12 +133,12 @@
                 </div>
                 <div class="news-list-item clearfix">
                     <div class="col-xs-5">
-                        <img src="img/game.png">
+                        <img src="img/game.png" alt="">
                     </div>
                     <div class="col-xs-7">
                         <a href="news.html" class="title">游戏商城的下一场黑色星期五特卖即将来临</a>
                         <div class="info">
-                            <span class="avatar"><img src="img/game.png"></span>
+                            <span class="avatar"><img src="img/game.png" alt=""></span>
                             <span>sadhkj-xicuo</span>•
                             <span>25k评论</span>•
                             <span>10分钟前</span>
@@ -172,34 +149,36 @@
         </div>
         <div class="col-sm-3">
             <div class="search-bar">
-                <input type="search" class="form-control" placeholder="搜一下">
+                <label>
+                    <input type="search" class="form-control" placeholder="搜一下">
+                </label>
             </div>
             <div class="side-bar-card">
                 <div class="card-title">最新折扣</div>
                 <div class="card-body">
                     <div class="list">
                         <div class="item">
-                            <img src="./img/山羊.png">
+                            <img src="./img/山羊.png" alt="">
                             <a class="title" href="#">化身山羊。《Goat Simulator 3》现已在Epic游戏商城独占发布。</a>
                             <div class="desc">￥83</div>
                         </div>
                         <div class="item">
-                            <img src="./img/山羊.png">
+                            <img src="./img/山羊.png" alt="">
                             <a class="title" href="#">化身山羊。《Goat Simulator 3》现已在Epic游戏商城独占发布。</a>
                             <div class="desc">￥83</div>
                         </div>
                         <div class="item">
-                            <img src="./img/山羊.png">
+                            <img src="./img/山羊.png" alt="">
                             <a class="title" href="#">化身山羊。《Goat Simulator 3》现已在Epic游戏商城独占发布。</a>
                             <div class="desc">￥83</div>
                         </div>
                         <div class="item">
-                            <img src="./img/山羊.png">
+                            <img src="./img/山羊.png" alt="">
                             <a class="title" href="#">化身山羊。《Goat Simulator 3》现已在Epic游戏商城独占发布。</a>
                             <div class="desc">￥83</div>
                         </div>
                         <div class="item">
-                            <img src="./img/山羊.png">
+                            <img src="./img/山羊.png" alt="">
                             <a class="title" href="#">化身山羊。《Goat Simulator 3》现已在Epic游戏商城独占发布。</a>
                             <div class="desc">￥83</div>
                         </div>

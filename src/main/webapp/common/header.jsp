@@ -24,8 +24,24 @@
                 <c:forEach var="" items="" ></c:forEach>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="login.html">登陆</a></li>
-                <li><a href="signup.html">注册</a></li>
+                <c:if test="${user== null || user == ''}">
+                    <li><a href="./login.jsp">登录</a></li>
+                    <li><a href="./signup.jsp">注册</a></li>
+                </c:if>
+                <c:if test="${user != null}">
+                    <li><a href="#"><img class="img-circle" width="40px" src="img/photos/${user.photo}" alt=""></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">${user.nickname}<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./userinfo.jsp">个人信息</a></li>
+                            <li><a href="./changePassword.jsp">修改密码</a></li>
+                            <li class="divider"></li>
+                            <li><a href="./logout.jsp">退出</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./signup.jsp">注册</a></li>
+                </c:if>
             </ul>
         </div>
     </div>
