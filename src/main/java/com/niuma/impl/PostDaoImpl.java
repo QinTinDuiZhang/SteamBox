@@ -13,7 +13,7 @@ import java.util.Map;
 public class PostDaoImpl implements PostDao {
 
     @Override
-    public boolean publish(Post post) {
+    public boolean publish(Post post) {             //发布帖子
         Map<String,Object> map=new HashMap<>();
         map.put("title",post.getTitle());
         map.put("img", post.getImg());
@@ -30,7 +30,7 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
-    public boolean updatePost(Post post) {
+    public boolean updatePost(Post post) {              //修改帖子
         Map<String,Object> map=new HashMap<>();
         map.put("id",post.getId());
         map.put("title",post.getTitle());
@@ -48,7 +48,7 @@ public class PostDaoImpl implements PostDao {
     }
 
     @Override
-    public boolean deletePost(int id) {
+    public boolean deletePost(int id) {                     //删除帖子
         SqlSession sqlSession= SqlSessionUtils.getSqlSession();
         PostMapper postMapper = sqlSession.getMapper(PostMapper.class);
         Boolean aBoolean = postMapper.deletePost(id);

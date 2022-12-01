@@ -16,9 +16,13 @@
         from steambox.user
          join steambox.user_community uc on user.id = uc.user_id
          join steambox.community c on c.id = uc.community_id
-        where user.id = 1;
+        where user.id = #{id};
     </select>
     <update id="updateUser">
-
+        update steambox.user
+        set nickName=#{nickname}, photo=#{photo}, birthday=#{birthday}, email=#{email}, mobile=#{mobile} where account=#{account}
+    </update>
+    <update id="changePassword">
+        update steambox.user set password=#{password} where account=#{account}
     </update>
 </mapper>

@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class UserDaoImpl implements UserDao {
     @Override
-    public User getUser(String account , String password) {
+    public User getUser(String account , String password) {         //登陆
         SqlSession sqlSession= SqlSessionUtils.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         User user =userMapper.getUser(account, password);
@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean addUser(User user) {
+    public boolean addUser(User user) {                             //注册
         Map<String,Object> map=new HashMap<>();
         map.put("account",user.getAccount());
         map.put("password", user.getPassword());
@@ -41,11 +41,23 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<Community> getLikeCommunity(int id) {
+    public List<Community> getLikeCommunity(int id) {               //获取关注社区
         SqlSession sqlSession= SqlSessionUtils.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         List<Community> community = userMapper.getLikeCommunity(id);
         return community;
+    }
+    public Boolean updateUser(String account){                      //修改个人信息
+        SqlSession sqlSession= SqlSessionUtils.getSqlSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        Boolean aBoolean = userMapper.updateUser(account);
+        return aBoolean;
+    }
+    public Boolean changePassword(String account){                  //修改密码
+        SqlSession sqlSession= SqlSessionUtils.getSqlSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        Boolean aBoolean = userMapper.changePassword(account);
+        return aBoolean;
     }
 
 }
