@@ -17,7 +17,7 @@ public interface ArticleDao {
      * @param article 修改帖子
      * @return 是否修改成功
      */
-    boolean updatePost(Article article);
+    boolean updateArticle(Article article);
 
     /**
      * 用户删除自己发布的帖子
@@ -25,5 +25,5 @@ public interface ArticleDao {
      * @param id 帖子id
      * @return 是否删除帖子
      */
-    boolean deletePost(int id);
+    boolean deleteArticle(int id);
 }

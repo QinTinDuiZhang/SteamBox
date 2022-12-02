@@ -14,6 +14,7 @@ public class SqlSessionUtils {
         //加载核心配置文件
         InputStream is;
         {
+
             try {
                 is = Resources.getResourceAsStream("mybatis-config.xml");
                 //获取SqlSessionFactoryBuilder对象
