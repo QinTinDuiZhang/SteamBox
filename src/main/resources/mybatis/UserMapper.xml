@@ -4,6 +4,12 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace= "mybatis.UserMapper">
 
+    <resultMap id="likeMap" type="Community">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="shoplink" property="shopLink"/>
+    </resultMap>
+
     <select id="getUser" resultType="com.niuma.model.User">
         select *
         from steambox.user
@@ -16,7 +22,7 @@
         values (#{account},#{password},#{nickName},#{photo},#{birthday},#{email},#{mobile},#{regDate},#{forbidden})
     </insert>
 
-    <select id="getLikeCommunity" resultType="com.niuma.model.Community">
+    <select id="getLikeCommunity" resultMap="likeMap">
         select c.id,c.`name`,c.shoplink
         from steambox.user
          join steambox.user_community uc on user.id = uc.user_id
