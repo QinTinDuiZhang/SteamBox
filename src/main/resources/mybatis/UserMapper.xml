@@ -13,7 +13,7 @@
 
     <insert id="addUser">
         insert into steambox.user(account,password,nickname,photo,birthday,email,mobile,regDate,forbidden)
-        values (#{account},#{password},#{nickname},#{photo},#{birthday},#{email},#{mobile},#{regDate},#{forbidden})
+        values (#{account},#{password},#{nickName},#{photo},#{birthday},#{email},#{mobile},#{regDate},#{forbidden})
     </insert>
 
     <select id="getLikeCommunity" resultType="com.niuma.model.Community">

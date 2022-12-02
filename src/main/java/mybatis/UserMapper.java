@@ -10,7 +10,7 @@ import java.util.Map;
 public interface UserMapper {
     User getUser(@Param("account") String account, @Param("password") String password);   //登陆
 
-    Boolean addUser(Map<String, Object> map);                                             //注册
+    Boolean addUser(User user);                                             //注册
 
     List<Community> getLikeCommunity(@Param("id") int id);                               //获得喜欢的社区
 

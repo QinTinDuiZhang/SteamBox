@@ -21,22 +21,22 @@ public class AdminDaoImpl implements AdminDao {
 
     @Override
     public Boolean addCommunity(Community community) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", community.getName());
-        map.put("shopLink", community.getShopLink());
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("name", community.getName());
+//        map.put("shopLink", community.getShopLink());
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
-        return adminMapper.addCommunity(map);
+        return adminMapper.addCommunity(community);
     }
 
     @Override
     public Boolean updateCommunity(Community community) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", community.getName());
-        map.put("shopLink", community.getShopLink());
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("name", community.getName());
+//        map.put("shopLink", community.getShopLink());
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
-        return adminMapper.updateCommunity(map);
+        return adminMapper.updateCommunity(community);
     }
 
     public Boolean setPostLook(int hidden, int id) {

@@ -1,6 +1,7 @@
 package mybatis;
 
 import com.niuma.model.Admin;
+import com.niuma.model.Community;
 
 import java.util.Map;
 
@@ -9,9 +10,9 @@ public interface AdminMapper {
 
     Boolean changePassword(String account);
 
-    Boolean addCommunity(Map<String, Object> map);
+    Boolean addCommunity(Community community);
 
-    Boolean updateCommunity(Map<String, Object> map);
+    Boolean updateCommunity(Community community);
 
     Boolean setPostLook(int hidden, int id);
 }

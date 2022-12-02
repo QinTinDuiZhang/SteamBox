@@ -5,7 +5,7 @@
 <mapper namespace= "mybatis.PostMapper">
     <insert id="publish">
         insert into steambox.article(title,img,content,pubdate,click_count,creator,auditor,community_id,hidden)
-        values (#{title},#{img},#{content},#{pubdate},#{click_count},#{creator},#{auditor},#{community_id},0)
+        values (#{title},#{img},#{content},#{pubDate},#{clickCount},#{creator},#{auditor},#{communityId},0)
     </insert>
     <update id="updatePost">
         update steambox.article
