@@ -3,12 +3,8 @@ package com.niuma.impl;
 import com.niuma.dao.ArticleDao;
 import com.niuma.model.Article;
 import com.niuma.tool.SqlSessionUtils;
-import mybatis.PostMapper;
+import mybatis.ArticleMapper;
 import org.apache.ibatis.session.SqlSession;
-
-import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ArticleDaoImpl implements ArticleDao {
 
@@ -24,12 +20,12 @@ public class ArticleDaoImpl implements ArticleDao {
 //        map.put("auditor", article.getAuditor());
 //        map.put("community_id", article.getCommunityId());
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
-        PostMapper postMapper = sqlSession.getMapper(PostMapper.class);
+        ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
         return postMapper.publish(article);
     }
 
     @Override
-    public boolean updatePost(Article article) {
+    public boolean updateArticle(Article article) {
 //        Map<String, Object> map = new HashMap<>();
 //        map.put("id", article.getId());
 //        map.put("title", article.getTitle());
@@ -41,14 +37,14 @@ public class ArticleDaoImpl implements ArticleDao {
 //        map.put("auditor", article.getAuditor());
 //        map.put("community_id", article.getCommunityId());
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
-        PostMapper postMapper = sqlSession.getMapper(PostMapper.class);
-        return postMapper.updatePost(article);
+        ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
+        return postMapper.updateArticle(article);
     }
 
     @Override
-    public boolean deletePost(int id) {
+    public boolean deleteArticle(int id) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
-        PostMapper postMapper = sqlSession.getMapper(PostMapper.class);
-        return postMapper.deletePost(id);
+        ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
+        return postMapper.deleteArticle(id);
     }
 }

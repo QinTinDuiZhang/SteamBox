@@ -2,16 +2,14 @@ package mybatis;
 
 import com.niuma.model.Article;
 
-import java.util.Map;
-
-public interface PostMapper {
+public interface ArticleMapper {
 
     //发布帖子
     boolean publish(Article article);
 
     //修改帖子
-    boolean updatePost(Article article);
+    boolean updateArticle(Article article);
 
     //删除帖子
-    boolean deletePost(int id);
+    boolean deleteArticle(int id);
 }
