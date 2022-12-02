@@ -30,19 +30,19 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public boolean updatePost(Article article) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("id", article.getId());
-        map.put("title", article.getTitle());
-        map.put("img", article.getImg());
-        map.put("content", article.getContent());
-        map.put("pubdate", new Timestamp(new java.util.Date().getTime()));
-        map.put("click_count", article.getClickCount());
-        map.put("creator", article.getCreator());
-        map.put("auditor", article.getAuditor());
-        map.put("community_id", article.getCommunityId());
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("id", article.getId());
+//        map.put("title", article.getTitle());
+//        map.put("img", article.getImg());
+//        map.put("content", article.getContent());
+//        map.put("pubdate", new Timestamp(new java.util.Date().getTime()));
+//        map.put("click_count", article.getClickCount());
+//        map.put("creator", article.getCreator());
+//        map.put("auditor", article.getAuditor());
+//        map.put("community_id", article.getCommunityId());
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         PostMapper postMapper = sqlSession.getMapper(PostMapper.class);
-        return postMapper.updatePost(map);
+        return postMapper.updatePost(article);
     }
 
     @Override

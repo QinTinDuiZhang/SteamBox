@@ -10,7 +10,7 @@ public interface PostMapper {
     boolean publish(Article article);
 
     //修改帖子
-    boolean updatePost(Map<String, Object> map);
+    boolean updatePost(Article article);
 
     //删除帖子
     boolean deletePost(int id);

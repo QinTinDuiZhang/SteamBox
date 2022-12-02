@@ -9,7 +9,7 @@
     </insert>
     <update id="updatePost">
         update steambox.article
-        set title=#{title}, img=#{img}, content=#{content}, pubdate=#{pubdate}, click_count=#{click_count},creator=#{creator},auditor=#{auditor},community_id=#{community_id}
+        set title=#{title}, img=#{img}, content=#{content}, pubdate=#{pubDate}, click_count=#{clickCount},creator=#{creator},auditor=#{auditor},community_id=#{communityId}
         where id=#{id}
     </update>
     <delete id="deletePost">
