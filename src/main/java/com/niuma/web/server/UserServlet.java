@@ -124,14 +124,14 @@ public class UserServlet extends BaseServlet {
     /* 登陆 */
     public void Login(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String account = request.getParameter("account");
-        String password = Md5Util.md5(request.getParameter("password"));
+        String password = Md5Util.md5(request.getParameter("Lpassword"));
         UserDaoImpl userDao = new UserDaoImpl();
         User user = userDao.login(account, password);
-        if (user != null && password.equals(user.getPassword())) {
+        if (user != null) {
             if (user.isForbidden()) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                response.sendRedirect(request.getContextPath() + "/index.jsp");
+                response.sendRedirect(request.getContextPath() + "/first.jsp");
             } else {
                 request.setAttribute("forbid", "账号已被封禁");
                 response.sendRedirect(request.getContextPath() + "/login.jsp");
