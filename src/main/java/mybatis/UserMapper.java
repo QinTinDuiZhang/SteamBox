@@ -1,5 +1,6 @@
 package mybatis;
 
+import com.niuma.model.Article;
 import com.niuma.model.Community;
 import com.niuma.model.User;
 import org.apache.ibatis.annotations.Param;
@@ -17,4 +18,7 @@ public interface UserMapper {
     Boolean updateUser(User user);                                                       //修改个人信息
 
     Boolean changePassword(@Param("account") String account, @Param("password") String password);  //修改密码
+
+    List<Article> selectArticle(String content);                                              //模糊查询文章
+    List<Community> selectCommunity(String content);                                           //模糊查询社区
 }

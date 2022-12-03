@@ -3,7 +3,9 @@ package com.niuma.dao;
 import com.niuma.model.Community;
 import com.niuma.model.User;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface UserDao {
     /**
@@ -55,4 +57,11 @@ public interface UserDao {
      * @return 是否成功
      */
     boolean updateUser(User user);
+
+    /**
+     * 模糊查询帖子社区
+     * @param content 输入查询内容
+     * @return 返回一个HashMap,内嵌入两个集合元素（“帖子”，“社区”）
+     */
+    HashMap<String,List> selectInfo(String content);
 }
