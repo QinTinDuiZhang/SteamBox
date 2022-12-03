@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
     public User login(String account, String password) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        return userMapper.getUser(account, Md5Util.md5(password));
+        return userMapper.getUser(account, password);
     }
 
     @Override

@@ -14,26 +14,27 @@
     <title>蒸汽盒平台</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/index.css" rel="stylesheet" type="text/css">
 </head>
+<style>
+    @font-face{
+
+        font-family: 'Alimama_ShuHeiTi_Bold';
+
+        src:url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
+
+        url('./fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
+    }
+    p,header,a{
+        text-decoration: none;
+        font-family: Alimama_ShuHeiTi_Bold, serif;
+    }
+</style>
 <body>
-<div class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <a href="first.jsp" class="navbar-brand"></a>
-        </div>
-        <!-- class="visible-xs-inline-block"：在超小屏幕上显示-->
-        <label for="toggle-checkbox" id="toggle-label" class="visible-xs-inline-block">菜单</label>
-        <input type="checkbox" class="hidden" id="toggle-checkbox">
-        <div class="hidden-xs">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a id="dh" href="login.jsp">登陆/注册</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+<jsp:include page="common/header.jsp" flush="true"></jsp:include>
 <div id="bq">
     <span id="zi1">全球最开放的、最简洁的</span><br>
     <span id="zi2">实时游戏论坛平台</span>
@@ -41,8 +42,8 @@
 
 <video autoplay muted loop src="videos/first.mp4" class="movie"  id="videoId"></video>
 <div id="btns">
-    <a href="#" class="btn" style="--clr:#00ccff;--i:0;"><span>登陆/注册</span></a>
-    <a href="#" class="btn" style="--clr:#22e622;--i:1;"><span>进入首页</span></a>
+    <a href="login.jsp" class="btn" style="--clr:#00ccff;--i:0;"><span>登陆/注册</span></a>
+    <a href="first.jsp" class="btn" style="--clr:#22e622;--i:1;"><span>进入首页</span></a>
 </div>
 
 <div class="footer1">
@@ -81,5 +82,8 @@
         <img src="img/蒸汽盒LOGO.jpg" alt="">
     </div>
 </div>
+<script>
+    document.getElementById("title").style.display = "none";
+</script>
 </body>
 </html>
