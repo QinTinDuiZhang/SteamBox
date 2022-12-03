@@ -44,4 +44,11 @@ public class AdminDaoImpl implements AdminDao {
         AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
         return adminMapper.setPostLook(hidden, id);
     }
+
+    @Override
+    public Boolean setUserBan(int hidden, int id) {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+        return adminMapper.setUserBan(hidden, id);
+    }
 }

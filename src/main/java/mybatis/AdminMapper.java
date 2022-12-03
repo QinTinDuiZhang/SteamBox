@@ -15,4 +15,6 @@ public interface AdminMapper {
     Boolean updateCommunity(Community community);
 
     Boolean setPostLook(int hidden, int id);
+
+    Boolean setUserBan(int hidden,int id);
 }

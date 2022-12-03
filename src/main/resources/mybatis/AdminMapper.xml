@@ -34,4 +34,10 @@
         where id=#{id}
     </update>
 
+    <update id="setUserBan">
+        update steambox.user
+        set forbidden=#{hidden}
+        where id=#{id}
+    </update>
+
 </mapper>
