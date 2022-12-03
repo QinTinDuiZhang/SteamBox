@@ -20,21 +20,20 @@
         <input type="checkbox" class="hidden" id="toggle-checkbox">
         <div class="hidden-xs">
             <ul class="nav navbar-nav" id="title">
-            </ul>
-            <ul class="nav navbar-nav">
                 <%
                     String community = request.getParameter("community"); // 获取新闻分类参数
                     UserDao userDao = new UserDaoImpl();
                     User user = (User) request.getAttribute("user");
-                    List<Community> communities = userDao.getLikeCommunity(user.getId());
-                %>
-                <li <%if (community == null) {%> class="active"<%}%>><a href="index.jsp">首页</a></li>
-                <% for (Community c : communities) {%>
-                <li <%if(community!=null && c.getId() == Integer.parseInt(community)){%>class="active"<%}%>>
-                    <a href="index.jsp?category=<%=c.getId()%>"><%=c.getName()%>
-                    </a>
-                </li>
-                <%}%>
+                    List<Community> communities = null;
+                    if(user != null){
+                        communities = userDao.getLikeCommunity(user.getId());%>
+                    <li <%if (community == null) {%> class="active"<%}%>><a href="index.jsp">首页</a></li>
+                    <%for (Community c : communities) {%>
+                        <li <%if(community!=null && c.getId() == Integer.parseInt(community)){%>class="active"<%}%>>
+                            <a href="index.jsp?category=<%=c.getId()%>"><%=c.getName()%></a>
+                        </li><%
+                    }
+                }%>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <c:if test="${user== null || user == ''}">

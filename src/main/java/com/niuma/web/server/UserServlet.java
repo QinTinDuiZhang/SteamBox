@@ -16,8 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-//这回修改了一下文件结构，用反射的方式
-
 @WebServlet("/User/*")
 @MultipartConfig(fileSizeThreshold = 10 * 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 100 * 1024 * 1024)
 public class UserServlet extends BaseServlet {
