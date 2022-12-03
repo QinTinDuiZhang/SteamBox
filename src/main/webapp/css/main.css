@@ -7,6 +7,12 @@ img {
     max-width: 100%;
 }
 
+.navbar{
+    border: 1px solid#1D2D44;
+    background-color: #1D2D44;
+    
+}
+
 .navbar-brand {
     background-image: url(../img/蒸汽盒LOGO.jpg);
     width: 120px;
@@ -83,7 +89,7 @@ img, .side-bar .list-group-item, .side-bar-card {
 .news-list-item {
     padding-top: 15px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid #171A21;
 }
 
 .news-list-item:first-child {
@@ -211,4 +217,16 @@ img, .side-bar .list-group-item, .side-bar-card {
     position: relative;
     left: 400px;
     top: 8px;
+}
+#dh{
+    color: white;
+}
+#like{
+    color: #C5C3C0;
+}
+#like:hover{
+    font-weight: bold;
+}
+#all{
+    background: url(../img/背景图.jpg);
 }

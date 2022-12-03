@@ -14,20 +14,43 @@
     <title>蒸汽盒平台</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/font-awesome.css">
-    <link href="./css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="./css/index.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/rotationChart1.css" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/index.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-<a href="publish.jsp">dianci</a>
-<jsp:include page="common/header.jsp" flush="true"></jsp:include>
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="index.html" class="navbar-brand"></a>
+        </div>
+        <!-- class="visible-xs-inline-block"：在超小屏幕上显示-->
+        <label for="toggle-checkbox" id="toggle-label" class="visible-xs-inline-block">菜单</label>
+        <input type="checkbox" class="hidden" id="toggle-checkbox">
+        <div class="hidden-xs">
+            <!-- <ul class="nav navbar-nav">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">英雄联盟</a></li>
+                <li><a href="#">魔兽</a></li>
+                <li><a href="#">黑魂</a></li>
+                <li><a href="#">艾尔登</a></li>
+                <li><a href="#">战地5</a></li>
+            </ul> -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="login.html">登陆</a></li>
+                <li><a href="signup.html">注册</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 <div id="bq">
     <span id="zi1">全球最开放的、最简洁的</span><br>
     <span id="zi2">实时游戏论坛平台</span>
 </div>
 
-<video autoplay muted loop src="./videos/first.mp4" class="movie" id="videoId"></video>
+<video autoplay muted loop src="videos/first.mp4" class="movie"  id="videoId"></video>
 
 <div class="footer1">
     <div class="mk6">
@@ -58,12 +81,12 @@
             <p class="part4-zi">隐私政策</p>
             <p class="part4-zi">知识产权</p>
         </div>
-        <jsp:include page="common/tall.jsp" flush="true"></jsp:include>
-        <img src="./img/蒸汽盒LOGO.jpg" alt="文件加载错误">
+        <div class="mk6-part5">
+            <p>法律声明 阳光准则 网站地图 粤网文【2022】6138-1456号 粤B2-20090059 粤公网安备44030502008569号</p>
+            <p>Copyright © 1998 - 2022 ChengDu. All Rights Reserved. 成都公司 版权所有</p>
+        </div>
+        <img src="img/蒸汽盒LOGO.jpg">
     </div>
 </div>
-<script>
-    document.getElementById("title").style.display = "none";
-</script>
 </body>
 </html>
