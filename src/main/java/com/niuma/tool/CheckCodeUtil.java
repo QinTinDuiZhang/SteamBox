@@ -22,7 +22,7 @@ public class CheckCodeUtil {
 
     public static void main(String[] args) throws IOException {
         OutputStream fos = new FileOutputStream("d://a.jpg");
-        String checkCode = CheckCodeUtil.outputVerifyImage(100, 50, fos, 4);
+        String checkCode = CheckCodeUtil.outputVerifyImage(90, 40, fos, 4);
 
         System.out.println(checkCode);
     }

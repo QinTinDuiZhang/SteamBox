@@ -38,7 +38,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <c:if test="${user== null || user == ''}">
                     <li><a href="login.jsp">登录</a></li>
-                    <li><a href="signup.jsp">注册</a></li>
                 </c:if>
                 <c:if test="${user != null}">
                     <li><a href="#"><img class="img-circle" width="40px" src="img/photos/${user.photo}" alt=""></a>
