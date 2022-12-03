@@ -18,7 +18,7 @@
 </head>
 
 <body>
-<a href="index.html">
+<a href="index.jsp">
     <button id="rtn">返回首页</button>
 </a>
 <div class="container">

@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>蒸汽盒平台</title>
@@ -19,28 +19,18 @@
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/index.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
 <div class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <a href="index.html" class="navbar-brand"></a>
+            <a href="index.jsp" class="navbar-brand"></a>
         </div>
         <!-- class="visible-xs-inline-block"：在超小屏幕上显示-->
         <label for="toggle-checkbox" id="toggle-label" class="visible-xs-inline-block">菜单</label>
         <input type="checkbox" class="hidden" id="toggle-checkbox">
         <div class="hidden-xs">
-            <!-- <ul class="nav navbar-nav">
-                <li><a href="#">首页</a></li>
-                <li><a href="#">英雄联盟</a></li>
-                <li><a href="#">魔兽</a></li>
-                <li><a href="#">黑魂</a></li>
-                <li><a href="#">艾尔登</a></li>
-                <li><a href="#">战地5</a></li>
-            </ul> -->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="login.html">登陆</a></li>
-                <li><a href="signup.html">注册</a></li>
+                <li><a id="dh" href="login.jsp">登陆/注册</a></li>
             </ul>
         </div>
     </div>
@@ -51,6 +41,10 @@
 </div>
 
 <video autoplay muted loop src="videos/first.mp4" class="movie"  id="videoId"></video>
+<div id="btns">
+    <a href="login.jsp" class="btn" style="--clr:#00ccff;--i:0;"><span>登陆/注册</span></a>
+    <a href="first.jsp" class="btn" style="--clr:#22e622;--i:1;"><span>进入首页</span></a>
+</div>
 
 <div class="footer1">
     <div class="mk6">
