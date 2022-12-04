@@ -10,7 +10,6 @@ img {
 .navbar{
     border: 1px solid#1D2D44;
     background-color: #1D2D44;
-    
 }
 
 .navbar-brand {
@@ -205,4 +204,15 @@ img, .side-bar .list-group-item, .side-bar-card {
 }
 #all{
     background: url(../img/背景图.jpg);
+    
+}
+#row{
+    display: inline-block;
+    width: 1000px;
+    position: relative;
+    left:150px;
+    /* border: 1px solid red; */
+}
+body{
+    background-color: rgb(7, 4, 26);
 }
