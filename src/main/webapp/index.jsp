@@ -14,21 +14,22 @@
     <title>蒸汽盒平台</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/main.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/index.css" rel="stylesheet" type="text/css">
 </head>
 <style>
-    @font-face{
+    @font-face {
 
         font-family: 'Alimama_ShuHeiTi_Bold';
 
-        src:url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
-
+        src: url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
         url('./fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
     }
-    p,header,a{
+
+    p, header, a {
         text-decoration: none;
         font-family: Alimama_ShuHeiTi_Bold, serif;
     }
@@ -40,7 +41,7 @@
     <span id="zi2">实时游戏论坛平台</span>
 </div>
 
-<video autoplay muted loop src="videos/first.mp4" class="movie"  id="videoId"></video>
+<video autoplay muted loop src="videos/first.mp4" class="movie" id="videoId"></video>
 <div id="btns">
     <a href="login.jsp" class="btn" style="--clr:#00ccff;--i:0;"><span>登陆/注册</span></a>
     <a href="first.jsp" class="btn" style="--clr:#22e622;--i:1;"><span>进入首页</span></a>

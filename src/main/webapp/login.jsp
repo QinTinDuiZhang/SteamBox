@@ -74,8 +74,8 @@
        loop="loop" muted="muted"></video>
 
 <script>
-    window.onload = function (){
-        
+    window.onload = function () {
+
     }
     // 要操作到的元素
     let login = document.getElementById('login');

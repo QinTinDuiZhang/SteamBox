@@ -8,11 +8,7 @@ import com.niuma.tool.SqlSessionUtils;
 import mybatis.UserMapper;
 import org.apache.ibatis.session.SqlSession;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class UserDaoImpl implements UserDao {
 

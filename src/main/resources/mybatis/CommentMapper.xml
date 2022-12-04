@@ -3,27 +3,32 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.CommentMapper">
+
     <insert id="addComment">
         insert into steambox.comment(content, pubdate, ipaddress, hidden, likenum, dislikenum, reply_for_id, creator,
                                      article_id)
         values (#{content}, #{pubDate}, #{ipAddress}, 0, #{likeNum}, #{disLikeNum}, #{replyForId}, #{creator},
                 #{articleId})
     </insert>
+
     <update id="updateLikeNum">
         update steambox.comment
         set likenum=#{likeNum}
-        where id=#{id}
+        where id = #{id}
     </update>
+
     <update id="updateDislikeNum">
         update steambox.comment
         set dislikeNum=#{disLikeNum}
-        where id=#{id}
+        where id = #{id}
     </update>
+
     <select id="selectLikeNum" resultType="int">
         select likenum
         from steambox.comment
         where id = #{id}
     </select>
+
     <select id="selectDisLikeNum" resultType="int">
         select dislikenum
         from steambox.comment

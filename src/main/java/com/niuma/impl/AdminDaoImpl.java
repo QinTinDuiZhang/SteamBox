@@ -7,9 +7,6 @@ import com.niuma.tool.SqlSessionUtils;
 import mybatis.AdminMapper;
 import org.apache.ibatis.session.SqlSession;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class AdminDaoImpl implements AdminDao {
 
     @Override

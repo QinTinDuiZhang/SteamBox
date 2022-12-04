@@ -5,7 +5,6 @@ import com.niuma.model.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Map;
 
 public interface UserMapper {
     User getUser(@Param("account") String account, @Param("password") String password);   //登陆
