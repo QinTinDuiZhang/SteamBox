@@ -19,14 +19,14 @@ public class CommentDaoImpl implements CommentDao {
     public void updateLikeNum(int likeNum, int id) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
-        commentMapper.updateLikeNum(likeNum,id);
+        commentMapper.updateLikeNum(likeNum, id);
     }
 
     @Override
     public void updateDislikeNum(int disLikeNum, int id) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
-        commentMapper.updateDislikeNum(disLikeNum,id);
+        commentMapper.updateDislikeNum(disLikeNum, id);
     }
 
     @Override

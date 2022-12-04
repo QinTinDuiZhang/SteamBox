@@ -12,8 +12,9 @@
 <head>
     <meta charset="UTF-8">
     <title>发布页面</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<%--    <link href="css/publish.css" rel="stylesheet" type="text/css"/>--%>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <%--    <link href="css/publish.css" rel="stylesheet" type="text/css"/>--%>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -49,8 +50,8 @@
             </p>
             <p>
                 <label for="content"> 正文 </label>
-                <div id="editor"></div>
-                <input id="content" type="hidden" name="content">
+            <div id="editor"></div>
+            <input id="content" type="hidden" name="content">
             </p>
             <p>
                 <label> 选择封面 </label>
@@ -104,7 +105,7 @@
     };
     let quill = new Quill('#editor', options);
 
-    function test(){
+    function test() {
         quill && quill.getLength() > 1 ? $("#content").val(quill.root.innerHTML) : alert("内容不能为空！")
     }
 </script>

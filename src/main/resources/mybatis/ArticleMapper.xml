@@ -2,18 +2,26 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace= "mybatis.ArticleMapper">
+<mapper namespace="mybatis.ArticleMapper">
     <insert id="publish">
-        insert into steambox.article(title,img,content,pubdate,click_count,creator,auditor,community_id,hidden)
-        values (#{title},#{img},#{content},#{pubDate},#{clickCount},#{creator},#{auditor},#{communityId},0)
+        insert into steambox.article(title, img, content, pubdate, click_count, creator, auditor, community_id, hidden)
+        values (#{title}, #{img}, #{content}, #{pubDate}, #{clickCount}, #{creator}, #{auditor}, #{communityId}, 0)
     </insert>
     <update id="updateArticle">
         update steambox.article
-        set title=#{title}, img=#{img}, content=#{content}, pubdate=#{pubDate}, click_count=#{clickCount},creator=#{creator},auditor=#{auditor},community_id=#{communityId}
-        where id=#{id}
+        set title=#{title},
+            img=#{img},
+            content=#{content},
+            pubdate=#{pubDate},
+            click_count=#{clickCount},
+            creator=#{creator},
+            auditor=#{auditor},
+            community_id=#{communityId}
+        where id = #{id}
     </update>
     <delete id="deleteArticle">
-        delete from steambox.article
-               where id=#{id}
+        delete
+        from steambox.article
+        where id = #{id}
     </delete>
 </mapper>

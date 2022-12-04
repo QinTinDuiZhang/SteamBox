@@ -40,9 +40,10 @@ public interface AdminDao {
 
     /**
      * 设置用户是否禁用
+     *
      * @param hidden 为0/1的数字，0为禁用，1为不禁用
-     * @param id 用户id
+     * @param id     用户id
      * @return 是否成功
      */
-    Boolean setUserBan(int hidden,int id);              //设置用户是否禁用
+    Boolean setUserBan(int hidden, int id);              //设置用户是否禁用
 }

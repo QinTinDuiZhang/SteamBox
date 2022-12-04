@@ -13,23 +13,24 @@
     <meta charset="UTF-8">
     <title>新闻详情</title>
     <link rel="stylesheet" href="./css/main.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <style>
-    @font-face{
+    @font-face {
 
         font-family: 'Alimama_ShuHeiTi_Bold';
 
-        src:url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
-
+        src: url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
         url('./fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
     }
-    p,header,a{
+
+    p, header, a {
         text-decoration: none;
         font-family: Alimama_ShuHeiTi_Bold, serif;
     }
 
-    #bg{
+    #bg {
         background: #d1d5d6;
         padding: 20px;
     }
@@ -80,35 +81,40 @@
             <div class="card-body">
                 <div class="list">
                     <div class="item clearfix">
-                        <div class="col-xs-5 no-padding-h"><img src="https://dummyimage.com/1000x700/666/ccc" alt=""></div>
+                        <div class="col-xs-5 no-padding-h"><img src="https://dummyimage.com/1000x700/666/ccc" alt="">
+                        </div>
                         <div class="col-xs-7">
                             <div class="title">记结婚高圆圆与赵又廷北京登</div>
                             <div class="desc">25k阅读•35分钟前发布</div>
                         </div>
                     </div>
                     <div class="item clearfix">
-                        <div class="col-xs-5 no-padding-h"><img src="https://dummyimage.com/1000x700/666/ccc" alt=""></div>
+                        <div class="col-xs-5 no-padding-h"><img src="https://dummyimage.com/1000x700/666/ccc" alt="">
+                        </div>
                         <div class="col-xs-7">
                             <div class="title">记结婚高圆圆与赵又廷北京登</div>
                             <div class="desc">25k阅读•35分钟前发布</div>
                         </div>
                     </div>
                     <div class="item clearfix">
-                        <div class="col-xs-5 no-padding-h"><img src="https://dummyimage.com/1000x700/666/ccc" alt=""></div>
+                        <div class="col-xs-5 no-padding-h"><img src="https://dummyimage.com/1000x700/666/ccc" alt="">
+                        </div>
                         <div class="col-xs-7">
                             <div class="title">记结婚高圆圆与赵又廷北京登</div>
                             <div class="desc">25k阅读•35分钟前发布</div>
                         </div>
                     </div>
                     <div class="item clearfix">
-                        <div class="col-xs-5 no-padding-h"><img src="https://dummyimage.com/1000x700/666/ccc" alt=""></div>
+                        <div class="col-xs-5 no-padding-h"><img src="https://dummyimage.com/1000x700/666/ccc" alt="">
+                        </div>
                         <div class="col-xs-7">
                             <div class="title">记结婚高圆圆与赵又廷北京登</div>
                             <div class="desc">25k阅读•35分钟前发布</div>
                         </div>
                     </div>
                     <div class="item clearfix">
-                        <div class="col-xs-5 no-padding-h"><img src="https://dummyimage.com/1000x700/666/ccc" alt=""></div>
+                        <div class="col-xs-5 no-padding-h"><img src="https://dummyimage.com/1000x700/666/ccc" alt="">
+                        </div>
                         <div class="col-xs-7">
                             <div class="title">记结婚高圆圆与赵又廷北京登</div>
                             <div class="desc">25k阅读•35分钟前发布</div>
