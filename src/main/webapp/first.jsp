@@ -34,9 +34,9 @@
 <body>
 <jsp:include page="common/header.jsp" flush="true"></jsp:include>
 <div class="container">
-    <div class="row" style="margin-top: 110px">
+    <div class="row" style="margin-top: 90px">
         <div class="col-sm-2">
-            <div class="list-group side-bar hidden-xs">
+            <div class="list-group side-bar hidden-xs" style="font-size: 15px">
                 <a href="#" class="list-group-item">动作</a>
                 <a href="#" class="list-group-item">单机</a>
                 <a href="#" class="list-group-item">经营</a>
@@ -53,7 +53,7 @@
                 <a href="particulars.jsp">
                     <div class="news-list-item clearfix">
                         <div class="col-xs-7">
-                            <p class="title h3">游戏商城的下一场黑色星期五特卖即将来临</p>
+                            <p class="title h1">游戏商城的下一场黑色星期五特卖即将来临</p>
                         </div>
                         <div class="col-xs-5">
                             <img src="img/game.png" alt="">

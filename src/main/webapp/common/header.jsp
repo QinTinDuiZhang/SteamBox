@@ -11,7 +11,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<header class="p-3 text-bg-dark fixed-top">
+<header class="p-3 text-bg-dark fixed-top" style="font-size: 15px">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-between">
             <a href="first.jsp" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
