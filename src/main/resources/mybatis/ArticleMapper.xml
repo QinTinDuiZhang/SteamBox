@@ -24,4 +24,15 @@
         from steambox.article
         where id = #{id}
     </delete>
+    <select id="selectAll" resultType="Article">
+        select *
+        from steambox.article
+        <where>
+            hidden=1
+            <if test="id != 0">
+                id = #{id}
+            </if>
+        </where>
+;
+    </select>
 </mapper>

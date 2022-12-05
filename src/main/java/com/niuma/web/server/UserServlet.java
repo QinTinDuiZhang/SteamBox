@@ -153,6 +153,15 @@ public class UserServlet extends BaseServlet {
         else response.sendRedirect(request.getContextPath() + "/changePassword.jsp");
     }
 
+    /**
+     * 发布帖子
+     */
     public void Publish(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    }
+
+    /**
+     * 搜索
+     */
+    public void Search(HttpServletRequest request, HttpServletResponse response) throws IOException {
     }
 }

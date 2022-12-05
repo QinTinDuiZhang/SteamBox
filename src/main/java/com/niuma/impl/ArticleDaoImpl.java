@@ -6,6 +6,8 @@ import com.niuma.tool.SqlSessionUtils;
 import mybatis.ArticleMapper;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.List;
+
 public class ArticleDaoImpl implements ArticleDao {
 
     @Override
@@ -46,5 +48,12 @@ public class ArticleDaoImpl implements ArticleDao {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
         return postMapper.deleteArticle(id);
+    }
+
+    @Override
+    public List<Article> selectAll(int id) {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
+        return postMapper.selectAll(id);
     }
 }

@@ -1,4 +1,11 @@
-<%--
+<%@ page import="com.niuma.dao.UserDao" %>
+<%@ page import="com.niuma.impl.UserDaoImpl" %>
+<%@ page import="com.niuma.dao.ArticleDao" %>
+<%@ page import="com.niuma.impl.ArticleDaoImpl" %>
+<%@ page import="com.niuma.model.Article" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.niuma.tool.TimeFormat" %>
+<%@ page import="com.niuma.model.User" %><%--
   Created by IntelliJ IDEA.
   User: 23686
   Date: 2022/11/30
@@ -34,9 +41,9 @@
 <body>
 <jsp:include page="common/header.jsp" flush="true"></jsp:include>
 <div class="container">
-    <div class="row" style="margin-top: 90px">
-        <div class="col-sm-2">
-            <div class="list-group side-bar hidden-xs" style="font-size: 15px">
+    <div class="row" style="margin-top: 100px">
+        <div class="col-2">
+            <div class="list-group side-bar hidden-xs">
                 <a href="#" class="list-group-item">动作</a>
                 <a href="#" class="list-group-item">单机</a>
                 <a href="#" class="list-group-item">经营</a>
@@ -48,61 +55,34 @@
                 <a href="#" class="list-group-item">冒险</a>
             </div>
         </div>
-        <div class="col-sm-7">
+        <div class="col-7">
+            <%
+                String community = request.getParameter("community");
+                UserDao userDao = new UserDaoImpl();
+                ArticleDao articleDao = new ArticleDaoImpl();
+                List<Article> articles = community != null ? articleDao.selectAll(Integer.parseInt(community)): articleDao.selectAll(0);
+                for (Article article : articles){%>
             <div>
-                <a href="particulars.jsp">
+                <a href="particulars.jsp?article=<%= article.getId()%>">
                     <div class="news-list-item clearfix">
                         <div class="col-xs-7">
-                            <p class="title h1">游戏商城的下一场黑色星期五特卖即将来临</p>
+                            <p class="title h3 text-white"><%= article.getTitle()%></p>
                         </div>
                         <div class="col-xs-5">
-                            <img src="img/game.png" alt="">
+                            <img src="img/cover/<%= article.getImg()%>" alt="">
                         </div>
                         <div class="col-xs-7">
                             <div class="info">
                                 <span class="avatar"><img src="img/game.png" alt=""></span>
-                                <span>sadhkj-xicuo</span>•
+                                <span><%= userDao.getUserByID(article.getCreator()).getNickName() %></span>•
                                 <span>25k评论</span>•
-                                <span>10分钟前</span>
+                                <span><%= TimeFormat.getInterval(article.getPubDate())%></span>
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="side-bar-card">
-                <div class="card-title">最新折扣</div>
-                <div class="card-body">
-                    <div class="list">
-                        <div class="item">
-                            <img src="./img/山羊.png" alt="">
-                            <a class="title" href="#">化身山羊。《Goat Simulator 3》现已在Epic游戏商城独占发布。</a>
-                            <div class="desc">￥83</div>
-                        </div>
-                        <div class="item">
-                            <img src="./img/山羊.png" alt="">
-                            <a class="title" href="#">化身山羊。《Goat Simulator 3》现已在Epic游戏商城独占发布。</a>
-                            <div class="desc">￥83</div>
-                        </div>
-                        <div class="item">
-                            <img src="./img/山羊.png" alt="">
-                            <a class="title" href="#">化身山羊。《Goat Simulator 3》现已在Epic游戏商城独占发布。</a>
-                            <div class="desc">￥83</div>
-                        </div>
-                        <div class="item">
-                            <img src="./img/山羊.png" alt="">
-                            <a class="title" href="#">化身山羊。《Goat Simulator 3》现已在Epic游戏商城独占发布。</a>
-                            <div class="desc">￥83</div>
-                        </div>
-                        <div class="item">
-                            <img src="./img/山羊.png" alt="">
-                            <a class="title" href="#">化身山羊。《Goat Simulator 3》现已在Epic游戏商城独占发布。</a>
-                            <div class="desc">￥83</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <%}%>
         </div>
     </div>
 </div>

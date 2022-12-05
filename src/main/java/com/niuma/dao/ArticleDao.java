@@ -2,6 +2,8 @@ package com.niuma.dao;
 
 import com.niuma.model.Article;
 
+import java.util.List;
+
 public interface ArticleDao {
     /**
      * 用户发布帖子
@@ -26,4 +28,6 @@ public interface ArticleDao {
      * @return 是否删除帖子
      */
     boolean deleteArticle(int id);
+
+    List<Article> selectAll(int id);
 }
