@@ -10,18 +10,29 @@
     <link href="css/admin.css" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/pintuer.js"></script>
+    <style>
+        @font-face {
+
+            font-family: 'Alimama_ShuHeiTi_Bold';
+
+            src: url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
+            url('./fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
+        }
+
+        p, header, a {
+            text-decoration: none;
+            font-family: Alimama_ShuHeiTi_Bold, serif;
+        }
+    </style>
 </head>
 <body>
 <div class="panel admin-panel">
-    <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong></div>
-    <div class="padding border-bottom">
-        <a class="button border-yellow" href=""><span class="icon-plus-square-o"></span> 添加内容</a>
-    </div>
+    <div class="panel-head"><strong class="icon-reorder"> 社区列表</strong></div>
     <table class="table table-hover text-center">
         <tr>
             <th width="5%">ID</th>
-            <th>栏目名称</th>
-            <th>排序</th>
+            <th>社区名字</th>
+            <th>商店链接</th>
             <th width="250">操作</th>
         </tr>
 
@@ -100,17 +111,17 @@
     }
 </script>
 <div class="panel admin-panel margin-top">
-    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加内容</strong></div>
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加/修改社区</strong></div>
     <div class="body-content">
         <form action="" class="form-x" method="post">
             <input name="id" type="hidden" value=""/>
             <div class="form-group">
                 <div class="label">
-                    <label for="title">栏目名称：</label>
+                    <label for="title">社区名字：</label>
                 </div>
                 <div class="field">
                     <input class="input w50"
-                           data-validate="required:请输入标题"
+                           data-validate="required:请输入社区名字"
                            id="title"
                            name="title"
                            type="text"
@@ -120,101 +131,10 @@
             </div>
             <div class="form-group">
                 <div class="label">
-                    <label for="url1">栏目图片：</label>
+                    <label for="ETitle">商店链接：</label>
                 </div>
                 <div class="field">
-                    <input class="input tips"
-                           data-image=""
-                           data-place="right"
-                           data-toggle="hover"
-                           id="url1"
-                           name="banner"
-                           style="width:25%; float:left;"
-                           type="text"
-                           value=""/>
-                    <input class="button bg-blue margin-left"
-                           id="image1"
-                           style="float:left;"
-                           type="button"
-                           value="+ 浏览上传">
-                    <div class="tipss">图片尺寸：1920*200</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="label">
-                    <label for="ETitle">英文标题：</label>
-                </div>
-                <div class="field">
-                    <input class="input w50" id="ETitle" name="entitle" type="text" value=""/>
-                    <div class="tips"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="label">
-                    <label for="s_title">关键字标题：</label>
-                </div>
-                <div class="field">
-                    <input class="input"
-                           id="s_title"
-                           name="s_title"
-                           type="text"
-                           value=""/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="label">
-                    <label for="s_keywords">栏目关键字：</label>
-                </div>
-                <div class="field">
-                    <input class="input"
-                           id="s_keywords"
-                           name="s_keywords"
-                           type="text"
-                           value=""/>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="label">
-                    <label for="s_desc">关键字描述：</label>
-                </div>
-                <div class="field">
-                    <textarea class="input"
-                              id="s_desc"
-                              name="s_desc"
-                              style="height:100px;"
-                              type="text"></textarea>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="label">
-                    <label>显示：</label>
-                </div>
-                <div class="field">
-                    <div class="button-group radio">
-
-                        <label class="button active">
-                            <span class="icon icon-check"></span>
-                            <input checked="checked" name="isshow" type="radio" value="1">是
-                        </label>
-
-                        <label class="button active"><span class="icon icon-times"></span>
-                            <input checked="checked" name="isshow" type="radio" value="0">否
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="label">
-                    <label for="sort">排序：</label>
-                </div>
-                <div class="field">
-                    <input class="input w50"
-                           data-validate="required:,number:排序必须为数字"
-                           id="sort"
-                           name="sort"
-                           type="text"
-                           value="0"/>
+                    <input class="input w50" id="ETitle" name="entitle" type="text" data-validate="required:请输入商店链接" value=""/>
                     <div class="tips"></div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ public class Test {
         UserDaoImpl userDao = new UserDaoImpl();
         Boolean aBoolean = userDao.changePassword("test", "123456");
         System.out.println(aBoolean);
+
     }
 
 }

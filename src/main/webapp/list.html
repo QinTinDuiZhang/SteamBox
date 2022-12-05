@@ -10,53 +10,30 @@
     <link href="css/admin.css" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/pintuer.js"></script>
+    <style>
+        @font-face {
+
+            font-family: 'Alimama_ShuHeiTi_Bold';
+
+            src: url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
+            url('./fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
+        }
+
+        p, header, a {
+            text-decoration: none;
+            font-family: Alimama_ShuHeiTi_Bold, serif;
+        }
+    </style>
 </head>
 <body>
 <form action="" id="listform" method="post">
     <div class="panel admin-panel">
-        <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href=""
+        <div class="panel-head"><strong class="icon-reorder"> 帖子列表</strong> <a href=""
                                                                                style="float:right; display:none;">添加字段</a>
         </div>
         <div class="padding border-bottom">
             <ul class="search" style="padding-left:10px;">
-                <li><a class="button border-main icon-plus-square-o" href="add.html"> 添加内容</a></li>
                 <li>搜索：</li>
-                <li>首页
-                    <select class="input" name="s_ishome" onchange="changesearch()"
-                            style="width:60px; line-height:17px; display:inline-block">
-                        <option value="">选择</option>
-                        <option value="1">是</option>
-                        <option value="0">否</option>
-                    </select>
-                    &nbsp;&nbsp;
-                    推荐
-                    <select class="input" name="s_isvouch" onchange="changesearch()"
-                            style="width:60px; line-height:17px;display:inline-block">
-                        <option value="">选择</option>
-                        <option value="1">是</option>
-                        <option value="0">否</option>
-                    </select>
-                    &nbsp;&nbsp;
-                    置顶
-                    <select class="input" name="s_istop" onchange="changesearch()"
-                            style="width:60px; line-height:17px;display:inline-block">
-                        <option value="">选择</option>
-                        <option value="1">是</option>
-                        <option value="0">否</option>
-                    </select>
-                </li>
-                <if condition="$iscid eq 1">
-                    <li>
-                        <select class="input" name="cid" onchange="changesearch()"
-                                style="width:200px; line-height:17px;">
-                            <option value="">请选择分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
-                        </select>
-                    </li>
-                </if>
                 <li>
                     <input class="input" name="keywords" placeholder="请输入搜索关键字"
                            style="width:250px; line-height:17px;display:inline-block"
@@ -67,23 +44,24 @@
         </div>
         <table class="table table-hover text-center">
             <tr>
+                <th>状态</th>
                 <th style="text-align:left; padding-left:20px;" width="100">ID</th>
-                <th width="10%">排序</th>
+                <th width="20%">标题</th>
                 <th>图片</th>
-                <th>名称</th>
-                <th>属性</th>
-                <th>分类名称</th>
-                <th width="10%">更新时间</th>
+                <th width="10%">发布时间</th>
+                <th>发布者</th>
+                <th>审核员</th>
+                <th>所属分类</th>
                 <th width="310">操作</th>
             </tr>
             <volist id="vo" name="list">
                 <tr>
-                    <td style="text-align:left; padding-left:20px;"><input name="id[]" type="checkbox" value=""/>
-                        1
+
+                    <td style="text-align:left; padding-left:40px;">
+                        <input name="id[]" type="checkbox" value=""/>
                     </td>
-                    <td><input name="sort[1]"
-                               style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" type="text"
-                               value="1"/></td>
+                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;">1</th>
+                    <td>《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
                     <td width="10%"><img alt="" height="50" src="images/11.jpg" width="70"/></td>
                     <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
                     <td><font color="#00CC99">首页</font></td>
@@ -91,18 +69,18 @@
                     <td>2016-07-01</td>
                     <td>
                         <div class="button-group"><a class="button border-main" href="add.html"><span
-                                class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
+                                class="icon-edit"></span> 通过</a> <a class="button border-red" href="javascript:void(0)"
                                                                     onclick="return del(1,1,1)"><span
-                                class="icon-trash-o"></span> 删除</a></div>
+                                class="icon-trash-o"></span> 退回</a></div>
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align:left; padding-left:20px;"><input name="id[]" type="checkbox" value=""/>
-                        1
+
+                    <td style="text-align:left; padding-left:40px;">
+                        <input name="id[]" type="checkbox" value=""/>
                     </td>
-                    <td><input name="sort[1]"
-                               style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" type="text"
-                               value="1"/></td>
+                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;">1</th>
+                    <td>《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
                     <td width="10%"><img alt="" height="50" src="images/11.jpg" width="70"/></td>
                     <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
                     <td><font color="#00CC99">首页</font></td>
@@ -110,18 +88,18 @@
                     <td>2016-07-01</td>
                     <td>
                         <div class="button-group"><a class="button border-main" href="add.html"><span
-                                class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
-                                                                    onclick="return del(1,1,1)"><span
-                                class="icon-trash-o"></span> 删除</a></div>
+                                class="icon-edit"></span> 通过</a> <a class="button border-red" href="javascript:void(0)"
+                                                                      onclick="return del(1,1,1)"><span
+                                class="icon-trash-o"></span> 退回</a></div>
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align:left; padding-left:20px;"><input name="id[]" type="checkbox" value=""/>
-                        1
+
+                    <td style="text-align:left; padding-left:40px;">
+                        <input name="id[]" type="checkbox" value=""/>
                     </td>
-                    <td><input name="sort[1]"
-                               style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" type="text"
-                               value="1"/></td>
+                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;">1</th>
+                    <td>《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
                     <td width="10%"><img alt="" height="50" src="images/11.jpg" width="70"/></td>
                     <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
                     <td><font color="#00CC99">首页</font></td>
@@ -129,18 +107,18 @@
                     <td>2016-07-01</td>
                     <td>
                         <div class="button-group"><a class="button border-main" href="add.html"><span
-                                class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
-                                                                    onclick="return del(1,1,1)"><span
-                                class="icon-trash-o"></span> 删除</a></div>
+                                class="icon-edit"></span> 通过</a> <a class="button border-red" href="javascript:void(0)"
+                                                                      onclick="return del(1,1,1)"><span
+                                class="icon-trash-o"></span> 退回</a></div>
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align:left; padding-left:20px;"><input name="id[]" type="checkbox" value=""/>
-                        1
+
+                    <td style="text-align:left; padding-left:40px;">
+                        <input name="id[]" type="checkbox" value=""/>
                     </td>
-                    <td><input name="sort[1]"
-                               style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" type="text"
-                               value="1"/></td>
+                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;">1</th>
+                    <td>《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
                     <td width="10%"><img alt="" height="50" src="images/11.jpg" width="70"/></td>
                     <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
                     <td><font color="#00CC99">首页</font></td>
@@ -148,18 +126,18 @@
                     <td>2016-07-01</td>
                     <td>
                         <div class="button-group"><a class="button border-main" href="add.html"><span
-                                class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
-                                                                    onclick="return del(1,1,1)"><span
-                                class="icon-trash-o"></span> 删除</a></div>
+                                class="icon-edit"></span> 通过</a> <a class="button border-red" href="javascript:void(0)"
+                                                                      onclick="return del(1,1,1)"><span
+                                class="icon-trash-o"></span> 退回</a></div>
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align:left; padding-left:20px;"><input name="id[]" type="checkbox" value=""/>
-                        1
+
+                    <td style="text-align:left; padding-left:40px;">
+                        <input name="id[]" type="checkbox" value=""/>
                     </td>
-                    <td><input name="sort[1]"
-                               style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" type="text"
-                               value="1"/></td>
+                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;">1</th>
+                    <td>《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
                     <td width="10%"><img alt="" height="50" src="images/11.jpg" width="70"/></td>
                     <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
                     <td><font color="#00CC99">首页</font></td>
@@ -167,18 +145,18 @@
                     <td>2016-07-01</td>
                     <td>
                         <div class="button-group"><a class="button border-main" href="add.html"><span
-                                class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
-                                                                    onclick="return del(1,1,1)"><span
-                                class="icon-trash-o"></span> 删除</a></div>
+                                class="icon-edit"></span> 通过</a> <a class="button border-red" href="javascript:void(0)"
+                                                                      onclick="return del(1,1,1)"><span
+                                class="icon-trash-o"></span> 退回</a></div>
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align:left; padding-left:20px;"><input name="id[]" type="checkbox" value=""/>
-                        1
+
+                    <td style="text-align:left; padding-left:40px;">
+                        <input name="id[]" type="checkbox" value=""/>
                     </td>
-                    <td><input name="sort[1]"
-                               style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" type="text"
-                               value="1"/></td>
+                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;">1</th>
+                    <td>《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
                     <td width="10%"><img alt="" height="50" src="images/11.jpg" width="70"/></td>
                     <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
                     <td><font color="#00CC99">首页</font></td>
@@ -186,9 +164,9 @@
                     <td>2016-07-01</td>
                     <td>
                         <div class="button-group"><a class="button border-main" href="add.html"><span
-                                class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
-                                                                    onclick="return del(1,1,1)"><span
-                                class="icon-trash-o"></span> 删除</a></div>
+                                class="icon-edit"></span> 通过</a> <a class="button border-red" href="javascript:void(0)"
+                                                                      onclick="return del(1,1,1)"><span
+                                class="icon-trash-o"></span> 退回</a></div>
                     </td>
                 </tr>
                 <tr>
@@ -201,44 +179,7 @@
                                                                                   onclick="DelSelect()"
                                                                                   style="padding:5px 15px;"> 删除</a> <a
                             class="button border-blue icon-edit" href="javascript:void(0)"
-                            onclick="sorts()" style="padding:5px 15px; margin:0 10px;"> 排序</a> 操作：
-                        <select name="ishome" onchange="changeishome(this)"
-                                style="padding:5px 15px; border:1px solid #ddd;">
-                            <option value="">首页</option>
-                            <option value="1">是</option>
-                            <option value="0">否</option>
-                        </select>
-                        <select name="isvouch" onchange="changeisvouch(this)"
-                                style="padding:5px 15px; border:1px solid #ddd;">
-                            <option value="">推荐</option>
-                            <option value="1">是</option>
-                            <option value="0">否</option>
-                        </select>
-                        <select name="istop" onchange="changeistop(this)"
-                                style="padding:5px 15px; border:1px solid #ddd;">
-                            <option value="">置顶</option>
-                            <option value="1">是</option>
-                            <option value="0">否</option>
-                        </select>
-                        &nbsp;&nbsp;&nbsp;
-
-                        移动到：
-                        <select name="movecid" onchange="changecate(this)"
-                                style="padding:5px 15px; border:1px solid #ddd;">
-                            <option value="">请选择分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
-                            <option value="">产品分类</option>
-                        </select>
-                        <select name="copynum" onchange="changecopy(this)"
-                                style="padding:5px 15px; border:1px solid #ddd;">
-                            <option value="">请选择复制</option>
-                            <option value="5">复制5条</option>
-                            <option value="10">复制10条</option>
-                            <option value="15">复制15条</option>
-                            <option value="20">复制20条</option>
-                        </select></td>
+                            onclick="sorts()" style="padding:5px 15px; margin:0 10px;"> 查看待审核</a></td>
                 </tr>
                 <tr>
                     <td colspan="8">
