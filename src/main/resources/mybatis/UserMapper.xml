@@ -48,10 +48,21 @@
     </update>
 
     <select id="selectArticle" resultType="com.niuma.model.Article">
-        select * from steambox.article where article.title like concat('%',#{content},'%')
+        select *
+        from steambox.article
+        where article.title like concat('%',#{content},'%')
     </select>
+
     <select id="selectCommunity" resultType="com.niuma.model.Community">
-        select * from steambox.community where community.name like concat('%',#{content},'%')
+        select *
+        from steambox.community
+        where community.name like concat('%',#{content},'%')
+    </select>
+
+    <select id="getUserByID" resultType="com.niuma.model.User">
+        select *
+        from steambox.user
+        where user.id = #{id};
     </select>
 
 </mapper>

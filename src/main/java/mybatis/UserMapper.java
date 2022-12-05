@@ -19,5 +19,8 @@ public interface UserMapper {
     Boolean changePassword(@Param("account") String account, @Param("password") String password);  //修改密码
 
     List<Article> selectArticle(String content);                                              //模糊查询文章
+
     List<Community> selectCommunity(String content);                                           //模糊查询社区
+
+    User getUserByID(int id);
 }

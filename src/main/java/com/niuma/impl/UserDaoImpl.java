@@ -56,6 +56,12 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
+    public User getUserByID(int id){
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        return userMapper.getUserByID(id);
+    }
+
     @Override
     public boolean updateUser(User user) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();

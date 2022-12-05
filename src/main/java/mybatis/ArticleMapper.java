@@ -2,6 +2,8 @@ package mybatis;
 
 import com.niuma.model.Article;
 
+import java.util.List;
+
 public interface ArticleMapper {
 
     //发布帖子
@@ -12,4 +14,6 @@ public interface ArticleMapper {
 
     //删除帖子
     boolean deleteArticle(int id);
+
+    List<Article> selectAll(int id);
 }

@@ -64,4 +64,6 @@ public interface UserDao {
      * @return 返回一个HashMap,内嵌入两个集合元素（“帖子”，“社区”）
      */
     HashMap<String,List> selectInfo(String content);
+
+    User getUserByID(int id);
 }

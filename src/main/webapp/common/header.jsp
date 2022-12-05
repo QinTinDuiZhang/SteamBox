@@ -33,7 +33,7 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
                 id="title">
                 <%
-                    String community = request.getParameter("community"); // 获取新闻分类参数
+                    String community = request.getParameter("community");
                     UserDao userDao = new UserDaoImpl();
                     User user = (User) session.getAttribute("user");
                     List<Community> communities;
@@ -51,7 +51,7 @@
             </ul>
 
             <div class="d-flex justify-content-around">
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="User/Search">
                     <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
                 </form>
 
@@ -60,7 +60,7 @@
                     <a class="nav-link" href="login.jsp" style="margin-top: 10px">登录</a>
                     <%}else{%>
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="img/photos/${user.photo}" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img src="img/photo/<%= user.getPhoto()%>" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small">
                         <li><a class="dropdown-item" href="userinfo.jsp">个人信息</a></li>
