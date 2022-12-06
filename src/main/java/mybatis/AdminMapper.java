@@ -2,11 +2,12 @@ package mybatis;
 
 import com.niuma.model.Admin;
 import com.niuma.model.Community;
+import org.apache.ibatis.annotations.Param;
 
 public interface AdminMapper {
-    Admin login(String account, String password);
+    Admin login(@Param("account") String account,@Param("password") String password);
 
-    Boolean changePassword(String account);
+    Boolean changePassword(@Param("account") String account,@Param("password")String password);
 
     Boolean addCommunity(Community community);
 

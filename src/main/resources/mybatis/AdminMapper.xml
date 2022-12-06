@@ -7,8 +7,8 @@
     <select id="login" resultType="com.niuma.model.Admin">
         select *
         from steambox.admin
-        where account = #{account}
-          and password = #{password}
+        where account = #{param1}
+          and password = #{param2}
     </select>
 
     <update id="changePassword">

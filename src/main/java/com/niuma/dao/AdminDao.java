@@ -46,4 +46,12 @@ public interface AdminDao {
      * @return 是否成功
      */
     Boolean setUserBan(int hidden, int id);              //设置用户是否禁用
+
+    /**
+     * 修改管理员密码
+     * @param account 管理员账号
+     * @param password 管理员新密码
+     * @return 是否成功
+     */
+    Boolean changePassword(String account,String password);
 }
