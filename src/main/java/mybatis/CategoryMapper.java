@@ -9,5 +9,7 @@ import java.util.List;
 public interface CategoryMapper {
     List<Category> getAllCategory();
 
-    List<Article> getCategoryArticle(int id);
+    List<Article> getCategoryArticle(int categoryId);
+
+    List<Category> ToGainByArticle(int id);
 }

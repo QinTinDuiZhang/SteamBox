@@ -9,4 +9,6 @@ public interface CategoryDao {
     List<Category> getAllCategory();
 
     List<Article> getCategoryArticle(int id);
+
+    List<Category> toGainByArticle(int id);
 }

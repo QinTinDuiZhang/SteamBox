@@ -16,8 +16,18 @@
         select article.id,article.hidden,article.content,article.img,article.title,article.pubdate,article.creator,article.auditor,article.click_count,article.community_id
         from steambox.article
         join steambox.article_category ac on article.id = ac.article_id
-        where hidden = 1
-          and ac.category_id = #{id};
+        <where>
+            hidden = 1
+            <if test="categoryId != null">
+                ac.category_id = #{categoryId}
+            </if>
+        </where>
+    </select>
+    <select id="ToGainByArticle" resultType="Category">
+        select *
+        from steambox.category
+        join steambox.article_category ac on category.id = ac.category_id
+        where article_id = #{id};
     </select>
 
 </mapper>

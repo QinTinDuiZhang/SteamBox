@@ -5,7 +5,6 @@
 <%@ page import="com.niuma.model.Article" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.niuma.tool.TimeFormat" %>
-<%@ page import="com.niuma.model.User" %>
 <%@ page import="com.niuma.dao.CategoryDao" %>
 <%@ page import="com.niuma.impl.CategoryDaoImpl" %>
 <%@ page import="com.niuma.model.Category" %>
@@ -53,8 +52,8 @@
     <div class="row" style="margin-top: 100px">
         <div class="col-2">
             <div class="list-group side-bar hidden-xs">
-                <% for (Iterator<Category> it = categoryIterator; it.hasNext(); ) {
-                    Category category = it.next();%>
+                <% while (categoryIterator.hasNext()) {
+                    Category category = categoryIterator.next();%>
                 <a href="first.jsp?category=<%= category.getId()%>" class="list-group-item"><%= category.getName()%></a>
                 <%}%>
             </div>

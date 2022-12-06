@@ -5,4 +5,8 @@
 <mapper namespace="mybatis.CommunityMapper">
 
 
+    <select id="getAll" resultType="com.niuma.model.Community">
+        select *
+        from steambox.community;
+    </select>
 </mapper>
