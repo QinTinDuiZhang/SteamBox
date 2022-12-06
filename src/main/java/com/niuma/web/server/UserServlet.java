@@ -1,5 +1,6 @@
 package com.niuma.web.server;
 
+import com.niuma.dao.UserDao;
 import com.niuma.impl.UserDaoImpl;
 import com.niuma.model.User;
 import com.niuma.tool.MailDemoSum;
@@ -15,6 +16,8 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 @WebServlet("/User/*")
 @MultipartConfig(fileSizeThreshold = 10 * 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 100 * 1024 * 1024)
@@ -162,6 +165,11 @@ public class UserServlet extends BaseServlet {
     /**
      * 搜索
      */
-    public void Search(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void Search(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String search = request.getParameter("Search");
+        UserDao userDao = new UserDaoImpl();
+        HashMap<String, List> selectInfo = userDao.selectInfo(search);
+        request.getSession().setAttribute("selectInfo",selectInfo);
+        response.sendRedirect(request.getContextPath() + "/search.jsp");
     }
 }

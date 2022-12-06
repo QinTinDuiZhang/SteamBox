@@ -1,4 +1,11 @@
-<%--
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.niuma.model.Community" %>
+<%@ page import="com.niuma.model.Article" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="com.niuma.dao.UserDao" %>
+<%@ page import="com.niuma.impl.UserDaoImpl" %>
+<%@ page import="com.niuma.tool.TimeFormat" %><%--
   Created by IntelliJ IDEA.
   User: 23686
   Date: 2022/12/5
@@ -38,12 +45,11 @@
     }
 
     .box {
-      /* margin-top: 50px; */
         position: absolute;
         width: 50px;
         height: 50px;
         left: 45%;
-        margin-top: 70px;
+        margin-top: 100px;
         border-top: 30px solid rgb(11, 203, 242);
         border-left: 30px solid transparent;
         border-right: 30px solid transparent;
@@ -76,7 +82,7 @@
         position: absolute;
         border: 3px solid rgb(163, 159, 159);
         left: 250px;
-        top: 110px;
+        top: 145px;
     }
 
     #father {
@@ -98,50 +104,49 @@
 </style>
 
 <body>
-<!--    <jsp:include page="common/header.jsp" flush="true"></jsp:include>-->
+<jsp:include page="common/header.jsp" flush="true"></jsp:include>
 <div class="container" style="background-color: rgb(9, 26, 65);">
     <div class="box"></div>
     <div id="community" style="padding: 50px;">
         <div id="father">
+            <%
+                HashMap<String, List> selectInfo = (HashMap<String, List>) session.getAttribute("selectInfo");
+                List<Article> articles = selectInfo.get("article");
+                List<Community> community = selectInfo.get("community");
+                Iterator<Community> iterator = community.iterator();
+                int j = 0;
+                for (int i = 0; i < 5; i++) {%>
             <div class="child">
-                <a>你好</a>
-                <a>你好522</a>
-                <a>你好254</a>
-                <a>你好244</a>
-                <a>你好4254</a>
+                <% for (; iterator.hasNext() && j < community.size() / 5; j++) {%>
+                <a href="<%= iterator.next().getShopLink()%>"><%= iterator.next().getName()%>
+                </a>
+                <%}%>
             </div>
-            <div>
-                <a>为什么</a>
-            </div>
-            <div>
-                <a>为什么</a>
-            </div>
-            <div>
-                <a>为什么</a>
-            </div>
-            <div>
-                <a>为什么</a>
-            </div>
-
+            <%}%>
         </div>
     </div>
-    <div class="row" id="row" style="margin-top: 110px;background-color: #2c355b;">
+    <div class="row" id="row" style="margin-top: 145px;background-color: #2c355b;">
+        <%
+            UserDao userDao = new UserDaoImpl();
+            for (Article article : articles) {
+        %>
         <div class="col" style="margin: 20px;">
             <div>
                 <a href="particulars.jsp" class="row">
                     <div class="col-4">
-                        <img src="img/game.png" alt="">
+                        <img src="img/cover/<%= article.getImg()%>" alt="">
                     </div>
                     <div class="col-8 row">
                         <div class="col-12">
-                            <p class="title h3" style="margin-top: 18px;">游戏商城的下一场黑色星期五特卖即将来临</p>
+                            <p class="title h3" style="margin-top: 18px;"><%= article.getTitle()%>
+                            </p>
                         </div>
                         <div class="col-7 align-self-end" style="margin-bottom: 10px;">
                             <div class="info">
                                 <span class="avatar"><img src="img/game.png" alt=""></span>
-                                <span>sadhkj-xicuo</span>•
+                                <span><%= userDao.getUserByID(article.getCreator()).getNickName() %></span>•
                                 <span>25k评论</span>•
-                                <span>10分钟前</span>
+                                <span><%= TimeFormat.getInterval(article.getPubDate()) %></span>
                             </div>
                         </div>
                     </div>
@@ -149,55 +154,10 @@
             </div>
         </div>
         <hr style="margin-top: 15px;">
-        <div class="col" style="margin: 20px;">
-            <div>
-                <a href="particulars.jsp" class="row">
-                    <div class="col-4">
-                        <img src="img/game.png" alt="">
-                    </div>
-                    <div class="col-8 row">
-                        <div class="col-12">
-                            <p class="title h3" style="margin-top: 18px;">游戏商城的下一场黑色星期五特卖即将来临</p>
-                        </div>
-                        <div class="col-7 align-self-end" style="margin-bottom: 10px;">
-                            <div class="info">
-                                <span class="avatar"><img src="img/game.png" alt=""></span>
-                                <span>sadhkj-xicuo</span>•
-                                <span>25k评论</span>•
-                                <span>10分钟前</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <hr style="margin-top: 15px;">
-        <div class="col" style="margin: 20px;">
-            <div>
-                <a href="particulars.jsp" class="row">
-                    <div class="col-4">
-                        <img src="img/game.png" alt="">
-                    </div>
-                    <div class="col-8 row">
-                        <div class="col-12">
-                            <p class="title h3" style="margin-top: 18px;">游戏商城的下一场黑色星期五特卖即将来临</p>
-                        </div>
-                        <div class="col-7 align-self-end" style="margin-bottom: 10px;">
-                            <div class="info">
-                                <span class="avatar"><img src="img/game.png" alt=""></span>
-                                <span>sadhkj-xicuo</span>•
-                                <span>25k评论</span>•
-                                <span>10分钟前</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <hr style="margin-top: 15px;">
+        <%}%>
     </div>
 </div>
-<!--    <jsp:include page="common/tall.jsp" flush="true"></jsp:include>-->
+<jsp:include page="common/tall.jsp" flush="true"></jsp:include>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
