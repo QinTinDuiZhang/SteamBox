@@ -8,4 +8,16 @@
     <!--        select * from admin where account=#{account} and password=#{password}-->
     <!--    </select>-->
 
+    <select id="getAllCategory" resultType="category">
+        select *
+        from steambox.category;
+    </select>
+    <select id="getCategoryArticle" resultType="Article">
+        select article.id,article.hidden,article.content,article.img,article.title,article.pubdate,article.creator,article.auditor,article.click_count,article.community_id
+        from steambox.article
+        join steambox.article_category ac on article.id = ac.article_id
+        where hidden = 1
+          and ac.category_id = #{id};
+    </select>
+
 </mapper>

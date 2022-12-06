@@ -5,7 +5,11 @@
 <%@ page import="com.niuma.model.Article" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.niuma.tool.TimeFormat" %>
-<%@ page import="com.niuma.model.User" %><%--
+<%@ page import="com.niuma.model.User" %>
+<%@ page import="com.niuma.dao.CategoryDao" %>
+<%@ page import="com.niuma.impl.CategoryDaoImpl" %>
+<%@ page import="com.niuma.model.Category" %>
+<%@ page import="java.util.Iterator" %><%--
   Created by IntelliJ IDEA.
   User: 23686
   Date: 2022/11/30
@@ -40,27 +44,29 @@
 
 <body>
 <jsp:include page="common/header.jsp" flush="true"></jsp:include>
+<%
+    CategoryDao categoryDao = new CategoryDaoImpl();
+    List<Category> allCategory = categoryDao.getAllCategory();
+    Iterator<Category> categoryIterator = allCategory.iterator();
+%>
 <div class="container">
     <div class="row" style="margin-top: 100px">
         <div class="col-2">
             <div class="list-group side-bar hidden-xs">
-                <a href="#" class="list-group-item">动作</a>
-                <a href="#" class="list-group-item">单机</a>
-                <a href="#" class="list-group-item">经营</a>
-                <a href="#" class="list-group-item">策略</a>
-                <a href="#" class="list-group-item">网游</a>
-                <a href="#" class="list-group-item">塔防</a>
-                <a href="#" class="list-group-item">卡牌</a>
-                <a href="#" class="list-group-item">模拟</a>
-                <a href="#" class="list-group-item">冒险</a>
+                <% for (Iterator<Category> it = categoryIterator; it.hasNext(); ) {
+                    Category category = it.next();%>
+                <a href="first.jsp?category=<%= category.getId()%>" class="list-group-item"><%= category.getName()%></a>
+                <%}%>
             </div>
         </div>
         <div class="col-7">
             <%
                 String community = request.getParameter("community");
+                String category = request.getParameter("category");
                 UserDao userDao = new UserDaoImpl();
                 ArticleDao articleDao = new ArticleDaoImpl();
                 List<Article> articles = community != null ? articleDao.selectAll(Integer.parseInt(community)): articleDao.selectAll(0);
+                if (category != null) articles = categoryDao.getCategoryArticle(Integer.parseInt(category));
                 for (Article article : articles){%>
             <div>
                 <a href="particulars.jsp?article=<%= article.getId()%>">
