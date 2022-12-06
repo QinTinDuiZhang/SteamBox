@@ -5,7 +5,7 @@
   Time: 18:45
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -122,10 +122,10 @@
     }
   })
   enterPassword.addEventListener('change',function (e) {
-    if(e.target.value!=newPassword){
+    if(e.target.value!=newPassword.value){
       btn.disabled=true;
     }
-    if(e.target.value==newPassword){
+    if(e.target.value==newPassword.value){
       btn.disabled=false;
     }
   })
