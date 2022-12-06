@@ -5,7 +5,7 @@ import com.niuma.model.Community;
 import org.apache.ibatis.annotations.Param;
 
 public interface AdminMapper {
-    Admin login(@Param("account") String account,@Param("password") String password);
+    Admin login(String account,String password);
 
     Boolean changePassword(@Param("account") String account,@Param("password")String password);
 
