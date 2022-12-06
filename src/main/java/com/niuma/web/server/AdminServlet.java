@@ -7,6 +7,7 @@ import com.niuma.model.Admin;
 import com.niuma.model.User;
 import com.niuma.tool.Md5Util;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +16,7 @@ import java.io.IOException;
 
 @WebServlet("/Admin/*")
 public class AdminServlet extends BaseServlet{
-    public void Login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void Login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
         AdminDaoImpl adminDao = new AdminDaoImpl();
@@ -26,11 +27,11 @@ public class AdminServlet extends BaseServlet{
             response.sendRedirect(request.getContextPath() + "/AIndex.jsp");
         } else {
             request.setAttribute("err", "账号或密码输入错误");
-            response.sendRedirect(request.getContextPath() + "/ALogin.jsp");
+            request.getRequestDispatcher("/ALogin.jsp").forward(request,response);
         }
     }
-//    public void ChangePassword(HttpServletRequest request, HttpServletResponse response) {
-//
-//    }
+    public void ChangePassword(HttpServletRequest request, HttpServletResponse response) {
+//        String account =request.getParameter("")
+    }
 
 }

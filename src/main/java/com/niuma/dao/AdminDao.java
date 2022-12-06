@@ -53,5 +53,5 @@ public interface AdminDao {
      * @param password 管理员新密码
      * @return 是否成功
      */
-    Boolean changePassword(String account,String password);
+    Boolean changePassword(String account,String password); //修改管理员密码
 }

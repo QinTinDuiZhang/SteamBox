@@ -31,6 +31,12 @@
       text-decoration: none;
       font-family: Alimama_ShuHeiTi_Bold, serif;
     }
+    #warning{
+      color: red;
+      position:relative;
+      top:10px;
+      left:30px;
+    }
   </style>
 </head>
 <body>
@@ -40,7 +46,7 @@
 <div class="panel admin-panel">
   <div class="panel-head"><strong><span class="icon-key"></span> 修改管理员密码</strong></div>
   <div class="body-content">
-    <form action="" class="form-x" method="post">
+    <form action="Admin/ChangePassword" class="form-x" method="post">
       <div class="form-group">
         <div class="label">
           <label>管理员帐号：</label>
@@ -58,7 +64,7 @@
         <div class="field">
           <input class="input w50" data-validate="required:请输入原始密码" id="mpass" name="mpass"
                  placeholder="请输入原始密码" size="50"
-                 type="password"/>
+                 type="password"/><label id="warning"></label>
         </div>
       </div>
       <div class="form-group">
@@ -95,19 +101,36 @@
           <label></label>
         </div>
         <div class="field">
-          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+          <button id="btn" class="button bg-main icon-check-square-o" type="submit"> 提交</button>
         </div>
       </div>
     </form>
   </div>
 </div>
 <script>
-  let oldPassword = document.getElementById('mpass').value;
+  let oldPassword = document.getElementById('mpass');
   let newPassword=document.getElementById('newpass');
   let enterPassword=document.getElementById('enterpass');
-  if(oldPassword!=<%=admin.getPassword()%>){
-    alert('旧密码不对');
-  }
+  let warning=document.getElementById('warning');
+  let btn=document.getElementById('btn');
+  oldPassword.addEventListener('change',function (e) {
+    if(e.target.value!=<%=admin.getPassword()%>){
+      warning.innerHTML = '原始密码不对！'
+    }
+    if(e.target.value==null||e.target.value==''||e.target.value==<%=admin.getPassword()%>){
+      warning.innerHTML = ''
+    }
+  })
+  enterPassword.addEventListener('change',function (e) {
+    if(e.target.value!=newPassword){
+      btn.disabled=true;
+    }
+    if(e.target.value==newPassword){
+      btn.disabled=false;
+    }
+  })
+
+
 </script>
 </body>
 </html>

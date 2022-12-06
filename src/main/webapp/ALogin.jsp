@@ -20,6 +20,9 @@
   <script src="js/pintuer.js"></script>
 </head>
 <body>
+<%
+  String error = (String) request.getAttribute("err");
+%>
 <div class="bg"></div>
 <div class="container">
   <div class="line bouncein">
@@ -29,6 +32,7 @@
       </div>
       <form action="Admin/Login" method="post">
         <div class="panel loginbox">
+          <%=error !=null ? error : ""%>
           <div class="text-center margin-big padding-big-top"><h1>后台管理中心</h1></div>
           <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
             <div class="form-group">
