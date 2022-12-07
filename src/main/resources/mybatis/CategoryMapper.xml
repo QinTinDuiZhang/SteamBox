@@ -19,7 +19,7 @@
         <where>
             hidden = 1
             <if test="categoryId != null">
-                ac.category_id = #{categoryId}
+                and ac.category_id = #{categoryId}
             </if>
         </where>
     </select>

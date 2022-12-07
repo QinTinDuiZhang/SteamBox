@@ -26,12 +26,25 @@ public class AdminServlet extends BaseServlet{
             session.setAttribute("admin", admin);
             response.sendRedirect(request.getContextPath() + "/AIndex.jsp");
         } else {
-            request.setAttribute("err", "账号或密码输入错误");
-            request.getRequestDispatcher("/ALogin.jsp").forward(request,response);
+            HttpSession session = request.getSession();
+            session.setAttribute("err", "账号或密码输入错误");
+            response.sendRedirect(request.getContextPath()+"/ALogin.jsp");
         }
     }
-    public void ChangePassword(HttpServletRequest request, HttpServletResponse response) {
-//        String account =request.getParameter("")
+    public void ChangePassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Admin admin =(Admin) session.getAttribute("admin");
+        String newPassword=request.getParameter("renewpass");
+        String account = admin.getAccount();
+        AdminDaoImpl adminDao=new AdminDaoImpl();
+        Boolean aBoolean = adminDao.changePassword(account, newPassword);
+        if(aBoolean==true){
+            session.setAttribute("updateInfo","修改成功");
+            response.sendRedirect(request.getContextPath()+"/AIndex.jsp");
+        }else{
+            session.setAttribute("updateInfo","修改失败");
+            response.sendRedirect(request.getContextPath()+"/AIndex.jsp");
+        }
     }
 
 }

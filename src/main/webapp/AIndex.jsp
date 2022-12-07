@@ -33,12 +33,16 @@
   </style>
 </head>
 <body style="background-color:#f2f9fd;">
+<%
+  String updateInfo=(String) session.getAttribute("updateInfo");
+%>
+
 <div class="header bg-main">
   <div class="logo margin-big-left fadein-top">
     <h1><img alt=""
              class="radius-circle rotate-hover"
              height="50"
-             src="images/y.jpg"/>后台管理中心</h1>
+             src="img/y.jpg"/>后台管理中心</h1>
   </div>
   <div class="head-l"><a class="button button-little bg-green"
                          href="index.jsp"
@@ -86,5 +90,7 @@
 <div style="text-align:center;">
   <p>来源:<a href="http://down.admin5.com/" target="_blank">A5源码</a></p>
 </div>
+<script>
+</script>
 </body>
 </html>
