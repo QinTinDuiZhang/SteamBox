@@ -19,7 +19,7 @@
 
 <body>
 <a href="first.jsp">
-    <button id="rtn">返回首页</button>
+    <button id="return">返回首页</button>
 </a>
 <div class="container">
     <div class="form-box" style="--clr:#00ccff;--i:0;">
@@ -48,7 +48,7 @@
                 <input type="password" name="Lpassword" id="Lpassword" placeholder="密码">
                 <p>
                     <input type="text" placeholder="验证码" style="width: 132px;">
-                    <img src="img/a.jpg" style="width: 38%; height: 40px;" alt="">
+                    <img src="img/a.jpg" style="width: 38%; height: 40px;">
                 </p>
                 <button type="submit">登录</button>
             </form>
@@ -57,19 +57,19 @@
     <div class="con-box left">
         <h2>欢迎来到<span>蒸汽盒</span></h2>
         <p>快来查阅你的专属<span>攻略</span>吧</p>
-        <img src="img/黄昏星空.png" alt="" style="width: 200px;height: 200px;">
-        <p>已有账号</p>
+        <img src="img/黄昏星空.png" style="width: 200px;height: 200px;">
+        <p>已有账号?</p>
         <button id="login">去登录</button>
     </div>
     <div class="con-box right">
         <h2>欢迎来到<span>蒸汽盒</span></h2>
         <p>快来看看你的变强<span>秘籍</span>吧</p>
-        <img src="img/山峰星空.png" alt="" style="width: 200px;height: 200px;">
+        <img src="img/山峰星空.png" style="width: 200px;height: 200px;">
         <p>没有账号？</p>
         <button id="register">去注册</button>
     </div>
 </div>
-<video id="vdeo" src="videos/登陆注册.mp4"
+<video id="video" src="videos/登陆注册.mp4"
        style="width: 100%;height: 100%;object-fit: cover;position: absolute;top: 0;left: 0;" autoplay="autoplay"
        loop="loop" muted="muted"></video>
 
