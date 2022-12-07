@@ -21,7 +21,7 @@
 </head>
 <body>
 <%
-  String error = (String) request.getAttribute("err");
+  String error = (String) session.getAttribute("err");
 %>
 <div class="bg"></div>
 <div class="container">

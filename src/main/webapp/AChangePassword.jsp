@@ -52,8 +52,8 @@
           <label>管理员帐号：</label>
         </div>
         <div class="field">
-          <label style="line-height:33px;">
-            admin
+          <label style="line-height:33px;" >
+            <%=admin.getAccount()%>
           </label>
         </div>
       </div>
@@ -122,10 +122,10 @@
     }
   })
   enterPassword.addEventListener('change',function (e) {
-    if(e.target.value!=newPassword){
+    if(e.target.value!=newPassword.value){
       btn.disabled=true;
     }
-    if(e.target.value==newPassword){
+    if(e.target.value==newPassword.value){
       btn.disabled=false;
     }
   })
