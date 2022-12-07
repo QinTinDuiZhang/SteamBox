@@ -5,7 +5,6 @@
 <%@ page import="com.niuma.model.Article" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.niuma.tool.TimeFormat" %>
-<%@ page import="com.niuma.model.User" %>
 <%@ page import="com.niuma.dao.CategoryDao" %>
 <%@ page import="com.niuma.impl.CategoryDaoImpl" %>
 <%@ page import="com.niuma.model.Category" %>
@@ -53,8 +52,8 @@
     <div class="row" style="margin-top: 100px">
         <div class="col-2">
             <div class="list-group side-bar hidden-xs">
-                <% for (Iterator<Category> it = categoryIterator; it.hasNext(); ) {
-                    Category category = it.next();%>
+                <% while (categoryIterator.hasNext()) {
+                    Category category = categoryIterator.next();%>
                 <a href="first.jsp?category=<%= category.getId()%>" class="list-group-item"><%= category.getName()%></a>
                 <%}%>
             </div>
@@ -89,6 +88,29 @@
                 </a>
             </div>
             <%}%>
+        </div>
+        <div class="col3">
+            <div class="side-bar-card">
+                <div class="card-title">相关推荐</div>
+                <div class="card-body">
+                    <div class="list">
+                        <%
+                            List<News> newsList = newsDao.RecommendNews();
+                            for (News news1 : newsList) {%>
+                        <div class="item clearfix">
+                            <a href="news.jsp?id=<%= news1.getId()%>">
+                                <div class="col-xs-5 no-padding-h"><img src="img/<%= news1.getImg()%>" alt=""></div>
+                                <div class="col-xs-7">
+                                    <div class="title"><%= news1.getTitle()%></div>
+                                    <div class="desc">25k阅读•<%= newsDao.pundateToString(news1)%></div>
+                                </div>
+                            </a>
+                        </div>
+                        <% }%>
+                    </div>
+                </div>
+            </div>
+            <jsp:include page="common/24h.jsp" flush="true"></jsp:include>
         </div>
     </div>
 </div>

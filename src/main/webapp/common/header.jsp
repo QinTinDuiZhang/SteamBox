@@ -66,6 +66,8 @@
                         <li><a class="dropdown-item" href="userinfo.jsp">个人信息</a></li>
                         <li><a class="dropdown-item" href="changePassword.jsp">修改密码</a></li>
                         <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href=".jsp">稿件中心</a></li>
+                        <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="logout.jsp">退出</a></li>
                     </ul>
                     <%}%>

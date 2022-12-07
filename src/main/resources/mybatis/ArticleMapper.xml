@@ -30,7 +30,7 @@
         <where>
             hidden=1
             <if test="id != 0">
-                id = #{id}
+                and id = #{id}
             </if>
         </where>
 ;
