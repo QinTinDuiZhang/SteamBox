@@ -157,10 +157,10 @@ input:focus::placeholder{
     background-color: #204284;
     color: #fff;
 }
-#vdeo{
+#video{
     z-index: -5;
 }
-#rtn{
+#return{
     z-index: 5;
     display: inline-block;
     position: absolute;
