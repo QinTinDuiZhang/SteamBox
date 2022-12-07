@@ -89,6 +89,29 @@
             </div>
             <%}%>
         </div>
+        <div class="col3">
+            <div class="side-bar-card">
+                <div class="card-title">相关推荐</div>
+                <div class="card-body">
+                    <div class="list">
+                        <%
+                            List<News> newsList = newsDao.RecommendNews();
+                            for (News news1 : newsList) {%>
+                        <div class="item clearfix">
+                            <a href="news.jsp?id=<%= news1.getId()%>">
+                                <div class="col-xs-5 no-padding-h"><img src="img/<%= news1.getImg()%>" alt=""></div>
+                                <div class="col-xs-7">
+                                    <div class="title"><%= news1.getTitle()%></div>
+                                    <div class="desc">25k阅读•<%= newsDao.pundateToString(news1)%></div>
+                                </div>
+                            </a>
+                        </div>
+                        <% }%>
+                    </div>
+                </div>
+            </div>
+            <jsp:include page="common/24h.jsp" flush="true"></jsp:include>
+        </div>
     </div>
 </div>
 <jsp:include page="common/tall.jsp" flush="true"></jsp:include>
