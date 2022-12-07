@@ -76,7 +76,7 @@
                 <div class="list">
                     <% for (Community community :communities){%>
                     <a href="first.jsp?community=<%= community.getId()%>">
-                        <button class="btn" style="background-color: #ff9b27; color: #084f6b; margin-top: 5px; margin-left: 10px; border-radius: 50px" type="button"><%= community.getName()%></button>
+                        <button class="btn" style="background-color: #ff9b27; color: #000000; margin-top: 5px; margin-left: 10px; border-radius: 50px" type="button"><%= community.getName()%></button>
                     </a>
                     <%}%>
                 </div>

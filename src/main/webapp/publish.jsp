@@ -14,7 +14,6 @@
     <title>发布页面</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <%--    <link href="css/publish.css" rel="stylesheet" type="text/css"/>--%>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -30,28 +29,22 @@
 <body>
 <div id="main">
     <div id="opt_area">
-        <h1 id="opt_type"> 添加游戏文章： </h1>
+        <h1 id="opt_type">添加游戏文章：</h1>
         <form name="AddForm" action="User/Publish" method="post">
             <p>
-                <label for="ntid"> 分类 </label>
-                <select name="ntid" id="ntid">
-                    <c:forEach var="TopicItem" items="${AllTopic}">
-                        <option value="${TopicItem.tid}">${TopicItem.tname}</option>
-                    </c:forEach>
-                </select>
+                <label>社区</label>
+                <div class="form-check">
+                    <input type="checkbox" value="">
+                </div>
             </p>
             <p>
                 <label for="ntitle"> 标题 </label>
                 <input name="ntitle" id="ntitle" type="text" class="opt_input">
             </p>
             <p>
-                <label for="nsummary"> 简介 </label>
-                <textarea name="nsummary" id="nsummary" cols="40" rows="3"></textarea>
-            </p>
-            <p>
                 <label for="content"> 正文 </label>
-            <div id="editor"></div>
-            <input id="content" type="hidden" name="content">
+                <div id="editor"></div>
+                <input id="content" type="hidden" name="content">
             </p>
             <p>
                 <label> 选择封面 </label>
@@ -62,8 +55,6 @@
             <input type="reset" value="重置" class="opt_sub">
         </form>
     </div>
-</div>
-<div id="footer">
 </div>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.cookie.js"></script>

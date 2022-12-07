@@ -132,14 +132,13 @@
         %>
         <div class="col" style="margin: 20px;">
             <div>
-                <a href="particulars.jsp" class="row">
+                <a href="particulars.jsp?article=<%= article.getId()%>" class="row">
                     <div class="col-4">
                         <img src="img/cover/<%= article.getImg()%>" alt="">
                     </div>
                     <div class="col-8 row">
                         <div class="col-12">
-                            <p class="title h3" style="margin-top: 18px;"><%= article.getTitle()%>
-                            </p>
+                            <p class="title h3" style="margin-top: 18px;"><%= article.getTitle()%></p>
                         </div>
                         <div class="col-7 align-self-end" style="margin-bottom: 10px;">
                             <div class="info">
