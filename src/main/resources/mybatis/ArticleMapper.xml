@@ -30,7 +30,7 @@
         <where>
             hidden=1
             <if test="id != 0">
-                and id = #{id}
+                and community_id = #{id}
             </if>
         </where>
     </select>
