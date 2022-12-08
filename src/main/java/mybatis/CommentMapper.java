@@ -19,4 +19,6 @@ public interface CommentMapper {
     int getLikeNum(@Param("id") int id);
 
     int getDisLikeNum(@Param("id") int id);
+
+    List<Comment> getUserComments(int userid);
 }

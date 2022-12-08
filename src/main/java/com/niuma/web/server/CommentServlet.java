@@ -2,15 +2,18 @@ package com.niuma.web.server;
 
 import com.niuma.dao.CommentDao;
 import com.niuma.impl.CommentDaoImpl;
+import com.niuma.model.Comment;
 import com.niuma.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet("/Comment/*")
@@ -48,4 +51,13 @@ public class CommentServlet extends BaseServlet {
         writer.flush();
         writer.close();
     }
+    public void GetUserComment(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String userid = request.getParameter("userid");
+        CommentDaoImpl commentDao=new CommentDaoImpl();
+        List<Comment> userComments = commentDao.getUserComments(Integer.parseInt(userid));
+        HttpSession session = request.getSession();
+        session.setAttribute("UserComments",userComments);
+        response.sendRedirect(request.getContextPath() + "/AComment.jsp");
+    }
+
 }

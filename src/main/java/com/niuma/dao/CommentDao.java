@@ -28,4 +28,6 @@ public interface CommentDao {
      * @return 点踩数量
      */
     int updateDislikeNum(int commentId, boolean dislike);
+
+    List<Comment> getUserComments(int userid);
 }

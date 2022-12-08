@@ -79,4 +79,11 @@ public class CommentDaoImpl implements CommentDao {
         session.close();
         return t;
     }
+
+    @Override
+    public List<Comment> getUserComments(int userid) {
+        SqlSession session = SqlSessionUtils.getSqlSession();
+        CommentMapper commentMapper = session.getMapper(CommentMapper.class);
+        return commentMapper.getUserComments(userid);
+    }
 }

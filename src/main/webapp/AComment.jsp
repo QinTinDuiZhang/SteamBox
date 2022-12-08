@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.niuma.model.Comment" %><%--
   Created by IntelliJ IDEA.
   User: 41150
   Date: 2022-12-08
@@ -42,76 +43,25 @@
                 <th>回复的用户</th>
                 <th>操作</th>
             </tr>
+            <%
+                List<Comment> commentList=(List<Comment>)session.getAttribute("UserComments");
+            %>
+            <%for(Comment comment:commentList){%>
             <tr>
-                <td><input name="id[]" type="checkbox" value="1"/>
-                    1
+                <td>
+                    <%=comment.getId()%>
                 </td>
-                <td>这是一套后台UI，喜欢的朋友请多多支持谢谢。</td>
-                <td>2016-07-01</td>
-                <td>神夜</td>
-                <td>大表哥</td>
-                <td>564379992@qq.com</td>
+                <td><%=comment.getContent()%></td>
+                <td><%=comment.getPubDate()%></td>
+                <td><%=comment.getIpAddress()%></td>
+                <td><%=comment.getArticle()%></td>
+                <td><%=comment.get%>/td>
                 <td>
                     <div class="button-group"><a class="button border-red" href="javascript:void(0)"
                                                  onclick="return del(1)"><span class="icon-trash-o"></span> 删除</a></div>
                 </td>
             </tr>
-            <tr>
-                <td><input name="id[]" type="checkbox" value="1"/>
-                    1
-                </td>
-                <td>这是一套后台UI，喜欢的朋友请多多支持谢谢。</td>
-                <td>2016-07-01</td>
-                <td>神夜</td>
-                <td>大表哥</td>
-                <td>564379992@qq.com</td>
-                <td>
-                    <div class="button-group"><a class="button border-red" href="javascript:void(0)"
-                                                 onclick="return del(1)"><span class="icon-trash-o"></span> 删除</a></div>
-                </td>
-            </tr>
-            <tr>
-                <td><input name="id[]" type="checkbox" value="1"/>
-                    1
-                </td>
-                <td>这是一套后台UI，喜欢的朋友请多多支持谢谢。</td>
-                <td>2016-07-01</td>
-                <td>神夜</td>
-                <td>大表哥</td>
-                <td>564379992@qq.com</td>
-                <td>
-                    <div class="button-group"><a class="button border-red" href="javascript:void(0)"
-                                                 onclick="return del(1)"><span class="icon-trash-o"></span> 删除</a></div>
-                </td>
-            </tr>
-            <tr>
-                <td><input name="id[]" type="checkbox" value="1"/>
-                    1
-                </td>
-                <td>这是一套后台UI，喜欢的朋友请多多支持谢谢。</td>
-                <td>2016-07-01</td>
-                <td>神夜</td>
-                <td>大表哥</td>
-                <td>564379992@qq.com</td>
-                <td>
-                    <div class="button-group"><a class="button border-red" href="javascript:void(0)"
-                                                 onclick="return del(1)"><span class="icon-trash-o"></span> 删除</a></div>
-                </td>
-            </tr>
-            <tr>
-                <td><input name="id[]" type="checkbox" value="1"/>
-                    1
-                </td>
-                <td>这是一套后台UI，喜欢的朋友请多多支持谢谢。</td>
-                <td>2016-07-01</td>
-                <td>神夜</td>
-                <td>大表哥</td>
-                <td>564379992@qq.com</td>
-                <td>
-                    <div class="button-group"><a class="button border-red" href="javascript:void(0)"
-                                                 onclick="return del(1)"><span class="icon-trash-o"></span> 删除</a></div>
-                </td>
-            </tr>
+            <%}%>
             <tr>
                 <td colspan="8">
                     <div class="pagelist"><a href="">上一页</a> <span class="current">1</span><a href="">2</a><a

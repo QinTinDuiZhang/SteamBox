@@ -126,4 +126,8 @@
                 #{creator}, #{articleId});
     </insert>
 
+    <select id="getUserComments" resultType="com.niuma.model.Comment">
+        select * from steambox.comment where creator=#{param1}
+    </select>
+
 </mapper>
