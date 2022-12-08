@@ -76,8 +76,6 @@ public class UserDaoImpl implements UserDao {
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         List<Article> articles = userMapper.selectArticle(content);
         List<Community> communities = userMapper.selectCommunity(content);
-        System.out.println(articles);
-        System.out.println(communities);
         a.put("article",articles);
         a.put("community",communities);
         return a;

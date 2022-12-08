@@ -40,11 +40,20 @@ public class AdminServlet extends BaseServlet{
         Boolean aBoolean = adminDao.changePassword(account, newPassword);
         if(aBoolean==true){
             session.setAttribute("updateInfo","修改成功");
-            response.sendRedirect(request.getContextPath()+"/AIndex.jsp");
+            response.sendRedirect(request.getContextPath()+"/AChangePassword.jsp");
         }else{
             session.setAttribute("updateInfo","修改失败");
-            response.sendRedirect(request.getContextPath()+"/AIndex.jsp");
+            response.sendRedirect(request.getContextPath()+"/AChangePassword.jsp");
         }
+    }
+    public void BanUser(HttpServletRequest request,HttpServletResponse response){
+        System.out.println(request.getAttribute("userid"));
+        System.out.println(request.getAttribute("operate"));
+//        AdminDaoImpl adminDao=new AdminDaoImpl();
+//        Boolean aBoolean = adminDao.setUserBan(operate, userid);
+//        if(aBoolean==true){
+//            System.out.println("成功");
+//        }
     }
 
 }

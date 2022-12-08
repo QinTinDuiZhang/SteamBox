@@ -3,9 +3,12 @@ package com.niuma.impl;
 import com.niuma.dao.AdminDao;
 import com.niuma.model.Admin;
 import com.niuma.model.Community;
+import com.niuma.model.User;
 import com.niuma.tool.SqlSessionUtils;
 import mybatis.AdminMapper;
 import org.apache.ibatis.session.SqlSession;
+
+import java.util.List;
 
 public class AdminDaoImpl implements AdminDao {
 
@@ -54,5 +57,12 @@ public class AdminDaoImpl implements AdminDao {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
         return adminMapper.changePassword(account, password);
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+        return adminMapper.getAllUser();
     }
 }

@@ -132,8 +132,8 @@
         %>
         <div class="col" style="margin: 20px;">
             <div>
-                <a href="particulars.jsp" class="row">
-                    <div class="col-4">
+                <a href="particulars.jsp?article=<%= article.getId()%>" class="row">
+                    <div class="col-4 img-fluid">
                         <img src="img/cover/<%= article.getImg()%>" alt="">
                     </div>
                     <div class="col-8 row">

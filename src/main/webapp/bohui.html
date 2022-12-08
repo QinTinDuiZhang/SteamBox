@@ -1,364 +1,381 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-  <meta content="IE=edge" http-equiv="X-UA-Compatible">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
-  <meta content="webkit" name="renderer">
-  <title></title>
-  <link href="css/pintuer.css" rel="stylesheet">
-  <link href="css/admin.css" rel="stylesheet">
-  <script src="js/jquery.js"></script>
-  <script src="js/pintuer.js"></script>
-  <style>
-    @font-face {
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta content="webkit" name="renderer">
+    <title></title>
+    <link href="css/pintuer.css" rel="stylesheet">
+    <link href="css/admin.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/pintuer.js"></script>
+    <style>
+        @font-face {
 
-      font-family: 'Alimama_ShuHeiTi_Bold';
+            font-family: 'Alimama_ShuHeiTi_Bold';
 
-      src: url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
-      url('./fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
-    }
+            src: url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
+            url('./fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
+        }
 
-    p, header, a {
-      text-decoration: none;
-      font-family: Alimama_ShuHeiTi_Bold, serif;
-    }
-    *{
-      background-color: #0c4686;
-      color: white;
-    }
-    .icon-reorder{
-      background-color: white;
-      color: black;
-    }
-    .input{
-      color: white;
-    }
-    .border-main{
-      background-color: #64d264;
-      border: 1px solid #64d264;
-    }
-    .button.border-main{
-      color: white;
-    }
-    .button.border-main:hover{
-      background-color: #05ef05;
-    }
-    .border-red{
-      background-color: #f84a4a;
-      border: 1px solid #f84a4a;
-    }
-    .button.border-red{
-      color: white;
-    }
-    .button.border-red:hover{
-      background-color: #ea0808;
-    }
-  </style>
+        p, header, a {
+            text-decoration: none;
+            font-family: Alimama_ShuHeiTi_Bold, serif;
+        }
+
+        * {
+            background-color: #0c4686;
+            color: white;
+        }
+
+        .icon-reorder {
+            background-color: white;
+            color: black;
+        }
+
+        .input {
+            color: white;
+        }
+
+        .border-main {
+            background-color: #64d264;
+            border: 1px solid #64d264;
+        }
+
+        .button.border-main {
+            color: white;
+        }
+
+        .button.border-main:hover {
+            background-color: #05ef05;
+        }
+
+        .border-red {
+            background-color: #f84a4a;
+            border: 1px solid #f84a4a;
+        }
+
+        .button.border-red {
+            color: white;
+        }
+
+        .button.border-red:hover {
+            background-color: #ea0808;
+        }
+    </style>
 </head>
 <body>
 <div id="all">
-<form action="" id="listform" method="post">
-  <div class="panel admin-panel">
-    <div class="panel-head"><strong class="icon-reorder"> 用户帖子列表</strong> <a href=""
-                                                                               style="float:right; display:none;">添加字段</a>
-    </div>
-    <div class="padding border-bottom">
-      <ul class="search" style="padding-left:10px;">
-        <li>搜索：</li>
-        <li>
-          <input class="input" name="keywords" placeholder="请输入搜索关键字"
-                 style="width:250px; line-height:17px;display:inline-block"
-                 type="text"/>
-          <a class="button border-main icon-search" href="javascript:void(0)" onclick="changesearch()"> 搜索</a>
-        </li>
-      </ul>
-    </div>
-    <table class="table table-hover text-center">
-      <tr>
-        <th >状态</th>
-        <th>图片</th>
-        <th width="20%">标题</th>
-        <th width="10%">发布时间</th>
-        <th>所属分类</th>
-        <th width="310">操作</th>
-      </tr>
-      <volist id="vo" name="list">
-        <tr>
+    <form action="" id="listform" method="post">
+        <div class="panel admin-panel">
+            <div class="panel-head"><strong class="icon-reorder"> 用户帖子列表</strong> <a href=""
+                                                                                     style="float:right; display:none;">添加字段</a>
+            </div>
+            <div class="padding border-bottom">
+                <ul class="search" style="padding-left:10px;">
+                    <li>搜索：</li>
+                    <li>
+                        <input class="input" name="keywords" placeholder="请输入搜索关键字"
+                               style="width:250px; line-height:17px;display:inline-block"
+                               type="text"/>
+                        <a class="button border-main icon-search" href="javascript:void(0)" onclick="changesearch()">
+                            搜索</a>
+                    </li>
+                </ul>
+            </div>
+            <table class="table table-hover text-center">
+                <tr>
+                    <th>状态</th>
+                    <th>图片</th>
+                    <th width="20%">标题</th>
+                    <th width="10%">发布时间</th>
+                    <th>所属分类</th>
+                    <th width="310">操作</th>
+                </tr>
+                <volist id="vo" name="list">
+                    <tr>
 
-          <td width="10%">
-            <input name="id[]" type="checkbox" value=""/>
-          </td>
-          <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
-          <td width="30%">《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
-          <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-          <td>2016-07-01</td>
-          <td>
-            <div class="button-group"><a class="button border-main" href="add.html"><span
-                    class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
-                                                          onclick="return del(1,1,1)"><span
-                    class="icon-trash-o"></span> 删除</a></div>
-          </td>
-        </tr>
-        <tr>
-
-          <td width="10%">
-            <input name="id[]" type="checkbox" value=""/>
-          </td>
-          <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
-          <td width="30%">《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
-          <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-          <td>2016-07-01</td>
-          <td>
-            <div class="button-group"><a class="button border-main" href="add.html"><span
-                    class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
-                                                          onclick="return del(1,1,1)"><span
-                    class="icon-trash-o"></span> 删除</a></div>
-          </td>
-        </tr>
-        <tr>
-
-          <td width="10%">
-            <input name="id[]" type="checkbox" value=""/>
-          </td>
-          <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
-          <td width="30%">《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
-          <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-          <td>2016-07-01</td>
-          <td>
-            <div class="button-group"><a class="button border-main" href="add.html"><span
-                    class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
-                                                          onclick="return del(1,1,1)"><span
-                    class="icon-trash-o"></span> 删除</a></div>
-          </td>
-        </tr>
-        <tr>
-
-          <td width="10%">
-            <input name="id[]" type="checkbox" value=""/>
-          </td>
-          <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
-          <td width="30%">《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
-          <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-          <td>2016-07-01</td>
-          <td>
-            <div class="button-group"><a class="button border-main" href="add.html"><span
-                    class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
-                                                          onclick="return del(1,1,1)"><span
-                    class="icon-trash-o"></span> 删除</a></div>
-          </td>
-        </tr>
-        <tr>
-
-          <td width="10%">
-            <input name="id[]" type="checkbox" value=""/>
-          </td>
-          <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
-          <td width="30%">《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
-          <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-          <td>2016-07-01</td>
-          <td>
-            <div class="button-group"><a class="button border-main" href="add.html"><span
-                    class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
-                                                          onclick="return del(1,1,1)"><span
-                    class="icon-trash-o"></span> 删除</a></div>
-          </td>
-        </tr>
-        <tr>
-
-          <td width="10%">
-            <input name="id[]" type="checkbox" value=""/>
-          </td>
-          <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
-          <td width="30%">《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
-          <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-          <td>2016-07-01</td>
-          <td>
-            <div class="button-group"><a class="button border-main" href="add.html"><span
-                    class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
-                                                          onclick="return del(1,1,1)"><span
-                    class="icon-trash-o"></span> 删除</a></div>
-          </td>
-        </tr>
-        <tr>
-          <td style="text-align:left; padding:19px 0;padding-left:20px;"><input id="checkall"
-                                                                                type="checkbox"/>
-            全选
-          </td>
-          <td colspan="7" style="text-align:left;padding-left:20px;"><a class="button border-red icon-trash-o"
+                        <td width="10%">
+                            <input name="id[]" type="checkbox" value=""/>
+                        </td>
+                        <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
+                        <td width="30%">《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
+                        <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
+                        <td>2016-07-01</td>
+                        <td>
+                            <div class="button-group"><a class="button border-main" href="add.html"><span
+                                    class="icon-edit"></span> 修改</a> <a class="button border-red"
                                                                         href="javascript:void(0)"
-                                                                        onclick="DelSelect()"
-                                                                        style="padding:5px 15px;"> 删除</a></td>
-        </tr>
-      </volist>
-    </table>
-  </div>
-</form>
-<script type="text/javascript">
+                                                                        onclick="return del(1,1,1)"><span
+                                    class="icon-trash-o"></span> 删除</a></div>
+                        </td>
+                    </tr>
+                    <tr>
 
-  //搜索
-  function changesearch() {
+                        <td width="10%">
+                            <input name="id[]" type="checkbox" value=""/>
+                        </td>
+                        <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
+                        <td width="30%">《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
+                        <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
+                        <td>2016-07-01</td>
+                        <td>
+                            <div class="button-group"><a class="button border-main" href="add.html"><span
+                                    class="icon-edit"></span> 修改</a> <a class="button border-red"
+                                                                        href="javascript:void(0)"
+                                                                        onclick="return del(1,1,1)"><span
+                                    class="icon-trash-o"></span> 删除</a></div>
+                        </td>
+                    </tr>
+                    <tr>
 
-  }
+                        <td width="10%">
+                            <input name="id[]" type="checkbox" value=""/>
+                        </td>
+                        <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
+                        <td width="30%">《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
+                        <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
+                        <td>2016-07-01</td>
+                        <td>
+                            <div class="button-group"><a class="button border-main" href="add.html"><span
+                                    class="icon-edit"></span> 修改</a> <a class="button border-red"
+                                                                        href="javascript:void(0)"
+                                                                        onclick="return del(1,1,1)"><span
+                                    class="icon-trash-o"></span> 删除</a></div>
+                        </td>
+                    </tr>
+                    <tr>
 
-  //单个删除
-  function del(id, mid, iscid) {
-    if (confirm("您确定要删除吗?")) {
+                        <td width="10%">
+                            <input name="id[]" type="checkbox" value=""/>
+                        </td>
+                        <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
+                        <td width="30%">《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
+                        <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
+                        <td>2016-07-01</td>
+                        <td>
+                            <div class="button-group"><a class="button border-main" href="add.html"><span
+                                    class="icon-edit"></span> 修改</a> <a class="button border-red"
+                                                                        href="javascript:void(0)"
+                                                                        onclick="return del(1,1,1)"><span
+                                    class="icon-trash-o"></span> 删除</a></div>
+                        </td>
+                    </tr>
+                    <tr>
 
-    }
-  }
+                        <td width="10%">
+                            <input name="id[]" type="checkbox" value=""/>
+                        </td>
+                        <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
+                        <td width="30%">《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
+                        <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
+                        <td>2016-07-01</td>
+                        <td>
+                            <div class="button-group"><a class="button border-main" href="add.html"><span
+                                    class="icon-edit"></span> 修改</a> <a class="button border-red"
+                                                                        href="javascript:void(0)"
+                                                                        onclick="return del(1,1,1)"><span
+                                    class="icon-trash-o"></span> 删除</a></div>
+                        </td>
+                    </tr>
+                    <tr>
 
-  //全选
-  $("#checkall").click(function () {
-    $("input[name='id[]']").each(function () {
-      if (this.checked) {
-        this.checked = false;
-      } else {
-        this.checked = true;
-      }
-    });
-  })
+                        <td width="10%">
+                            <input name="id[]" type="checkbox" value=""/>
+                        </td>
+                        <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
+                        <td width="30%">《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
+                        <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
+                        <td>2016-07-01</td>
+                        <td>
+                            <div class="button-group"><a class="button border-main" href="add.html"><span
+                                    class="icon-edit"></span> 修改</a> <a class="button border-red"
+                                                                        href="javascript:void(0)"
+                                                                        onclick="return del(1,1,1)"><span
+                                    class="icon-trash-o"></span> 删除</a></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left; padding:19px 0;padding-left:20px;"><input id="checkall"
+                                                                                              type="checkbox"/>
+                            全选
+                        </td>
+                        <td colspan="7" style="text-align:left;padding-left:20px;"><a
+                                class="button border-red icon-trash-o"
+                                href="javascript:void(0)"
+                                onclick="DelSelect()"
+                                style="padding:5px 15px;"> 删除</a></td>
+                    </tr>
+                </volist>
+            </table>
+        </div>
+    </form>
+    <script type="text/javascript">
 
-  //批量删除
-  function DelSelect() {
-    var Checkbox = false;
-    $("input[name='id[]']").each(function () {
-      if (this.checked == true) {
-        Checkbox = true;
-      }
-    });
-    if (Checkbox) {
-      var t = confirm("您确认要删除选中的内容吗？");
-      if (t == false) return false;
-      $("#listform").submit();
-    } else {
-      alert("请选择您要删除的内容!");
-      return false;
-    }
-  }
+        //搜索
+        function changesearch() {
 
-  //批量排序
-  function sorts() {
-    var Checkbox = false;
-    $("input[name='id[]']").each(function () {
-      if (this.checked == true) {
-        Checkbox = true;
-      }
-    });
-    if (Checkbox) {
-
-      $("#listform").submit();
-    } else {
-      alert("请选择要操作的内容!");
-      return false;
-    }
-  }
-
-
-  //批量首页显示
-  function changeishome(o) {
-    var Checkbox = false;
-    $("input[name='id[]']").each(function () {
-      if (this.checked == true) {
-        Checkbox = true;
-      }
-    });
-    if (Checkbox) {
-
-      $("#listform").submit();
-    } else {
-      alert("请选择要操作的内容!");
-
-      return false;
-    }
-  }
-
-  //批量推荐
-  function changeisvouch(o) {
-    var Checkbox = false;
-    $("input[name='id[]']").each(function () {
-      if (this.checked == true) {
-        Checkbox = true;
-      }
-    });
-    if (Checkbox) {
-
-
-      $("#listform").submit();
-    } else {
-      alert("请选择要操作的内容!");
-
-      return false;
-    }
-  }
-
-  //批量置顶
-  function changeistop(o) {
-    var Checkbox = false;
-    $("input[name='id[]']").each(function () {
-      if (this.checked == true) {
-        Checkbox = true;
-      }
-    });
-    if (Checkbox) {
-
-      $("#listform").submit();
-    } else {
-      alert("请选择要操作的内容!");
-
-      return false;
-    }
-  }
-
-
-  //批量移动
-  function changecate(o) {
-    var Checkbox = false;
-    $("input[name='id[]']").each(function () {
-      if (this.checked == true) {
-        Checkbox = true;
-      }
-    });
-    if (Checkbox) {
-
-      $("#listform").submit();
-    } else {
-      alert("请选择要操作的内容!");
-
-      return false;
-    }
-  }
-
-  //批量复制
-  function changecopy(o) {
-    var Checkbox = false;
-    $("input[name='id[]']").each(function () {
-      if (this.checked == true) {
-        Checkbox = true;
-      }
-    });
-    if (Checkbox) {
-      var i = 0;
-      $("input[name='id[]']").each(function () {
-        if (this.checked == true) {
-          i++;
         }
-      });
-      if (i > 1) {
-        alert("只能选择一条信息!");
-        $(o).find("option:first").prop("selected", "selected");
-      } else {
 
-        $("#listform").submit();
-      }
-    } else {
-      alert("请选择要复制的内容!");
-      $(o).find("option:first").prop("selected", "selected");
-      return false;
-    }
-  }
+        //单个删除
+        function del(id, mid, iscid) {
+            if (confirm("您确定要删除吗?")) {
 
-</script>
+            }
+        }
+
+        //全选
+        $("#checkall").click(function () {
+            $("input[name='id[]']").each(function () {
+                if (this.checked) {
+                    this.checked = false;
+                } else {
+                    this.checked = true;
+                }
+            });
+        })
+
+        //批量删除
+        function DelSelect() {
+            var Checkbox = false;
+            $("input[name='id[]']").each(function () {
+                if (this.checked == true) {
+                    Checkbox = true;
+                }
+            });
+            if (Checkbox) {
+                var t = confirm("您确认要删除选中的内容吗？");
+                if (t == false) return false;
+                $("#listform").submit();
+            } else {
+                alert("请选择您要删除的内容!");
+                return false;
+            }
+        }
+
+        //批量排序
+        function sorts() {
+            var Checkbox = false;
+            $("input[name='id[]']").each(function () {
+                if (this.checked == true) {
+                    Checkbox = true;
+                }
+            });
+            if (Checkbox) {
+
+                $("#listform").submit();
+            } else {
+                alert("请选择要操作的内容!");
+                return false;
+            }
+        }
+
+
+        //批量首页显示
+        function changeishome(o) {
+            var Checkbox = false;
+            $("input[name='id[]']").each(function () {
+                if (this.checked == true) {
+                    Checkbox = true;
+                }
+            });
+            if (Checkbox) {
+
+                $("#listform").submit();
+            } else {
+                alert("请选择要操作的内容!");
+
+                return false;
+            }
+        }
+
+        //批量推荐
+        function changeisvouch(o) {
+            var Checkbox = false;
+            $("input[name='id[]']").each(function () {
+                if (this.checked == true) {
+                    Checkbox = true;
+                }
+            });
+            if (Checkbox) {
+
+
+                $("#listform").submit();
+            } else {
+                alert("请选择要操作的内容!");
+
+                return false;
+            }
+        }
+
+        //批量置顶
+        function changeistop(o) {
+            var Checkbox = false;
+            $("input[name='id[]']").each(function () {
+                if (this.checked == true) {
+                    Checkbox = true;
+                }
+            });
+            if (Checkbox) {
+
+                $("#listform").submit();
+            } else {
+                alert("请选择要操作的内容!");
+
+                return false;
+            }
+        }
+
+
+        //批量移动
+        function changecate(o) {
+            var Checkbox = false;
+            $("input[name='id[]']").each(function () {
+                if (this.checked == true) {
+                    Checkbox = true;
+                }
+            });
+            if (Checkbox) {
+
+                $("#listform").submit();
+            } else {
+                alert("请选择要操作的内容!");
+
+                return false;
+            }
+        }
+
+        //批量复制
+        function changecopy(o) {
+            var Checkbox = false;
+            $("input[name='id[]']").each(function () {
+                if (this.checked == true) {
+                    Checkbox = true;
+                }
+            });
+            if (Checkbox) {
+                var i = 0;
+                $("input[name='id[]']").each(function () {
+                    if (this.checked == true) {
+                        i++;
+                    }
+                });
+                if (i > 1) {
+                    alert("只能选择一条信息!");
+                    $(o).find("option:first").prop("selected", "selected");
+                } else {
+
+                    $("#listform").submit();
+                }
+            } else {
+                alert("请选择要复制的内容!");
+                $(o).find("option:first").prop("selected", "selected");
+                return false;
+            }
+        }
+
+    </script>
 </div>
 </body>
 </html>
