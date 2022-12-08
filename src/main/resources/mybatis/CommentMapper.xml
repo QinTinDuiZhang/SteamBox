@@ -1,37 +1,127 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!-- 文件名称模板: [要操作的表名Mapper.xml] -->
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace: 名称空间，用来区分不同Mapper文件中的同名语句引用如: testSQL.selectTest -->
 <mapper namespace="mybatis.CommentMapper">
+    <!--
+        id: 唯一标识;
+        resultType: 返回类型, 可以用 mybatis-config 中配置的别名
+                    基础类型可以直接写
+    -->
 
-    <insert id="addComment">
-        insert into steambox.comment(content, pubdate, ipaddress, hidden, likenum, dislikenum, reply_for_id, creator,
-                                     article_id)
-        values (#{content}, #{pubDate}, #{ipAddress}, 0, #{likeNum}, #{disLikeNum}, #{replyForId}, #{creator},
-                #{articleId})
-    </insert>
+    <resultMap id="commentResultMap" type="comment">
+        <result column="pubdate" property="pubDate"/>
+        <result column="likenum" property="likeNum"/>
+        <result column="dislikenum" property="disLikeNum"/>
+        <association property="replyFor" javaType="comment">
+            <result column="reply_for_id" property="id"/>
+        </association>
+        <association property="creator" javaType="User">
+            <result column="nickname" property="nickName"/>
+            <result column="photo" property="photo"/>
+        </association>
+        <association property="article" javaType="Article">
+            <result column="article_id" property="id"/>
+        </association>
+    </resultMap>
+    
+    <resultMap id="commentResultMapT" type="comment">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="pubdate" property="pubDate"/>
+        <result column="ipaddress" property="ipAddress"/>
+        <result column="hidden" property="hidden"/>
+        <result column="likenum" property="likeNum"/>
+        <result column="dislikenum" property="disLikeNum"/>
+        <result column="rid" property="replyId"/>
+        <association property="replyFor" javaType="comment">
+            <result column="reply_for_id" property="id"/>
+        </association>
+        <association property="article" javaType="Article">
+            <result column="article_id" property="id"/>
+        </association>
+        <association property="creator" javaType="User">
+            <result column="creator" property="id"/>
+            <result column="nickname" property="nickName"/>
+            <result column="photo" property="photo"/>
+        </association>
+    </resultMap>
+
+    <select id="selectComment" resultMap="commentResultMap">
+        select *
+        from `steambox`.comment
+    </select>
+
+    <select id="selectCommentArticle" resultMap="commentResultMap">
+        select *
+        from `steambox`.comment
+        <where>
+            <if test="articleId != 0">
+                article_id = #{articleId}
+            </if>
+            <if test="replyForId != null">
+                reply_for_id = #{replyForId}
+            </if>
+        </where>
+    </select>
+
+    <select id="getAllByArticleIdComments" resultMap="commentResultMapT">
+        select c.*, r.id as rid, u.nickname, u.photo
+        from `steambox`.comment as c
+                 left join `steambox`.comment as r on r.reply_for_id = c.id
+                 left join `steambox`.user as u on c.creator=u.id
+        where c.article_id= #{articleId} and c.hidden=#{hidden}
+    </select>
+
+    <select id="getLikeNum" resultType="int">
+        select likenum
+        from `steambox`.comment
+        where id = #{id};
+    </select>
+
+    <select id="getDisLikeNum" resultType="int">
+        select dislikenum
+        from `steambox`.comment
+        where id = #{id};
+    </select>
 
     <update id="updateLikeNum">
-        update steambox.comment
-        set likenum=#{likeNum}
-        where id = #{id}
+        update `steambox`.comment
+        set
+            <if test="likeNum">
+                likenum = likenum + 1
+            </if>
+            <if test="!likeNum">
+                likenum = likenum - 1
+            </if>
+        <where>
+            id = #{id}
+        </where>
     </update>
 
     <update id="updateDislikeNum">
-        update steambox.comment
-        set dislikeNum=#{disLikeNum}
-        where id = #{id}
+        update `steambox`.comment
+        set
+        <if test="dislikeNum">
+            dislikenum = dislikenum + 1
+        </if>
+        <if test="!dislikeNum">
+            dislikenum = dislikenum - 1
+        </if>
+        <where>
+            id = #{id}
+        </where>
     </update>
 
-    <select id="selectLikeNum" resultType="int">
-        select likenum
-        from steambox.comment
-        where id = #{id}
-    </select>
+    <delete id="deleteComment">
 
-    <select id="selectDisLikeNum" resultType="int">
-        select dislikenum
-        from steambox.comment
-        where id = #{id}
-    </select>
+    </delete>
+
+    <insert id="insertComment">
+        insert into `steambox`.comment
+        VALUES (null, #{content}, #{pubDate}, #{ipaddress}, #{hidden}, #{likeNum}, #{dislikeNum}, #{replyForId}, #{creator}, #{articleId});
+    </insert>
+
 </mapper>

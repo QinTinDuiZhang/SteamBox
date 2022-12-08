@@ -18,7 +18,7 @@
   Time: 17:05
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,6 +59,25 @@
                 <% while (categoryIterator.hasNext()) {
                     Category category = categoryIterator.next();%>
                 <a href="first.jsp?category=<%= category.getId()%>" class="list-group-item"><%= category.getName()%>
+                </a>
+                <%}
+                    if (session.getAttribute("user")!=null){%>
+                <a href="publish.jsp">
+                    <button style="background-color: #13d5d6; border-radius: 50px;width: 80px;height: 80px;">
+                        <svg class="icon"
+                             height="40"
+                             p-id="2533"
+                             t="1670398512804"
+                             version="1.1"
+                             viewBox="0 0 1024 1024"
+                             width="40"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M925.696 384q19.456 0 37.376 7.68t30.72 20.48 20.48 30.72 7.68 37.376q0 20.48-7.68 37.888t-20.48 30.208-30.72 20.48-37.376 7.68l-287.744 0 0 287.744q0 20.48-7.68 37.888t-20.48 30.208-30.72 20.48-37.376 7.68q-20.48 0-37.888-7.68t-30.208-20.48-20.48-30.208-7.68-37.888l0-287.744-287.744 0q-20.48 0-37.888-7.68t-30.208-20.48-20.48-30.208-7.68-37.888q0-19.456 7.68-37.376t20.48-30.72 30.208-20.48 37.888-7.68l287.744 0 0-287.744q0-19.456 7.68-37.376t20.48-30.72 30.208-20.48 37.888-7.68q39.936 0 68.096 28.16t28.16 68.096l0 287.744 287.744 0z"
+                                  fill="#ffffff"
+                                  p-id="2534">
+                            </path>
+                        </svg>
+                    </button>
                 </a>
                 <%}%>
             </div>
@@ -117,26 +136,7 @@
             </div>
         </div>
     </div>
-    <% if (session.getAttribute("user")!=null){%>
-    <a href="publish.jsp">
-        <button style="background-color: #13d5d6; border-radius: 50px;width: 80px;height: 80px;"
-                class="=position-absolute bottom-0 end-0">
-            <svg class="icon"
-                 height="40"
-                 p-id="2533"
-                 t="1670398512804"
-                 version="1.1"
-                 viewBox="0 0 1024 1024"
-                 width="40"
-                 xmlns="http://www.w3.org/2000/svg">
-                <path d="M925.696 384q19.456 0 37.376 7.68t30.72 20.48 20.48 30.72 7.68 37.376q0 20.48-7.68 37.888t-20.48 30.208-30.72 20.48-37.376 7.68l-287.744 0 0 287.744q0 20.48-7.68 37.888t-20.48 30.208-30.72 20.48-37.376 7.68q-20.48 0-37.888-7.68t-30.208-20.48-20.48-30.208-7.68-37.888l0-287.744-287.744 0q-20.48 0-37.888-7.68t-30.208-20.48-20.48-30.208-7.68-37.888q0-19.456 7.68-37.376t20.48-30.72 30.208-20.48 37.888-7.68l287.744 0 0-287.744q0-19.456 7.68-37.376t20.48-30.72 30.208-20.48 37.888-7.68q39.936 0 68.096 28.16t28.16 68.096l0 287.744 287.744 0z"
-                      fill="#ffffff"
-                      p-id="2534">
-                </path>
-            </svg>
-        </button>
-    </a>
-    <%}%>
+
 
 </div>
 <jsp:include page="common/tall.jsp" flush="true"></jsp:include>

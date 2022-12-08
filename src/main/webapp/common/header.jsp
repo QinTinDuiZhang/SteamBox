@@ -10,7 +10,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
 <header class="p-3 text-bg-dark" style="font-size: 15px">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-between">

@@ -1,40 +1,27 @@
 package com.niuma.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Comment {
-    private int id;                       //评论ID
-    private String content;               //评论内容
-    private Date pubDate;                 //评论发布日期
-    private String ipAddress;             //评论者的IP地址
-    private boolean hidden;               //是否隐藏
-    private int likeNum;                  //点赞数
-    private int disLikeNum;               //点踩数
-    private int replyForId;               //父评论ID
-    private int creator;                  //创作者
-    private int articleId;                //帖子ID
+    private Long id;//ID
+    private String content;//内容
+    private Date pubDate;//发布时间
+    private String ipAddress;//公网IP
+    private Article article;//新闻
+    private User creator;//评论人
+    private Integer likeNum;//点赞数量
+    private Integer disLikeNum;//点踩数量
+    private Comment replyFor;//父评论
+    private Boolean hidden;//是否可见
+    private Long replyId;//被回复的id
+    private List<Comment> replies;//回复的列表
 
-    public Comment(int id, String content, Date pubDate, String ipAddress, boolean hidden, int likeNum, int disLikeNum, int replyForId, int creator, int articleId) {
-        this.id = id;
-        this.content = content;
-        this.pubDate = pubDate;
-        this.ipAddress = ipAddress;
-        this.hidden = hidden;
-        this.likeNum = likeNum;
-        this.disLikeNum = disLikeNum;
-        this.replyForId = replyForId;
-        this.creator = creator;
-        this.articleId = articleId;
-    }
-
-    public Comment() {
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -62,52 +49,68 @@ public class Comment {
         this.ipAddress = ipAddress;
     }
 
-    public boolean isHidden() {
-        return hidden;
+    public Article getArticle() {
+        return article;
     }
 
-    public void setHidden(boolean hidden) {
-        this.hidden = hidden;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
-    public int getLikeNum() {
-        return likeNum;
-    }
-
-    public void setLikeNum(int likeNum) {
-        this.likeNum = likeNum;
-    }
-
-    public int getDisLikeNum() {
-        return disLikeNum;
-    }
-
-    public void setDisLikeNum(int disLikeNum) {
-        this.disLikeNum = disLikeNum;
-    }
-
-    public int getReplyForId() {
-        return replyForId;
-    }
-
-    public void setReplyForId(int replyForId) {
-        this.replyForId = replyForId;
-    }
-
-    public int getCreator() {
+    public User getCreator() {
         return creator;
     }
 
-    public void setCreator(int creator) {
+    public void setCreator(User creator) {
         this.creator = creator;
     }
 
-    public int getArticleId() {
-        return articleId;
+    public Integer getLikeNum() {
+        return likeNum;
     }
 
-    public void setArticleId(int articleId) {
-        this.articleId = articleId;
+    public void setLikeNum(Integer likeNum) {
+        this.likeNum = likeNum;
+    }
+
+    public Integer getDisLikeNum() {
+        return disLikeNum;
+    }
+
+    public void setDisLikeNum(Integer disLikeNum) {
+        this.disLikeNum = disLikeNum;
+    }
+
+    public Comment getReplyFor() {
+        return replyFor;
+    }
+
+    public void setReplyFor(Comment replyFor) {
+        this.replyFor = replyFor;
+    }
+
+    public Boolean getHidden() {
+        return hidden;
+    }
+
+    public void setHidden(Boolean hidden) {
+        this.hidden = hidden;
+    }
+
+    public Long getReplyId() {
+        return replyId;
+    }
+
+    public void setReplyId(Long replyId) {
+        this.replyId = replyId;
+    }
+
+    public List<Comment> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<Comment> replies) {
+        this.replies = replies;
     }
 
     @Override
@@ -117,12 +120,14 @@ public class Comment {
                 ", content='" + content + '\'' +
                 ", pubDate=" + pubDate +
                 ", ipAddress='" + ipAddress + '\'' +
-                ", hidden=" + hidden +
+                ", article=" + article +
+                ", creator=" + creator +
                 ", likeNum=" + likeNum +
                 ", disLikeNum=" + disLikeNum +
-                ", replyForId=" + replyForId +
-                ", creator=" + creator +
-                ", articleId=" + articleId +
+                ", replyFor=" + replyFor +
+                ", hidden=" + hidden +
+                ", replyId=" + replyId +
+                ", replies=" + replies +
                 '}';
     }
 }
