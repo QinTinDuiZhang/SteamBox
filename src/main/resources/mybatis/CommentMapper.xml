@@ -26,7 +26,7 @@
             <result column="article_id" property="id"/>
         </association>
     </resultMap>
-    
+
     <resultMap id="commentResultMapT" type="comment">
         <id column="id" property="id"/>
         <result column="content" property="content"/>
@@ -71,8 +71,9 @@
         select c.*, r.id as rid, u.nickname, u.photo
         from `steambox`.comment as c
                  left join `steambox`.comment as r on r.reply_for_id = c.id
-                 left join `steambox`.user as u on c.creator=u.id
-        where c.article_id= #{articleId} and c.hidden=#{hidden}
+                 left join `steambox`.user as u on c.creator = u.id
+        where c.article_id = #{articleId}
+          and c.hidden = #{hidden}
     </select>
 
     <select id="getLikeNum" resultType="int">
@@ -90,12 +91,12 @@
     <update id="updateLikeNum">
         update `steambox`.comment
         set
-            <if test="likeNum">
-                likenum = likenum + 1
-            </if>
-            <if test="!likeNum">
-                likenum = likenum - 1
-            </if>
+        <if test="likeNum">
+            likenum = likenum + 1
+        </if>
+        <if test="!likeNum">
+            likenum = likenum - 1
+        </if>
         <where>
             id = #{id}
         </where>
@@ -121,7 +122,8 @@
 
     <insert id="insertComment">
         insert into `steambox`.comment
-        VALUES (null, #{content}, #{pubDate}, #{ipaddress}, #{hidden}, #{likeNum}, #{dislikeNum}, #{replyForId}, #{creator}, #{articleId});
+        VALUES (null, #{content}, #{pubDate}, #{ipaddress}, #{hidden}, #{likeNum}, #{dislikeNum}, #{replyForId},
+                #{creator}, #{articleId});
     </insert>
 
 </mapper>

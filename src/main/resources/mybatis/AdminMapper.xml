@@ -42,7 +42,8 @@
     </update>
 
     <select id="getAllUser" resultType="com.niuma.model.User">
-        select * from steambox.user
+        select *
+        from steambox.user
     </select>
 
 </mapper>

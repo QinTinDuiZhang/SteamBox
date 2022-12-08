@@ -13,7 +13,8 @@
         from steambox.category;
     </select>
     <select id="getCategoryArticle" resultType="Article">
-        select article.id,article.hidden,article.content,article.img,article.title,article.pubdate,article.creator,article.auditor,article.click_count,article.community_id
+        select
+        article.id,article.hidden,article.content,article.img,article.title,article.pubdate,article.creator,article.auditor,article.click_count,article.community_id
         from steambox.article
         join steambox.article_category ac on article.id = ac.article_id
         <where>
@@ -26,7 +27,7 @@
     <select id="ToGainByArticle" resultType="Category">
         select *
         from steambox.category
-        join steambox.article_category ac on category.id = ac.category_id
+                 join steambox.article_category ac on category.id = ac.category_id
         where article_id = #{id};
     </select>
 

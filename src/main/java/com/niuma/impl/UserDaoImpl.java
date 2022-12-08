@@ -56,7 +56,7 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
-    public User getUserByID(int id){
+    public User getUserByID(int id) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         return userMapper.getUserByID(id);
@@ -71,13 +71,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public HashMap<String, List> selectInfo(String content) {
-        HashMap<String,List> a=new HashMap<>();
+        HashMap<String, List> a = new HashMap<>();
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         List<Article> articles = userMapper.selectArticle(content);
         List<Community> communities = userMapper.selectCommunity(content);
-        a.put("article",articles);
-        a.put("community",communities);
+        a.put("article", articles);
+        a.put("community", communities);
         return a;
     }
 

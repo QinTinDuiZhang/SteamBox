@@ -49,7 +49,7 @@
 <%
     CategoryDao categoryDao = new CategoryDaoImpl();
     List<Category> allCategory = categoryDao.getAllCategory();
-    session.setAttribute("categories",allCategory);
+    session.setAttribute("categories", allCategory);
     Iterator<Category> categoryIterator = allCategory.iterator();
 %>
 <div class="container">
@@ -60,8 +60,10 @@
                     Category category = categoryIterator.next();%>
                 <a href="first.jsp?category=<%= category.getId()%>" class="list-group-item"><%= category.getName()%>
                 </a>
-                <%}
-                    if (session.getAttribute("user")!=null){%>
+                <%
+                    }
+                    if (session.getAttribute("user") != null) {
+                %>
                 <a href="publish.jsp">
                     <button style="background-color: #13d5d6; border-radius: 50px;width: 80px;height: 80px;">
                         <svg class="icon"
@@ -122,7 +124,7 @@
                         <%
                             CommunityDao communityDao = new CommunityDaoImpl();
                             List<Community> communities = communityDao.getAll();
-                            session.setAttribute("communities",communities);
+                            session.setAttribute("communities", communities);
                             for (Community temp : communities) {%>
                         <a href="first.jsp?community=<%= temp.getId()%>">
                             <button class="btn"

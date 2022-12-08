@@ -16,166 +16,177 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-  <meta content="IE=edge" http-equiv="X-UA-Compatible">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
-  <meta content="webkit" name="renderer">
-  <title></title>
-  <link href="css/pintuer.css" rel="stylesheet">
-  <link href="css/admin.css" rel="stylesheet">
-  <script src="js/jquery.js"></script>
-  <script src="js/pintuer.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <style>
-    @font-face {
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta content="webkit" name="renderer">
+    <title></title>
+    <link href="css/pintuer.css" rel="stylesheet">
+    <link href="css/admin.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/pintuer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        @font-face {
 
-      font-family: 'Alimama_ShuHeiTi_Bold';
+            font-family: 'Alimama_ShuHeiTi_Bold';
 
-      src: url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
-      url('./fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
-    }
+            src: url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
+            url('./fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
+        }
 
-    p, header, a {
-      text-decoration: none;
-      font-family: Alimama_ShuHeiTi_Bold, serif;
-    }
-  </style>
+        p, header, a {
+            text-decoration: none;
+            font-family: Alimama_ShuHeiTi_Bold, serif;
+        }
+    </style>
 </head>
 <body>
 <%
-  AdminDaoImpl adminDao=new AdminDaoImpl();
-  List<User> allUser = adminDao.getAllUser();
+    AdminDaoImpl adminDao = new AdminDaoImpl();
+    List<User> allUser = adminDao.getAllUser();
 %>
 <form>
-  <div class="panel admin-panel">
-    <div class="panel-head"><strong class="icon-reorder"> 用户管理</strong></div>
-    <div class="padding border-bottom">
-      <ul class="search">
-        <li>
-<%--          <button class="button border-green" id="checkall" type="button"><span class="icon-check"></span> 全选--%>
-<%--          </button>--%>
-          <button class="button border-red" onclick="DelSelect()"><span class="icon-trash-o"></span> 批量禁用</button>
-        </li>
-      </ul>
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder"> 用户管理</strong></div>
+        <div class="padding border-bottom">
+            <ul class="search">
+                <li>
+                    <%--          <button class="button border-green" id="checkall" type="button"><span class="icon-check"></span> 全选--%>
+                    <%--          </button>--%>
+                    <button class="button border-red" onclick="DelSelect()"><span class="icon-trash-o"></span> 批量禁用
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <table class="table table-hover text-center">
+            <tr>
+                <th>禁用与否</th>
+                <th width="120">ID</th>
+                <th>昵称</th>
+                <th>电话</th>
+                <th>邮箱</th>
+                <th>账号</th>
+
+                <th width="120">注册时间</th>
+                <th>操作</th>
+            </tr>
+            <%for (int i = 0; i < allUser.size(); i++) {%>
+            <tr class="lie">
+
+                <td>
+                    <input class="allCheck" name="id[]" <%=allUser.get(i).isForbidden() == false ? "checked" : ""%>
+                           type="checkbox"/>
+                </td>
+                <td>
+                    <%=allUser.get(i).getId()%>
+                </td>
+                <td><%=allUser.get(i).getNickName()%>
+                </td>
+                <td><%=allUser.get(i).getMobile()%>
+                </td>
+                <td><%=allUser.get(i).getEmail()%>
+                </td>
+                <td><%=allUser.get(i).getAccount()%>
+                </td>
+                <%
+                    String dateStr = String.valueOf(allUser.get(i).getRegDate());
+                    DateFormat cstFormate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    DateFormat gmtFormate = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+                    Date dateTime = gmtFormate.parse(dateStr);
+                    String dateString = cstFormate.format(dateTime);
+                %>
+                <td><%=dateString%>
+                </td>
+                <td>
+                    <a class="button border-main"
+                       onclick="up1(<%=allUser.get(i).getId()%>,<%=allUser.get(i).isForbidden()%>)" type="button"><span
+                            class="icon-edit"></span>启用</a>
+                    <div class="button-group"><a class="button border-red"
+                                                 onclick="up2(<%=allUser.get(i).getId()%>,<%=allUser.get(i).isForbidden()%>)"><span
+                            class="icon-trash-o"></span> 禁用</a></div>
+                </td>
+            </tr>
+            <%}%>
+            <%--      <tr>--%>
+            <%--        <td colspan="8">--%>
+            <%--          <div class="pagelist"><a href="">上一页</a> <span class="current">1</span><a href="">2</a><a--%>
+            <%--                  href="">3</a><a href="">下一页</a><a href="">尾页</a></div>--%>
+            <%--        </td>--%>
+            <%--      </tr>--%>
+        </table>
     </div>
-    <table class="table table-hover text-center">
-      <tr>
-        <th>禁用与否</th>
-        <th width="120">ID</th>
-        <th>昵称</th>
-        <th>电话</th>
-        <th>邮箱</th>
-        <th>账号</th>
-
-        <th width="120">注册时间</th>
-        <th>操作</th>
-      </tr>
-      <%for(int i=0;i<allUser.size();i++){%>
-      <tr class="lie">
-
-        <td>
-          <input class="allCheck" name="id[]" <%=allUser.get(i).isForbidden()==false ? "checked":""%>  type="checkbox" />
-        </td>
-        <td>
-          <%=allUser.get(i).getId()%>
-        </td>
-        <td><%=allUser.get(i).getNickName()%></td>
-        <td><%=allUser.get(i).getMobile()%></td>
-        <td><%=allUser.get(i).getEmail()%></td>
-        <td><%=allUser.get(i).getAccount()%></td>
-        <%
-          String dateStr = String.valueOf(allUser.get(i).getRegDate());
-          DateFormat cstFormate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-          DateFormat gmtFormate = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-          Date dateTime = gmtFormate.parse(dateStr);
-          String dateString = cstFormate.format(dateTime);
-        %>
-        <td><%=dateString%></td>
-        <td>
-          <a class="button border-main" onclick="up1(<%=allUser.get(i).getId()%>,<%=allUser.get(i).isForbidden()%>)" type="button"><span class="icon-edit"></span>启用</a>
-          <div class="button-group"><a class="button border-red"
-                                       onclick="up2(<%=allUser.get(i).getId()%>,<%=allUser.get(i).isForbidden()%>)"><span class="icon-trash-o"></span> 禁用</a></div>
-        </td>
-      </tr>
-      <%}%>
-<%--      <tr>--%>
-<%--        <td colspan="8">--%>
-<%--          <div class="pagelist"><a href="">上一页</a> <span class="current">1</span><a href="">2</a><a--%>
-<%--                  href="">3</a><a href="">下一页</a><a href="">尾页</a></div>--%>
-<%--        </td>--%>
-<%--      </tr>--%>
-    </table>
-  </div>
 </form>
 <script type="text/javascript">
-  window.onload = function (){
-    let  user= document.getElementsByClassName('lie');
-    console.log(user)
-    for(var i = 0;i<user.length;i++){
-      user[i].addEventListener('dblclick',function (e) {
-        var a=this.children.item(1).innerText;
+    window.onload = function () {
+        let user = document.getElementsByClassName('lie');
+        console.log(user)
+        for (var i = 0; i < user.length; i++) {
+            user[i].addEventListener('dblclick', function (e) {
+                var a = this.children.item(1).innerText;
 
 
-      })
-    }
-  }
-
-  function up1(id,info) {
-    if(info==false){
-      if (confirm("您确定要启用吗?")) {
-        axios({
-          method:"post",
-          url:"http://localhost:8080/SteamBox_war_exploded/Admin/BanUser",
-          data:{
-            id:id,
-            forbidden:1
-          }
-        }).then(function (resp) {
-          window.location.reload()
-        })
-      }
-    }
-  }
-  function up2(id,info) {
-    if(info==true){
-      if (confirm("您确定要禁用吗?")) {
-        axios({
-          method:"post",
-          url:"http://localhost:8080/SteamBox_war_exploded/Admin/BanUser",
-          data:{
-            id:id,
-            forbidden:0
-          }
-        }).then(function (resp) {
-          window.location.reload()
-        })
-      }
-    }
-  }
-
-
-  function DelSelect() {
-    var userid = [];
-    if (confirm("您确定要禁用吗?")) {
-      let user = document.getElementsByClassName('lie');
-      for (var i = 0; i < user.length; i++) {
-        var ckbx = user[i].childNodes.item(1).childNodes.item(1);
-        if (ckbx.checked) {
-          userid.push(user[i].children.item(1).innerText)
+            })
         }
-        console.log(userid)
-      }
-      if(userid!=null){
-        axios({
-          method: "post",
-          url: "http://localhost:8080/SteamBox_war_exploded/Admin/BanManyUsers",
-          data:userid,
-        }).then(function (resp) {
-
-        })
-      }
     }
-  }
+
+    function up1(id, info) {
+        if (info == false) {
+            if (confirm("您确定要启用吗?")) {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/SteamBox_war_exploded/Admin/BanUser",
+                    data: {
+                        id: id,
+                        forbidden: 1
+                    }
+                }).then(function (resp) {
+                    window.location.reload()
+                })
+            }
+        }
+    }
+
+    function up2(id, info) {
+        if (info == true) {
+            if (confirm("您确定要禁用吗?")) {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/SteamBox_war_exploded/Admin/BanUser",
+                    data: {
+                        id: id,
+                        forbidden: 0
+                    }
+                }).then(function (resp) {
+                    window.location.reload()
+                })
+            }
+        }
+    }
+
+
+    function DelSelect() {
+        var userid = [];
+        if (confirm("您确定要禁用吗?")) {
+            let user = document.getElementsByClassName('lie');
+            for (var i = 0; i < user.length; i++) {
+                var ckbx = user[i].childNodes.item(1).childNodes.item(1);
+                if (ckbx.checked) {
+                    userid.push(user[i].children.item(1).innerText)
+                }
+                console.log(userid)
+            }
+            if (userid != null) {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8080/SteamBox_war_exploded/Admin/BanManyUsers",
+                    data: userid,
+                }).then(function (resp) {
+
+                })
+            }
+        }
+    }
 
 </script>
 </body>

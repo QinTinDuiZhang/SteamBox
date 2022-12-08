@@ -169,7 +169,7 @@ public class UserServlet extends BaseServlet {
         String search = request.getParameter("Search");
         UserDao userDao = new UserDaoImpl();
         HashMap<String, List> selectInfo = userDao.selectInfo(search);
-        request.getSession().setAttribute("selectInfo",selectInfo);
+        request.getSession().setAttribute("selectInfo", selectInfo);
         response.sendRedirect(request.getContextPath() + "/search.jsp");
     }
 }

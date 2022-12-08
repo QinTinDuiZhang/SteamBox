@@ -8,9 +8,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface AdminMapper {
-    Admin login(String account,String password);
+    Admin login(String account, String password);
 
-    Boolean changePassword(@Param("account") String account,@Param("password")String password);
+    Boolean changePassword(@Param("account") String account, @Param("password") String password);
 
     Boolean addCommunity(Community community);
 

@@ -52,14 +52,16 @@ public interface AdminDao {
 
     /**
      * 修改管理员密码
-     * @param account 管理员账号
+     *
+     * @param account  管理员账号
      * @param password 管理员新密码
      * @return 是否成功
      */
-    Boolean changePassword(String account,String password); //修改管理员密码
+    Boolean changePassword(String account, String password); //修改管理员密码
 
     /**
      * 获取所有用户信息
+     *
      * @return 返回一个User集合
      */
     List<User> getAllUser();//获取所有用户

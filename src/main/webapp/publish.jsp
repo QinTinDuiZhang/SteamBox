@@ -32,9 +32,10 @@
                 </div>
                 <div>
                     <h3><label class="h3">分类</label></h3>
-                    <% for (Category category : (List<Category>) session.getAttribute("categories")){%>
+                    <% for (Category category : (List<Category>) session.getAttribute("categories")) {%>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked<%=category.getId()%>">
+                        <input class="form-check-input" type="checkbox" value=""
+                               id="flexCheckChecked<%=category.getId()%>">
                         <label class="form-check-label" for="flexCheckChecked<%=category.getId()%>">
                             <%= category.getName()%>
                         </label>
@@ -44,8 +45,9 @@
                 <div>
                     <label class="h3">社区</label>
                     <select class="form-select" aria-label="Default select example">
-                        <% for (Community community : (List<Community>)session.getAttribute("communities")){%>
-                            <option value="<%= community.getName()%>"><%= community.getName()%></option>
+                        <% for (Community community : (List<Community>) session.getAttribute("communities")) {%>
+                        <option value="<%= community.getName()%>"><%= community.getName()%>
+                        </option>
                         <%}%>
                     </select>
                 </div>
@@ -111,8 +113,9 @@
     function imgFile(event) {
         let slt = document.getElementById(`slt`);
         let files = event.target.files[0];
-        slt.setAttribute('src',this.getObjectUrl(files))
+        slt.setAttribute('src', this.getObjectUrl(files))
     }
+
     function getObjectUrl(file) {
         let url = null;
         if (window.createObjectURL !== undefined) url = window.createObjectURL(file);

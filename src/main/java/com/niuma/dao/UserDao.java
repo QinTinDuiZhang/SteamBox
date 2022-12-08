@@ -5,7 +5,6 @@ import com.niuma.model.User;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public interface UserDao {
     /**
@@ -60,10 +59,11 @@ public interface UserDao {
 
     /**
      * 模糊查询帖子社区
+     *
      * @param content 输入查询内容
-     * @return 返回一个HashMap,内嵌入两个集合元素（“帖子”，“社区”）
+     * @return 返回一个HashMap, 内嵌入两个集合元素（“帖子”，“社区”）
      */
-    HashMap<String,List> selectInfo(String content);
+    HashMap<String, List> selectInfo(String content);
 
     User getUserByID(int id);
 }

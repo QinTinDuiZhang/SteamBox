@@ -21,9 +21,10 @@
 </div>
 
 <script>
-    function jump(){
-        window.location.href="http://localhost:8080/SteamBox_war_exploded/AIndex.jsp";
+    function jump() {
+        window.location.href = "http://localhost:8080/SteamBox_war_exploded/AIndex.jsp";
     }
+
     setTimeout(jump, 5000);
 </script>
 </body>

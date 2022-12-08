@@ -65,10 +65,10 @@
         int id = Integer.parseInt(request.getParameter("article"));
         List<Comment> comments = commentDao.getCommentsByArticleId(id);
         Map<Long, Comment> longCommentMap = CommentUtil.toMap(comments);
-        request.setAttribute("comments",comments);
+        request.setAttribute("comments", comments);
         request.setAttribute("commentMap", longCommentMap);
         Article article = articleDao.selectAll(Integer.parseInt(request.getParameter("article"))).get(0);
-        request.setAttribute("article",article);
+        request.setAttribute("article", article);
     %>
     <div class="col-7">
         <h1 class="article-title"><%= article.getTitle() %>
@@ -77,12 +77,14 @@
             <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <%
-                    CategoryDao categoryDao = new CategoryDaoImpl();
-                    CommunityDao communityDao = new CommunityDaoImpl();
-                    List<Community> communities = communityDao.getAll();
-                    List<Category> categories = categoryDao.toGainByArticle(article.getId());
-                    for (Category category : categories) {%>
-                    <div class="breadcrumb-item active" aria-current="page" style="border-radius: 50px; background-color: #d69200; color: #ffffff"><%= category.getName()%></div>
+                        CategoryDao categoryDao = new CategoryDaoImpl();
+                        CommunityDao communityDao = new CommunityDaoImpl();
+                        List<Community> communities = communityDao.getAll();
+                        List<Category> categories = categoryDao.toGainByArticle(article.getId());
+                        for (Category category : categories) {%>
+                    <div class="breadcrumb-item active" aria-current="page"
+                         style="border-radius: 50px; background-color: #d69200; color: #ffffff"><%= category.getName()%>
+                    </div>
                     <%}%>
                 </ol>
             </nav>
@@ -97,7 +99,9 @@
                   onsubmit="return setContent()">
                 <div id="editor"></div>
                 <input type="hidden" name="content" id="content">
-                <button type="submit" class="btn btn-default" <c:if test="${empty sessionScope.user}">disabled</c:if>>发布</button>
+                <button type="submit" class="btn btn-default" <c:if test="${empty sessionScope.user}">disabled</c:if>>
+                    发布
+                </button>
                 <c:if test="${empty sessionScope.user}">您还未登陆，请先<a href="login.jsp">登陆</a></c:if>
             </form>
         </div>
@@ -134,7 +138,8 @@
             ['emoji']
         ],
         handlers: {
-            'emoji': function () {}
+            'emoji': function () {
+            }
         }
     };
 
@@ -149,10 +154,10 @@
     });
 
     function setContent() {
-        if(quill && quill.getLength() > 1){
+        if (quill && quill.getLength() > 1) {
             $("#content").val(quill.root.innerHTML);
             return true;
-        } else{
+        } else {
             alert("内容不能为空！")
             return false;
         }
@@ -161,7 +166,7 @@
     var replyQuill; //定义全局变量
 
     function setReplyContent() {
-        if(replyQuill && replyQuill.getLength() > 1){
+        if (replyQuill && replyQuill.getLength() > 1) {
             $("#reply-content").val(replyQuill.root.innerHTML);
             return true;
         } else {
@@ -174,11 +179,11 @@
         $(".editor-form").remove(); //清除编辑表单
         $(".btn-reply").removeAttr("disabled"); // 恢复按钮功能
 
-        $("#btn-"+commentId).attr("disabled", "disabled");  //停止重复点击
-        $("#comment-"+commentId).append("<form action='${pageContext.request.contextPath}/Comment/putComment?newsId=${param.id}&replyForId="+commentId
-            +"' class='editor-form' method='post' onsubmit='return setReplyContent()'><div id='ql-editor'></div><input type='hidden' name='content' id='reply-content'><button class='btn btn-default'"
-            <c:if test="${empty sessionScope.user}">+ ' disabled'</c:if> + ">回复</button>"
-            <c:if test="${empty sessionScope.user}">+ '您还未登陆，请先<a href="login.jsp">登陆</a>'</c:if> + "</form>");
+        $("#btn-" + commentId).attr("disabled", "disabled");  //停止重复点击
+        $("#comment-" + commentId).append("<form action='${pageContext.request.contextPath}/Comment/putComment?newsId=${param.id}&replyForId=" + commentId
+            + "' class='editor-form' method='post' onsubmit='return setReplyContent()'><div id='ql-editor'></div><input type='hidden' name='content' id='reply-content'><button class='btn btn-default'"
+            <c:if test="${empty sessionScope.user}"> + ' disabled'</c:if> + ">回复</button>"
+            <c:if test="${empty sessionScope.user}"> + '您还未登陆，请先<a href="login.jsp">登陆</a>'</c:if> + "</form>");
         replyQuill = new Quill('#ql-editor', {
             modules: {
                 "toolbar": toolbarOptions,
@@ -194,17 +199,17 @@
         let like = $.cookie('comment-like-' + commentId);  // 从Cookie中获取点赞记录
         let operate = like ? 'unlike' : 'like';
 
-        $.post('${pageContext.request.contextPath}/Comment/Like?id='+commentId + '&operate=' + operate, function (num) {
+        $.post('${pageContext.request.contextPath}/Comment/Like?id=' + commentId + '&operate=' + operate, function (num) {
             // 更新点赞数和图标状态
             console.log(num)
             console.log(typeof num)
-            $('#like-num-'+commentId).text(num > 0 ? num : '赞');
-            if(like){
-                $('#like-icon-'+commentId).removeClass('alert-danger');
-                $.removeCookie('comment-like-'+commentId, { path: "/"});  // 删除Cookie
+            $('#like-num-' + commentId).text(num > 0 ? num : '赞');
+            if (like) {
+                $('#like-icon-' + commentId).removeClass('alert-danger');
+                $.removeCookie('comment-like-' + commentId, {path: "/"});  // 删除Cookie
             } else {
-                $('#like-icon-'+commentId).addClass('alert-danger');
-                $.cookie('comment-like-'+commentId, true, { path: "/"}); // 写入Cookie
+                $('#like-icon-' + commentId).addClass('alert-danger');
+                $.cookie('comment-like-' + commentId, true, {path: "/"}); // 写入Cookie
             }
         });
     }
@@ -213,15 +218,15 @@
         let dislike = $.cookie('comment-dislike-' + commentId);  // 从Cookie中获取点踩记录
         let operate = dislike ? 'undislike' : 'dislike';
 
-        $.post('${pageContext.request.contextPath}/Comment/Like?id='+commentId + '&operate=' + operate, function (num) {
+        $.post('${pageContext.request.contextPath}/Comment/Like?id=' + commentId + '&operate=' + operate, function (num) {
             // 更新点赞数和图标状态
-            $('#dislike-num-'+commentId).text(num > 0 ? num : '踩');
-            if(dislike){
-                $('#dislike-icon-'+commentId).removeClass('alert-danger');
-                $.removeCookie('comment-dislike-'+commentId, { path: "/"});  // 删除Cookie
+            $('#dislike-num-' + commentId).text(num > 0 ? num : '踩');
+            if (dislike) {
+                $('#dislike-icon-' + commentId).removeClass('alert-danger');
+                $.removeCookie('comment-dislike-' + commentId, {path: "/"});  // 删除Cookie
             } else {
-                $('#dislike-icon-'+commentId).addClass('alert-danger');
-                $.cookie('comment-dislike-'+commentId, true, { path: "/"}); // 写入Cookie
+                $('#dislike-icon-' + commentId).addClass('alert-danger');
+                $.cookie('comment-dislike-' + commentId, true, {path: "/"}); // 写入Cookie
             }
         });
     }

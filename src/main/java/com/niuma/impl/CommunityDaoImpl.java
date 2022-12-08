@@ -3,7 +3,6 @@ package com.niuma.impl;
 import com.niuma.dao.CommunityDao;
 import com.niuma.model.Community;
 import com.niuma.tool.SqlSessionUtils;
-import mybatis.CommentMapper;
 import mybatis.CommunityMapper;
 import org.apache.ibatis.session.SqlSession;
 
