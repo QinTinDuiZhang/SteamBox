@@ -46,28 +46,40 @@
                 <%for (Community c : communities) {%>
                 <li class="nav-item px-2 ">
                     <a class="nav-link px-2<%if(community!=null && c.getId() == Integer.parseInt(community)){%> text-secondary<%}else{%> text-white<%}%>"
-                       href="first.jsp?community=<%=c.getId()%>"><%=c.getName()%></a>
-                </li><%}}%>
+                       href="first.jsp?community=<%=c.getId()%>"><%=c.getName()%>
+                    </a>
+                </li>
+                <%
+                        }
+                    }
+                %>
             </ul>
 
             <div class="d-flex justify-content-around">
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="User/Search">
-                    <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search" name="Search">
+                    <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
+                           aria-label="Search" name="Search">
                 </form>
 
                 <div class="dropdown text-end">
-                    <%if (user == null){%>
+                    <%if (user == null) {%>
                     <a class="nav-link" href="login.jsp" style="margin-top: 10px">登录</a>
-                    <%}else{%>
-                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="img/photo/<%= user.getPhoto()%>" alt="mdo" width="32" height="32" class="rounded-circle">
+                    <%} else {%>
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        <img src="img/photo/<%= user.getPhoto()%>" alt="mdo" width="32" height="32"
+                             class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small">
                         <li><a class="dropdown-item" href="userinfo.jsp">个人信息</a></li>
                         <li><a class="dropdown-item" href="changePassword.jsp">修改密码</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="manuscript.jsp">稿件中心</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="logout.jsp">退出</a></li>
                     </ul>
                     <%}%>

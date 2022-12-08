@@ -7,8 +7,8 @@ img {
     max-width: 100%;
 }
 
-.navbar{
-    border: 1px solid#1D2D44;
+.navbar {
+    border: 1px solid #1D2D44;
     background-color: #1D2D44;
 }
 
@@ -27,16 +27,16 @@ img, .side-bar .list-group-item, .side-bar-card {
 .side-bar .list-group-item {
     border-radius: 50px;
     text-align: center;
-    color:black;
+    color: black;
     border: 0;
     margin-bottom: 5px;
 }
 
 @keyframes sun {
     100% {
-      background-position: -400%;
+        background-position: -400%;
     }
-  }
+}
 
 .news-list-item .title {
     display: block;
@@ -137,7 +137,8 @@ img, .side-bar .list-group-item, .side-bar-card {
     padding-left: 0;
     padding-right: 0;
 }
-.footer1{
+
+.footer1 {
     position: absolute;
     top: 1000px;
     /* margin-top: 20px;
@@ -145,6 +146,7 @@ img, .side-bar .list-group-item, .side-bar-card {
     text-align: center;
     color: #999999;
 }
+
 .footer {
     /* position: absolute;
     top: 1000px; */
@@ -162,7 +164,6 @@ img, .side-bar .list-group-item, .side-bar-card {
     color: black;
     background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3d, #03a9f4);
 }
-
 
 
 /*当toggle-checkbox勾选时，它下面的兄弟的样式，!important使优先级最高*/
@@ -183,36 +184,44 @@ img, .side-bar .list-group-item, .side-bar-card {
 #toggle-label:hover {
     color: #333333;
 }
-#remember{
+
+#remember {
     position: relative;
     top: 11px;
     left: 395px;
 }
-#rep{
+
+#rep {
     position: relative;
     left: 400px;
     top: 8px;
 }
-#dh{
+
+#dh {
     color: white;
 }
-#like{
+
+#like {
     color: #C5C3C0;
 }
-#like:hover{
+
+#like:hover {
     font-weight: bold;
 }
-#all{
+
+#all {
     background: url(../img/背景图.jpg);
-    
+
 }
-#row{
+
+#row {
     display: inline-block;
     width: 1000px;
     position: relative;
-    left:150px;
+    left: 150px;
     /* border: 1px solid red; */
 }
-body{
+
+body {
     background-color: rgb(7, 4, 26);
 }

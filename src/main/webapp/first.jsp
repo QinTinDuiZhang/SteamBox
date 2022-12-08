@@ -57,7 +57,8 @@
             <div class="list-group side-bar hidden-xs sticky-top">
                 <% while (categoryIterator.hasNext()) {
                     Category category = categoryIterator.next();%>
-                <a href="first.jsp?category=<%= category.getId()%>" class="list-group-item"><%= category.getName()%></a>
+                <a href="first.jsp?category=<%= category.getId()%>" class="list-group-item"><%= category.getName()%>
+                </a>
                 <%}%>
             </div>
         </div>
@@ -67,14 +68,15 @@
                 String category = request.getParameter("category");
                 UserDao userDao = new UserDaoImpl();
                 ArticleDao articleDao = new ArticleDaoImpl();
-                List<Article> articles = community != null ? articleDao.selectAll(Integer.parseInt(community)): articleDao.selectAll(0);
+                List<Article> articles = community != null ? articleDao.selectAll(Integer.parseInt(community)) : articleDao.selectAll(0);
                 if (category != null) articles = categoryDao.getCategoryArticle(Integer.parseInt(category));
-                for (Article article : articles){%>
+                for (Article article : articles) {%>
             <div>
                 <a href="particulars.jsp?article=<%= article.getId()%>">
                     <div class="news-list-item clearfix">
                         <div class="col-xs-7">
-                            <p class="title h3 text-white"><%= article.getTitle()%></p>
+                            <p class="title h3 text-white"><%= article.getTitle()%>
+                            </p>
                         </div>
                         <div class="col-xs-5">
                             <img src="img/cover/<%= article.getImg()%>" alt="">
@@ -100,9 +102,12 @@
                         <%
                             CommunityDao communityDao = new CommunityDaoImpl();
                             List<Community> communities = communityDao.getAll();
-                            for (Community temp :communities){%>
+                            for (Community temp : communities) {%>
                         <a href="first.jsp?community=<%= temp.getId()%>">
-                            <button class="btn" style="background-color: #ff9b27; color: #000000; margin-top: 5px; margin-left: 10px; border-radius: 50px" type="button"><%= temp.getName()%></button>
+                            <button class="btn"
+                                    style="background-color: #ff9b27; color: #000000; margin-top: 5px; margin-left: 10px; border-radius: 50px"
+                                    type="button"><%= temp.getName()%>
+                            </button>
                         </a>
                         <%}%>
                     </div>
@@ -111,7 +116,8 @@
         </div>
     </div>
     <a href="publish.jsp">
-        <button style="background-color: #13d5d6; border-radius: 50px;width: 80px;height: 80px;" class="=position-absolute bottom-0 end-0">
+        <button style="background-color: #13d5d6; border-radius: 50px;width: 80px;height: 80px;"
+                class="=position-absolute bottom-0 end-0">
             <svg class="icon"
                  height="40"
                  p-id="2533"

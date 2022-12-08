@@ -138,7 +138,8 @@
                     </div>
                     <div class="col-8 row">
                         <div class="col-12">
-                            <p class="title h3" style="margin-top: 18px;"><%= article.getTitle()%></p>
+                            <p class="title h3" style="margin-top: 18px;"><%= article.getTitle()%>
+                            </p>
                         </div>
                         <div class="col-7 align-self-end" style="margin-bottom: 10px;">
                             <div class="info">

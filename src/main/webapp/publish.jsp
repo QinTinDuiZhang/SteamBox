@@ -14,45 +14,51 @@
     <title>发布页面</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
-    <script>
-        import {Quill} from "./js/quill.min";
-
-        let quill = new Quill('#editor', {
-            theme: 'snow'
-        });
-    </script>
+    <link href="css/quill.snow.css" rel="stylesheet">
+    <link href="css/quill-emoji.css" rel="stylesheet">
+    <script src="js/quill.min.js"></script>
+    <script src="js/quill-emoji.js"></script>
 </head>
 <body>
-<div id="main">
-    <div id="opt_area">
+<div id="main" class="container text-center">
+    <div class="row justify-content-center">
         <h1 id="opt_type">添加游戏文章：</h1>
         <form name="AddForm" action="User/Publish" method="post">
-            <p>
-                <label>社区</label>
+            <div>
+                <h3><label>分类</label></h3>
                 <div class="form-check">
-                    <input type="checkbox" value="">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Checked checkbox
+                    </label>
                 </div>
-            </p>
-            <p>
-                <label for="ntitle"> 标题 </label>
-                <input name="ntitle" id="ntitle" type="text" class="opt_input">
-            </p>
-            <p>
-                <label for="content"> 正文 </label>
+            </div>
+            <div>
+                <h3>社区</h3>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div>
+                <h3><label for="ntitle">标题</label></h3>
+                <input name="ntitle" id="ntitle" type="text" class="opt_input"/>
+            </div>
+            <div>
+                <h3><label for="content">正文</label></h3>
                 <div id="editor"></div>
-                <input id="content" type="hidden" name="content">
-            </p>
-            <p>
-                <label> 选择封面 </label>
-                <input type="file" name="nfile">
-            </p>
+                <input id="content" type="hidden" name="content"/>
+            </div>
+            <div>
+                <h3><label>选择封面</label></h3>
+                <input type="file" name="nfile"/>
+            </div>
             <input name="action" type="hidden" value="addnews">
             <input type="submit" value="提交" class="opt_sub">
             <input type="reset" value="重置" class="opt_sub">
+
         </form>
     </div>
 </div>
