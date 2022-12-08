@@ -114,7 +114,7 @@ public class UserServlet extends BaseServlet {
             UserDaoImpl userDao = new UserDaoImpl();
             if (userDao.signup(user)) {
                 session.setAttribute("user", user);
-                response.sendRedirect(request.getContextPath() + "/index.jsp");
+                response.sendRedirect(request.getContextPath() + "/first.jsp");
             } else {
                 response.sendRedirect(request.getContextPath() + "/signup.jsp");
             }
@@ -131,7 +131,7 @@ public class UserServlet extends BaseServlet {
         UserDaoImpl userDao = new UserDaoImpl();
         User user = userDao.login(account, password);
         if (user != null) {
-            if (user.isForbidden()) {
+            if (!user.isForbidden()) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
                 response.sendRedirect(request.getContextPath() + "/first.jsp");

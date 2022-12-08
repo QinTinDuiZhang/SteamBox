@@ -49,6 +49,7 @@
 <%
     CategoryDao categoryDao = new CategoryDaoImpl();
     List<Category> allCategory = categoryDao.getAllCategory();
+    session.setAttribute("categories",allCategory);
     Iterator<Category> categoryIterator = allCategory.iterator();
 %>
 <div class="container">
@@ -78,7 +79,7 @@
                             <p class="title h3 text-white"><%= article.getTitle()%>
                             </p>
                         </div>
-                        <div class="col-xs-5">
+                        <div class="col-xs-5 img-fluid">
                             <img src="img/cover/<%= article.getImg()%>" alt="">
                         </div>
                         <div class="col-xs-7">
@@ -102,6 +103,7 @@
                         <%
                             CommunityDao communityDao = new CommunityDaoImpl();
                             List<Community> communities = communityDao.getAll();
+                            session.setAttribute("communities",communities);
                             for (Community temp : communities) {%>
                         <a href="first.jsp?community=<%= temp.getId()%>">
                             <button class="btn"
@@ -115,6 +117,7 @@
             </div>
         </div>
     </div>
+    <% if (session.getAttribute("user")!=null){%>
     <a href="publish.jsp">
         <button style="background-color: #13d5d6; border-radius: 50px;width: 80px;height: 80px;"
                 class="=position-absolute bottom-0 end-0">
@@ -133,6 +136,8 @@
             </svg>
         </button>
     </a>
+    <%}%>
+
 </div>
 <jsp:include page="common/tall.jsp" flush="true"></jsp:include>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

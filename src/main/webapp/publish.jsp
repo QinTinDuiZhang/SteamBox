@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.niuma.model.Category" %>
+<%@ page import="com.niuma.model.Community" %><%--
   Created by IntelliJ IDEA.
   User: 23686
   Date: 2022/11/30
@@ -20,46 +22,50 @@
     <script src="js/quill-emoji.js"></script>
 </head>
 <body>
-<div id="main" class="container text-center">
+<div id="main" class="container">
     <div class="row justify-content-center">
-        <h1 id="opt_type">添加游戏文章：</h1>
-        <form name="AddForm" action="User/Publish" method="post">
-            <div>
-                <h3><label>分类</label></h3>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                    <label class="form-check-label" for="flexCheckChecked">
-                        Checked checkbox
-                    </label>
+        <div class="col"><h1 id="opt_type">添加游戏文章：</h1>
+            <form name="AddForm" action="User/Publish" method="post">
+                <div>
+                    <label for="ntitle" class="h3">标题</label>
+                    <input name="ntitle" id="ntitle" type="text" class="opt_input"/>
                 </div>
-            </div>
-            <div>
-                <h3>社区</h3>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
-            <div>
-                <h3><label for="ntitle">标题</label></h3>
-                <input name="ntitle" id="ntitle" type="text" class="opt_input"/>
-            </div>
-            <div>
-                <h3><label for="content">正文</label></h3>
-                <div id="editor"></div>
-                <input id="content" type="hidden" name="content"/>
-            </div>
-            <div>
-                <h3><label>选择封面</label></h3>
-                <input type="file" name="nfile"/>
-            </div>
-            <input name="action" type="hidden" value="addnews">
-            <input type="submit" value="提交" class="opt_sub">
-            <input type="reset" value="重置" class="opt_sub">
+                <div>
+                    <h3><label class="h3">分类</label></h3>
+                    <% for (Category category : (List<Category>) session.getAttribute("categories")){%>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked<%=category.getId()%>">
+                        <label class="form-check-label" for="flexCheckChecked<%=category.getId()%>">
+                            <%= category.getName()%>
+                        </label>
+                    </div>
+                    <%}%>
+                </div>
+                <div>
+                    <label class="h3">社区</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <% for (Community community : (List<Community>)session.getAttribute("communities")){%>
+                            <option value="<%= community.getName()%>"><%= community.getName()%></option>
+                        <%}%>
+                    </select>
+                </div>
+                <div>
+                    <label for="content" class="h3">正文</label>
+                    <div id="editor"></div>
+                    <input id="content" type="hidden" name="content"/>
+                </div>
+                <div>
+                    <label class="h3">选择封面</label>
+                    <input type="file" name="nfile" onchange="imgFile(event)"/>
+                    <img id="slt" src="" class="img-thumbnail" alt="">
+                </div>
+                <input name="action" type="hidden" value="addnews">
+                <input type="submit" value="提交" class="opt_sub">
+                <input type="reset" value="重置" class="opt_sub">
 
-        </form>
+            </form>
+        </div>
+
     </div>
 </div>
 <script src="js/jquery.min.js"></script>
@@ -102,8 +108,17 @@
     };
     let quill = new Quill('#editor', options);
 
-    function test() {
-        quill && quill.getLength() > 1 ? $("#content").val(quill.root.innerHTML) : alert("内容不能为空！")
+    function imgFile(event) {
+        let slt = document.getElementById(`slt`);
+        let files = event.target.files[0];
+        slt.setAttribute('src',this.getObjectUrl(files))
+    }
+    function getObjectUrl(file) {
+        let url = null;
+        if (window.createObjectURL !== undefined) url = window.createObjectURL(file);
+        else if (window.webkitURL !== undefined) url = window.webkitURL.createObjectURL(file);
+        else if (window.URL !== undefined) url = window.URL.createObjectURL(file);
+        return url;
     }
 </script>
 </body>
