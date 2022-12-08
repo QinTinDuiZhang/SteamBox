@@ -29,6 +29,6 @@ public interface ArticleDao {
      */
     boolean deleteArticle(int id);
 
-    List<Article> selectAll(int id);
+    List<Article> selectAll(int id,int aId);
 
 }

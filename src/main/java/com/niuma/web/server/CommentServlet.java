@@ -23,7 +23,7 @@ public class CommentServlet extends BaseServlet {
         User user = (User) request.getSession().getAttribute("user");
         Map map = new HashMap();
         map.put("content", request.getParameter("content"));
-        map.put("hidden", false);
+        map.put("hidden", true);
         map.put("articleId", Integer.parseInt(request.getParameter("articleId")));
         map.put("creator", user.getId());
         map.put("ipaddress", request.getRemoteAddr());

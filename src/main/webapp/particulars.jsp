@@ -67,7 +67,7 @@
         Map<Long, Comment> longCommentMap = CommentUtil.toMap(comments);
         request.setAttribute("comments", comments);
         request.setAttribute("commentMap", longCommentMap);
-        Article article = articleDao.selectAll(Integer.parseInt(request.getParameter("article"))).get(0);
+        Article article = articleDao.selectAll(0,Integer.parseInt(request.getParameter("article"))).get(0);
         request.setAttribute("article", article);
     %>
     <div class="col-7">
@@ -129,7 +129,7 @@
         </div>
     </div>
 </div>
-<jsp:include page="common/tall.jsp" flush="true"></jsp:include>
+<jsp:include page="common/footer.jsp" flush="true"></jsp:include>
 <script>
     var toolbarOptions = {
         container: [

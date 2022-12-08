@@ -90,7 +90,7 @@
                 String category = request.getParameter("category");
                 UserDao userDao = new UserDaoImpl();
                 ArticleDao articleDao = new ArticleDaoImpl();
-                List<Article> articles = community != null ? articleDao.selectAll(Integer.parseInt(community)) : articleDao.selectAll(0);
+                List<Article> articles = community != null ? articleDao.selectAll(Integer.parseInt(community),0) : articleDao.selectAll(0,0);
                 if (category != null) articles = categoryDao.getCategoryArticle(Integer.parseInt(category));
                 for (Article article : articles) {%>
             <div>
@@ -141,7 +141,7 @@
 
 
 </div>
-<jsp:include page="common/tall.jsp" flush="true"></jsp:include>
+<jsp:include page="common/footer.jsp" flush="true"></jsp:include>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
