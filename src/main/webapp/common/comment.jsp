@@ -24,10 +24,14 @@
             <em>${commentTemp.ipAddress}</em>
             <span class="pull-right">
                 <button onclick="like(${commentTemp.id})" class="btn btn-link">
-                    <span id="like-num-${commentTemp.id}">${commentTemp.likeNum > 0 ? commentTemp.likeNum : '赞'}</span> <span id="like-icon-${commentTemp.id}" class="glyphicon glyphicon-thumbs-up <c:if test="${not empty cookie['comment-like-'.concat(commentTemp.id)]}">alert-danger</c:if>"></span>
+                    <span id="like-num-${commentTemp.id}">${commentTemp.likeNum > 0 ? commentTemp.likeNum : '赞'}</span> <span
+                        id="like-icon-${commentTemp.id}"
+                        class="glyphicon glyphicon-thumbs-up <c:if test="${not empty cookie['comment-like-'.concat(commentTemp.id)]}">alert-danger</c:if>"></span>
                 </button>
                 <button onclick="dislike(${commentTemp.id})" class="btn btn-link">
-                    <span id="dislike-num-${commentTemp.id}">${commentTemp.disLikeNum > 0 ? commentTemp.disLikeNum : '踩'}</span> <span id="dislike-icon-${commentTemp.id}" class="glyphicon glyphicon-thumbs-down <c:if test="${not empty cookie['comment-dislike-'.concat(commentTemp.id)]}">alert-danger</c:if>"></span>
+                    <span id="dislike-num-${commentTemp.id}">${commentTemp.disLikeNum > 0 ? commentTemp.disLikeNum : '踩'}</span> <span
+                        id="dislike-icon-${commentTemp.id}"
+                        class="glyphicon glyphicon-thumbs-down <c:if test="${not empty cookie['comment-dislike-'.concat(commentTemp.id)]}">alert-danger</c:if>"></span>
                 </button>
             </span>
         </p>
@@ -35,9 +39,10 @@
             ${commentTemp.content}
         </p>
         <p id="comment-${commentTemp.id}">
-           <span class="text-info"><%=TimeFormat.getInterval(comment.getPubDate())%></span>
+            <span class="text-info"><%=TimeFormat.getInterval(comment.getPubDate())%></span>
             <span class="pull-right">
-                <button class="btn-link btn-reply" onclick="reply(${commentTemp.id})" id="btn-${commentTemp.id}">回复</button>
+                <button class="btn-link btn-reply" onclick="reply(${commentTemp.id})"
+                        id="btn-${commentTemp.id}">回复</button>
             </span>
         </p>
         <hr>
