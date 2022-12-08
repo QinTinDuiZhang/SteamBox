@@ -12,7 +12,7 @@
   Time: 23:02
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -133,12 +133,13 @@
         <div class="col" style="margin: 20px;">
             <div>
                 <a href="particulars.jsp?article=<%= article.getId()%>" class="row">
-                    <div class="col-4">
+                    <div class="col-4 img-fluid">
                         <img src="img/cover/<%= article.getImg()%>" alt="">
                     </div>
                     <div class="col-8 row">
                         <div class="col-12">
-                            <p class="title h3" style="margin-top: 18px;"><%= article.getTitle()%></p>
+                            <p class="title h3" style="margin-top: 18px;"><%= article.getTitle()%>
+                            </p>
                         </div>
                         <div class="col-7 align-self-end" style="margin-bottom: 10px;">
                             <div class="info">
