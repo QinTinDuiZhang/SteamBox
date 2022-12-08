@@ -29,8 +29,11 @@
         from steambox.article
         <where>
             hidden=1
-            <if test="id != 0">
+            <if test="id!=0">
                 and community_id = #{id}
+            </if>
+            <if test="aId!=0 and aId!=null">
+                and id = #{aId}
             </if>
         </where>
     </select>

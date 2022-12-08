@@ -67,7 +67,7 @@
         Map<Long, Comment> longCommentMap = CommentUtil.toMap(comments);
         request.setAttribute("comments", comments);
         request.setAttribute("commentMap", longCommentMap);
-        Article article = articleDao.selectAll(Integer.parseInt(request.getParameter("article"))).get(0);
+        Article article = articleDao.selectAll(0,Integer.parseInt(request.getParameter("article"))).get(0);
         request.setAttribute("article", article);
     %>
     <div class="col-7">
