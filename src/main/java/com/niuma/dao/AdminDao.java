@@ -2,6 +2,9 @@ package com.niuma.dao;
 
 import com.niuma.model.Admin;
 import com.niuma.model.Community;
+import com.niuma.model.User;
+
+import java.util.List;
 
 public interface AdminDao {
     /**
@@ -54,4 +57,10 @@ public interface AdminDao {
      * @return 是否成功
      */
     Boolean changePassword(String account,String password); //修改管理员密码
+
+    /**
+     * 获取所有用户信息
+     * @return 返回一个User集合
+     */
+    List<User> getAllUser();//获取所有用户
 }

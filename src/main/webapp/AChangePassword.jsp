@@ -42,6 +42,7 @@
 <body>
 <%
   Admin admin = (Admin) session.getAttribute("admin");
+  String updateInfo=(String) session.getAttribute("updateInfo");
 %>
 <div class="panel admin-panel">
   <div class="panel-head"><strong><span class="icon-key"></span> 修改管理员密码</strong></div>
@@ -54,7 +55,7 @@
         <div class="field">
           <label style="line-height:33px;" >
             <%=admin.getAccount()%>
-          </label>
+          </label><span style="color: green"><%=updateInfo !=null ? updateInfo : ""%></span>
         </div>
       </div>
       <div class="form-group">

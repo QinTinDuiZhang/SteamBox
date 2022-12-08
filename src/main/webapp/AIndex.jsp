@@ -33,10 +33,6 @@
   </style>
 </head>
 <body style="background-color:#f2f9fd;">
-<%
-  String updateInfo=(String) session.getAttribute("updateInfo");
-%>
-
 <div class="header bg-main">
   <div class="logo margin-big-left fadein-top">
     <h1><img alt=""
@@ -56,7 +52,7 @@
   <h2><span class="icon-user"></span>基本设置</h2>
   <ul style="display:block">
     <li><a href="AChangePassword.jsp" target="right"><span class="icon-caret-right"></span>修改密码</a></li>
-    <li><a href="manageruser.html" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
+    <li><a href="AManagerUser.jsp" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
   </ul>
   <h2><span class="icon-pencil-square-o"></span>内容管理</h2>
   <ul>

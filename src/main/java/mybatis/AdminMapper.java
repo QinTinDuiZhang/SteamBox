@@ -2,7 +2,10 @@ package mybatis;
 
 import com.niuma.model.Admin;
 import com.niuma.model.Community;
+import com.niuma.model.User;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface AdminMapper {
     Admin login(String account,String password);
@@ -16,4 +19,6 @@ public interface AdminMapper {
     Boolean setPostLook(int hidden, int id);
 
     Boolean setUserBan(int hidden, int id);
+
+    List<User> getAllUser();
 }

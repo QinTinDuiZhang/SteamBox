@@ -32,8 +32,8 @@
       </div>
       <form action="Admin/Login" method="post">
         <div class="panel loginbox">
-          <%=error !=null ? error : ""%>
           <div class="text-center margin-big padding-big-top"><h1>后台管理中心</h1></div>
+          <div style="text-align: center;color: red"><%=error !=null ? error : ""%></div>
           <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
             <div class="form-group">
               <div class="field field-icon-right">
@@ -49,17 +49,6 @@
                        placeholder="登录密码"
                        type="password"/>
                 <span class="icon icon-key margin-small"></span>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="field">
-                <input class="input input-big" data-validate="required:请填写右侧的验证码" name="code"
-                       placeholder="填写右侧的验证码"
-                       type="text"/>
-                <img alt="" class="passcode" height="32" onclick="this.src=this.src+'?'"
-                     src="img/passcode.jpg"
-                     style="height:43px;cursor:pointer;" width="100">
-
               </div>
             </div>
           </div>
