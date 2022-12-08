@@ -46,15 +46,15 @@
   AdminDaoImpl adminDao=new AdminDaoImpl();
   List<User> allUser = adminDao.getAllUser();
 %>
-<form action="" method="post">
+<form>
   <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder"> 用户管理</strong></div>
     <div class="padding border-bottom">
       <ul class="search">
         <li>
-          <button class="button border-green" id="checkall" type="button"><span class="icon-check"></span> 全选
-          </button>
-          <button class="button border-red" type="submit"><span class="icon-trash-o"></span> 批量禁用</button>
+<%--          <button class="button border-green" id="checkall" type="button"><span class="icon-check"></span> 全选--%>
+<%--          </button>--%>
+          <button class="button border-red" onclick="DelSelect()"><span class="icon-trash-o"></span> 批量禁用</button>
         </li>
       </ul>
     </div>
@@ -72,8 +72,9 @@
       </tr>
       <%for(int i=0;i<allUser.size();i++){%>
       <tr class="lie">
+
         <td>
-          <input name="id[]" type="checkbox" value="1"/>
+          <input class="allCheck" name="id[]" <%=allUser.get(i).isForbidden()==false ? "checked":""%>  type="checkbox" />
         </td>
         <td>
           <%=allUser.get(i).getId()%>
@@ -91,8 +92,9 @@
         %>
         <td><%=dateString%></td>
         <td>
+          <a class="button border-main" onclick="up1(<%=allUser.get(i).getId()%>,<%=allUser.get(i).isForbidden()%>)" type="button"><span class="icon-edit"></span>启用</a>
           <div class="button-group"><a class="button border-red"
-                                       onclick="del(<%=allUser.get(i).getId()%>)"><span class="icon-trash-o"></span> 禁用</a></div>
+                                       onclick="up2(<%=allUser.get(i).getId()%>,<%=allUser.get(i).isForbidden()%>)"><span class="icon-trash-o"></span> 禁用</a></div>
         </td>
       </tr>
       <%}%>
@@ -111,55 +113,67 @@
     console.log(user)
     for(var i = 0;i<user.length;i++){
       user[i].addEventListener('dblclick',function (e) {
-        window.open('book.html');
+        var a=this.children.item(1).innerText;
+
+
       })
     }
   }
 
-
-
-  function del(id) {
-    // const axios = require('axios').default;
-    alert(id)
-    if (confirm("您确定要禁用吗?")) {
-      // axios({
-      //   method:"get",
-      //   url:"http://localhost:8080/SteamBox_war_exploded/Admin/BanUser",
-      //   data:{
-      //     userid:id,
-      //     operate:"1",
-      //   }
-      // }).then(function (resp) {
-      //   alert('666')
-      // })
-      axios({url:'http://localhost:8080/SteamBox_war_exploded/Admin/BanUser',method:"POST",data:qs.stringify(
-                { userid:id,
-                  operate:1,
-		 	    }
-			 )
-          })
+  function up1(id,info) {
+    if(info==false){
+      if (confirm("您确定要启用吗?")) {
+        axios({
+          method:"post",
+          url:"http://localhost:8080/SteamBox_war_exploded/Admin/BanUser",
+          data:{
+            id:id,
+            forbidden:1
+          }
+        }).then(function (resp) {
+          window.location.reload()
+        })
+      }
+    }
+  }
+  function up2(id,info) {
+    if(info==true){
+      if (confirm("您确定要禁用吗?")) {
+        axios({
+          method:"post",
+          url:"http://localhost:8080/SteamBox_war_exploded/Admin/BanUser",
+          data:{
+            id:id,
+            forbidden:0
+          }
+        }).then(function (resp) {
+          window.location.reload()
+        })
+      }
     }
   }
 
-  $("#checkall").click(function () {
-    $("input[name='id[]']").each(function () {
-      this.checked = !this.checked;
-    });
-  })
 
   function DelSelect() {
-    var Checkbox = false;
-    $("input[name='id[]']").each(function () {
-      if (this.checked == true) {
-        Checkbox = true;
+    var userid = [];
+    if (confirm("您确定要禁用吗?")) {
+      let user = document.getElementsByClassName('lie');
+      for (var i = 0; i < user.length; i++) {
+        var ckbx = user[i].childNodes.item(1).childNodes.item(1);
+        if (ckbx.checked) {
+          userid.push(user[i].children.item(1).innerText)
+        }
+        console.log(userid)
       }
-    });
-    if (Checkbox) {
-      var t = confirm("您确认要禁用选中的内容吗？");
-      if (t == false) return false;
-    } else {
-      alert("请选择您要删除的内容!");
-      return false;
+      if(userid!=null){
+        axios({
+          method: "post",
+          url: "http://localhost:8080/SteamBox_war_exploded/Admin/BanManyUsers",
+          data:userid,
+        }).then(function (resp) {
+
+        })
+      }
     }
   }
 

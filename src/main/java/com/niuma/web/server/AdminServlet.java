@@ -1,6 +1,7 @@
 package com.niuma.web.server;
 
 
+import com.alibaba.fastjson.JSON;
 import com.niuma.impl.AdminDaoImpl;
 import com.niuma.impl.UserDaoImpl;
 import com.niuma.model.Admin;
@@ -12,7 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 
 @WebServlet("/Admin/*")
 public class AdminServlet extends BaseServlet{
@@ -46,14 +49,30 @@ public class AdminServlet extends BaseServlet{
             response.sendRedirect(request.getContextPath()+"/AChangePassword.jsp");
         }
     }
-    public void BanUser(HttpServletRequest request,HttpServletResponse response){
-        System.out.println(request.getAttribute("userid"));
-        System.out.println(request.getAttribute("operate"));
-//        AdminDaoImpl adminDao=new AdminDaoImpl();
-//        Boolean aBoolean = adminDao.setUserBan(operate, userid);
-//        if(aBoolean==true){
-//            System.out.println("成功");
-//        }
+    public void BanUser(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        Boolean aBoolean;
+        BufferedReader br = request.getReader();
+        String params=br.readLine();
+        User user = JSON.parseObject(params, User.class);
+        AdminDaoImpl adminDao=new AdminDaoImpl();
+        if(user.isForbidden()==false){
+            aBoolean = adminDao.setUserBan(0, user.getId());
+            System.out.println(aBoolean+"禁用成功");
+        }else{
+            aBoolean = adminDao.setUserBan(1, user.getId());
+            System.out.println(aBoolean+"启用成功");
+        }
+    }
+
+    public void BanManyUsers(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
+        BufferedReader br = request.getReader();
+        String params=br.readLine();
+        Object[] userid = JSON.parseObject(params, Object[].class);
+        AdminDaoImpl adminDao=new AdminDaoImpl();
+        for(int i=0;i<userid.length;i++){
+            adminDao.setUserBan(0, Integer.parseInt((String) userid[i]));
+            System.out.println("禁用成功");
+        }
     }
 
 }

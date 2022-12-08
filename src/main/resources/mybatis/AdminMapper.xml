@@ -37,8 +37,8 @@
 
     <update id="setUserBan">
         update steambox.user
-        set forbidden=#{hidden}
-        where id = #{id}
+        set forbidden=#{param1}
+        where id = #{param2}
     </update>
 
     <select id="getAllUser" resultType="com.niuma.model.User">
