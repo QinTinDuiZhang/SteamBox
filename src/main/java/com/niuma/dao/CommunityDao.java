@@ -5,6 +5,7 @@ import com.niuma.model.Community;
 import java.util.List;
 
 public interface CommunityDao {
-    List<Community> getAllCommunity();
+    List<Community> getAllCommunity(int id);
     Boolean setCommunityLook(int communityId,int hidden);
+    Boolean updateCommunity(String name,String link,int id);
 }

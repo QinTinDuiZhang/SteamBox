@@ -1,4 +1,6 @@
-<%--
+<%@ page import="com.niuma.impl.CommunityDaoImpl" %>
+<%@ page import="com.niuma.model.Community" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: 41150
   Date: 2022-12-09
@@ -33,10 +35,15 @@
   </style>
 </head>
 <body>
+<%
+  String communityId = request.getParameter("comId");
+  CommunityDaoImpl communityDao=new CommunityDaoImpl();
+  List<Community> community=communityDao.getAllCommunity(Integer.parseInt(communityId));
+%>
 <div class="panel admin-panel margin-top">
   <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加/修改社区</strong></div>
   <div class="body-content">
-    <form action="" class="form-x" method="post">
+    <form action="Community/UpdateCommunityInfo?comId=<%=community.get(0).getId()%>" class="form-x" method="post">
       <input name="id" type="hidden" value=""/>
       <div class="form-group">
         <div class="label">
@@ -48,7 +55,7 @@
                  id="title"
                  name="title"
                  type="text"
-                 value=""/>
+                 value="<%=community.get(0).getName()%>"/>
           <div class="tips"></div>
         </div>
       </div>
@@ -58,7 +65,7 @@
         </div>
         <div class="field">
           <input class="input w50" data-validate="required:请输入商店链接" id="ETitle" name="entitle" type="text"
-                 value=""/>
+                 value="<%=community.get(0).getShopLink()%>"/>
           <div class="tips"></div>
         </div>
       </div>
@@ -67,11 +74,21 @@
           <label></label>
         </div>
         <div class="field">
-          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+          <button class="button bg-main icon-check-square-o" type="submit">提交</button>
         </div>
       </div>
     </form>
   </div>
 </div>
 </body>
+<%--<script>--%>
+<%--  var title=document.getElementById("title");--%>
+<%--  var link=document.getElementById("ETitle");--%>
+<%--  title.addEventListener("change",function () {--%>
+<%--    alert(title.value)--%>
+<%--  })--%>
+<%--  link.addEventListener("change",function () {--%>
+<%--    alert(link.value)--%>
+<%--  })--%>
+<%--</script>--%>
 </html>

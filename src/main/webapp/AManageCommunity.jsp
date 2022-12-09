@@ -38,7 +38,7 @@
 <body>
 <%
     CommunityDaoImpl communityDao=new CommunityDaoImpl();
-    List<Community> allCommunity = communityDao.getAllCommunity();
+    List<Community> allCommunity = communityDao.getAllCommunity(0);
 %>
 <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder"> 社区列表</strong></div>
@@ -64,7 +64,11 @@
                             class="icon-trash-o"></span>禁用</a>
                 </div>
             </td>
-            <td><a class="button border-main" onclick="updateCommunity(<%=community.getName()%>,<%=community.getShopLink()%>)" type="button"><span class="icon-edit"></span>修改</a></td>
+            <td>
+                <div>
+                <a class="button border-main" onclick="changeCommunity(<%=community.getId()%>)" type="button"><span class="icon-edit"></span>修改</a>
+                </div>
+            </td>
         </tr>
         <%}%>
     </table>
@@ -80,8 +84,8 @@
             window.location.replace("http://localhost:8080/SteamBox_war_exploded/Community/SetCommunityLook?comId="+comId+"&hidden=1");
         }
     }
-    function updateCommunity(comLink,comName) {
-        window.location.replace("http://localhost:8080/SteamBox_war_exploded/AUpdateCommunity.jsp?comLink="+comLink+"&comName="+comName);
+    function changeCommunity(comId){
+        window.location.replace("http://localhost:8080/SteamBox_war_exploded/AUpdateCommunity.jsp?comId="+comId);
     }
 </script>
 </body>

@@ -4,15 +4,25 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.CommunityMapper">
 
-
     <select id="getAll" resultType="com.niuma.model.Community">
         select *
-        from steambox.community;
+        from steambox.community
+        <where>
+            <if test="id!=0">
+                and id=#{id}
+            </if>
+        </where>;
     </select>
 
     <update id="setCommunityLook">
         update steambox.community
         set steambox.community.hidden=#{param2}
         where steambox.community.id=#{param1}
+    </update>
+
+    <update id="updateCommunity">
+        update steambox.community
+        set name=#{param1},shoplink=#{param2}
+        where id=#{param3}
     </update>
 </mapper>
