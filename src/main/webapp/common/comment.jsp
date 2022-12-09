@@ -15,14 +15,14 @@
     Comment comment = ((Map<Long, Comment>) request.getAttribute("commentMap")).get(commentId);
     request.setAttribute("commentTemp", comment);
 %>
-<div class="media">
-    <div class="media-left media-top" style="min-width: 42px">
-        <img src="img/photo/${commentTemp.creator.photo}" class="img-circle" style="width:32px" alt="">
-    </div>
-    <div class="media-body">
-        <p><strong>${commentTemp.creator.nickName}</strong>
-            <em>${commentTemp.ipAddress}</em>
-            <span class="pull-right">
+<div class="container">
+    <div class="row-8 justify-content-end">
+        <div class="col-11">
+            <p>
+                <img src="img/photo/${commentTemp.creator.photo}" class="img-circle" style="width:32px" alt="">
+                <strong>${commentTemp.creator.nickName}</strong>
+                <em>${commentTemp.ipAddress}</em>
+                <span class="pull-right">
                 <button onclick="like(${commentTemp.id})" class="btn btn-link">
                     <span id="like-num-${commentTemp.id}">${commentTemp.likeNum > 0 ? commentTemp.likeNum : '赞'}</span> <span
                         id="like-icon-${commentTemp.id}"
@@ -34,22 +34,23 @@
                         class="glyphicon glyphicon-thumbs-down <c:if test="${not empty cookie['comment-dislike-'.concat(commentTemp.id)]}">alert-danger</c:if>"></span>
                 </button>
             </span>
-        </p>
-        <p>
-            ${commentTemp.content}
-        </p>
-        <p id="comment-${commentTemp.id}">
-            <span class="text-info"><%=TimeFormat.getInterval(comment.getPubDate())%></span>
-            <span class="pull-right">
+            </p>
+            <p>
+                ${commentTemp.content}
+            </p>
+            <p id="comment-${commentTemp.id}">
+                <span class="text-info"><%=TimeFormat.getInterval(comment.getPubDate())%></span>
+                <span class="pull-right">
                 <button class="btn-link btn-reply" onclick="reply(${commentTemp.id})"
                         id="btn-${commentTemp.id}">回复</button>
             </span>
-        </p>
-        <hr>
-        <c:forEach items="${commentTemp.replies}" var="reply">
-            <jsp:include page="comment.jsp">
-                <jsp:param name="commentId" value="${reply.id}"/>
-            </jsp:include>
-        </c:forEach>
+            </p>
+            <hr>
+            <c:forEach items="${commentTemp.replies}" var="reply">
+                <jsp:include page="comment.jsp">
+                    <jsp:param name="commentId" value="${reply.id}"/>
+                </jsp:include>
+            </c:forEach>
+        </div>
     </div>
 </div>

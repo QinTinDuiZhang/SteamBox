@@ -101,7 +101,7 @@
                             </p>
                         </div>
                         <div class="col-xs-5 img-fluid">
-                            <img src="img/cover/<%= article.getImg()%>" alt="">
+                            <img src="img/cover/<%= article.getImg()%>" alt="" style="width: 100%">
                         </div>
                         <div class="col-xs-7">
                             <div class="info">

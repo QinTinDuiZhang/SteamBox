@@ -25,7 +25,7 @@
 <div id="main" class="container">
     <div class="row justify-content-center">
         <div class="col"><h1 id="opt_type">添加游戏文章：</h1>
-            <form name="AddForm" action="User/Publish" method="post">
+            <form name="AddForm" action="Article/Publish" method="post" onsubmit="return setContent()">
                 <div>
                     <label for="ntitle" class="h3">标题</label>
                     <input name="ntitle" id="ntitle" type="text" class="opt_input"/>
@@ -34,8 +34,8 @@
                     <h3><label class="h3">分类</label></h3>
                     <% for (Category category : (List<Category>) session.getAttribute("categories")) {%>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value=""
-                               id="flexCheckChecked<%=category.getId()%>">
+                        <input class="form-check-input" type="checkbox" value="<%= category.getId()%>"
+                               id="flexCheckChecked<%=category.getId()%>" name="category">
                         <label class="form-check-label" for="flexCheckChecked<%=category.getId()%>">
                             <%= category.getName()%>
                         </label>
@@ -44,7 +44,7 @@
                 </div>
                 <div>
                     <label class="h3">社区</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="community">
                         <% for (Community community : (List<Community>) session.getAttribute("communities")) {%>
                         <option value="<%= community.getName()%>"><%= community.getName()%>
                         </option>
@@ -61,7 +61,6 @@
                     <input type="file" name="nfile" onchange="imgFile(event)"/>
                     <img id="slt" src="" class="img-thumbnail" alt="">
                 </div>
-                <input name="action" type="hidden" value="addnews">
                 <input type="submit" value="提交" class="opt_sub">
                 <input type="reset" value="重置" class="opt_sub">
 
@@ -70,6 +69,7 @@
 
     </div>
 </div>
+<jsp:include page="common/footer.jsp" flush="true"></jsp:include>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/jquery-3.2.1.min.js"></script>
@@ -122,6 +122,16 @@
         else if (window.webkitURL !== undefined) url = window.webkitURL.createObjectURL(file);
         else if (window.URL !== undefined) url = window.URL.createObjectURL(file);
         return url;
+    }
+
+    function setContent() {
+        if (quill && quill.getLength() > 1) {
+            $("#content").val(quill.root.innerHTML);
+            return true;
+        } else {
+            alert("内容不能为空！")
+            return false;
+        }
     }
 </script>
 </body>

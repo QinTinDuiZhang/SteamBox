@@ -1,4 +1,4 @@
-package com.niuma.web.server;
+package com.niuma.web.servlet;
 
 import com.niuma.dao.CommentDao;
 import com.niuma.impl.CommentDaoImpl;
@@ -23,7 +23,7 @@ public class CommentServlet extends BaseServlet {
         User user = (User) request.getSession().getAttribute("user");
         Map map = new HashMap();
         map.put("content", request.getParameter("content"));
-        map.put("hidden", true);
+        map.put("hidden", false);
         map.put("articleId", Integer.parseInt(request.getParameter("articleId")));
         map.put("creator", user.getId());
         map.put("ipaddress", request.getRemoteAddr());
@@ -33,7 +33,7 @@ public class CommentServlet extends BaseServlet {
         map.put("replyForId", request.getParameter("replyForId"));
         CommentDao commentDao = new CommentDaoImpl();
         commentDao.insert(map);
-        response.sendRedirect(request.getContextPath() + "/article.jsp?id=" + request.getParameter("articleId"));
+        response.sendRedirect(request.getContextPath() + "/particulars.jsp?article=" + request.getParameter("articleId"));
     }
 
     public void Like(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,4 +1,4 @@
-package com.niuma.web.server;
+package com.niuma.web.servlet;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
