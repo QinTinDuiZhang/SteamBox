@@ -35,6 +35,9 @@
     <link href="css/quill-emoji.css" rel="stylesheet">
     <script src="js/quill.min.js"></script>
     <script src="js/quill-emoji.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
 </head>
 <style>
     @font-face {
@@ -95,7 +98,7 @@
         </div>
         <div>
             <h3>我要评论</h3>
-            <form class="form-horizontal" action="/Comment/putComment?articleId=${article.id}" method="post"
+            <form class="form-horizontal" action="${pageContext.request.contextPath}/Comment/putComment?articleId=${article.id}" method="post"
                   onsubmit="return setContent()">
                 <div id="editor"></div>
                 <input type="hidden" name="content" id="content">
@@ -131,7 +134,7 @@
 </div>
 <jsp:include page="common/footer.jsp" flush="true"></jsp:include>
 <script>
-    var toolbarOptions = {
+    const toolbarOptions = {
         container: [
             ['bold', 'italic', 'underline', 'strike'],
             ['blockquote', 'code-block'],
@@ -143,7 +146,7 @@
         }
     };
 
-    var quill = new Quill('#editor', {
+    let quill = new Quill('#editor', {
         modules: {
             "toolbar": toolbarOptions,
             "emoji-toolbar": true,
@@ -180,7 +183,7 @@
         $(".btn-reply").removeAttr("disabled"); // 恢复按钮功能
 
         $("#btn-" + commentId).attr("disabled", "disabled");  //停止重复点击
-        $("#comment-" + commentId).append("<form action='${pageContext.request.contextPath}/Comment/putComment?newsId=${param.id}&replyForId=" + commentId
+        $("#comment-" + commentId).append("<form action='${pageContext.request.contextPath}/Comment/putComment?articleId=${article.id}&replyForId=" + commentId
             + "' class='editor-form' method='post' onsubmit='return setReplyContent()'><div id='ql-editor'></div><input type='hidden' name='content' id='reply-content'><button class='btn btn-default'"
             <c:if test="${empty sessionScope.user}"> + ' disabled'</c:if> + ">回复</button>"
             <c:if test="${empty sessionScope.user}"> + '您还未登陆，请先<a href="login.jsp">登陆</a>'</c:if> + "</form>");

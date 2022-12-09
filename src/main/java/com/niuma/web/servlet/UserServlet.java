@@ -1,4 +1,4 @@
-package com.niuma.web.server;
+package com.niuma.web.servlet;
 
 import com.niuma.dao.UserDao;
 import com.niuma.impl.UserDaoImpl;
@@ -26,7 +26,7 @@ public class UserServlet extends BaseServlet {
     private static final long serialVersionUID = 1L;
 
     // 上传文件存储目录
-    private static final String UPLOAD_DIRECTORY = "img/photos";
+    private static final String UPLOAD_DIRECTORY = "img/photo";
 
     /* 检查邮箱重复 */
     public void SelectEmail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -154,12 +154,6 @@ public class UserServlet extends BaseServlet {
         UserDaoImpl userDao = new UserDaoImpl();
         if (userDao.updateUser(user)) response.sendRedirect(request.getContextPath() + "/index.jsp");
         else response.sendRedirect(request.getContextPath() + "/changePassword.jsp");
-    }
-
-    /**
-     * 发布帖子
-     */
-    public void Publish(HttpServletRequest request, HttpServletResponse response) throws IOException {
     }
 
     /**
