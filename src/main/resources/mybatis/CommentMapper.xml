@@ -130,4 +130,8 @@
         delete from steambox.comment where comment.id=#{param1}
     </delete>
 
+    <select id="searchComments" resultMap="commentResultMapT" >
+        select * from steambox.comment
+        where content like concat('%', #{param1}, '%') and creator=#{param2}
+    </select>
 </mapper>

@@ -9,4 +9,10 @@
         select *
         from steambox.community;
     </select>
+
+    <update id="setCommunityLook">
+        update steambox.community
+        set steambox.community.hidden=#{param2}
+        where steambox.community.id=#{param1}
+    </update>
 </mapper>

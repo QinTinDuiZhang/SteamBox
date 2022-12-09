@@ -42,4 +42,11 @@ public interface CommentDao {
      * @return 返回一个布尔值
      */
     Boolean deleteComment(int id);
+
+    /**
+     * 模糊查询评论
+     * @param content 评论的内容
+     * @return 返回一个评论集合
+     */
+    List<Comment> searchComments(String content,int userId);
 }

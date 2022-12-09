@@ -23,4 +23,6 @@ public interface CommentMapper {
     List<Comment> getUserComments(int userid);
 
     Boolean deleteComment(int id);
+
+    List<Comment> searchComments(String content,int userId);
 }

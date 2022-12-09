@@ -32,10 +32,10 @@
             <ul class="search">
                 <li>搜索：</li>
                 <li>
-                    <input class="input" name="keywords" placeholder="请输入搜索关键字"
+                    <input id="search" class="input" name="keywords" placeholder="请输入搜索的评论内容"
                            style="width:250px; line-height:17px;display:inline-block"
                            type="text"/>
-                    <a class="button border-main icon-search" href="javascript:void(0)" onclick="changesearch()"> 搜索</a>
+                    <a class="button border-main icon-search" href="javascript:void(0)" onclick="searchComments()"> 搜索</a>
                 </li>
             </ul>
         </div>
@@ -69,7 +69,7 @@
                 <td><%=comment.getArticle().getId()%></td>
                 <td>
                     <div class="button-group"><a class="button border-red" href="javascript:void(0)"
-                                                 onclick="return del(<%=comment.getId()%>)"><span class="icon-trash-o"></span> 删除</a></div>
+                                                 onclick="return del(<%=comment.getId()%>,<%=comment.getCreator().getId()%>)"><span class="icon-trash-o"></span> 删除</a></div>
                 </td>
             </tr>
             <%}%>
@@ -77,10 +77,9 @@
     </div>
 </form>
 <script type="text/javascript">
-
-    function del(id) {
+    function del(id,cetId) {
         if (confirm("您确定要删除吗?")) {
-            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Comment/DeleteComment?cid="+id);
+            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Comment/DeleteComment?cid="+id+"&cetId="+cetId);
         }
     }
 
@@ -89,21 +88,13 @@
             this.checked = !this.checked;
         });
     })
-
-    function DelSelect() {
-        var Checkbox = false;
-        $("input[name='id[]']").each(function () {
-            if (this.checked == true) {
-                Checkbox = true;
-            }
-        });
-        if (Checkbox) {
-            var t = confirm("您确认要删除选中的内容吗？");
-            if (t == false) return false;
-        } else {
-            alert("请选择您要删除的内容!");
-            return false;
-        }
+    var selectContent;
+    var serarch=document.getElementById("search");
+    serarch.addEventListener("change",function (e) {
+        selectContent=serarch.value;
+    })
+    function searchComments() {
+        window.location.replace("http://localhost:8080/SteamBox_war_exploded/Comment/SearchComment?searchcontent="+selectContent+"&userId="+${uId});
     }
 
 </script>

@@ -56,7 +56,7 @@
     </ul>
     <h2><span class="icon-pencil-square-o"></span>内容管理</h2>
     <ul>
-        <li><a href="column.html" target="right"><span class="icon-caret-right"></span>社区管理</a></li>
+        <li><a href="AManageCommunity.jsp" target="right"><span class="icon-caret-right"></span>社区管理</a></li>
         <li><a href="list.html" target="right"><span class="icon-caret-right"></span>帖子管理</a></li>
         <li><a href="cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
     </ul>

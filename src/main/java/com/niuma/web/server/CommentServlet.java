@@ -57,6 +57,7 @@ public class CommentServlet extends BaseServlet {
         CommentDaoImpl commentDao=new CommentDaoImpl();
         List<Comment> userComments = commentDao.getUserComments(Integer.parseInt(userid));
         HttpSession session = request.getSession();
+        session.setAttribute("uId",userid);
         session.setAttribute("UserComments",userComments);
         session.setAttribute("name",username);
         response.sendRedirect(request.getContextPath() + "/AComment.jsp");
@@ -64,20 +65,42 @@ public class CommentServlet extends BaseServlet {
 
     public void DeleteComment(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
         String commentId=request.getParameter("cid");
+        String creatorId = request.getParameter("cetId");
+        int cetId=Integer.parseInt(creatorId);
         int id=Integer.parseInt(commentId);
         CommentDaoImpl commentDao=new CommentDaoImpl();
         Boolean aBoolean = commentDao.deleteComment(id);
         if(aBoolean==true){
             System.out.println("删除成功！");
+            List<Comment> userComments = commentDao.getUserComments(cetId);
+            request.getSession().setAttribute("UserComments",userComments);
             response.sendRedirect(request.getContextPath() + "/AComment.jsp");
             HttpSession session = request.getSession();
             session.setAttribute("deleteIndo","删除成功");
         }else{
             System.out.println("删除失败！");
-            response.sendRedirect(request.getContextPath() + "/AComment.jsp");
             HttpSession session = request.getSession();
             session.setAttribute("deleteIndo","删除失败");
+            response.sendRedirect(request.getContextPath() + "/AManagerUser.jsp");
         }
     }
+
+    public void SearchComment(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String commentContent = request.getParameter("searchcontent");
+        String userId = request.getParameter("userId");
+        int userID=Integer.parseInt(userId);
+        CommentDaoImpl commentDao=new CommentDaoImpl();
+        List<Comment> commentList = commentDao.searchComments(commentContent,userID);
+        if(commentList!=null){
+            HttpSession session = request.getSession();
+            session.setAttribute("UserComments",commentList);
+            System.out.println(commentList);
+            response.sendRedirect(request.getContextPath() + "/AComment.jsp");
+        }else{
+            System.out.println("没查询到！");
+        }
+
+    }
+
 
 }

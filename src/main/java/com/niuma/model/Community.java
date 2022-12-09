@@ -4,11 +4,21 @@ public class Community {
     private int id;                 //社区ID
     private String name;            //社区名字
     private String shopLink;        //折扣商店链接
+    private Boolean hidden;         //是否可见
 
-    public Community(int id, String name, String shopLink) {
+    public Community(int id, String name, String shopLink, Boolean hidden) {
         this.id = id;
         this.name = name;
         this.shopLink = shopLink;
+        this.hidden = hidden;
+    }
+
+    public Boolean getHidden() {
+        return hidden;
+    }
+
+    public void setHidden(Boolean hidden) {
+        this.hidden = hidden;
     }
 
     public Community() {
@@ -44,6 +54,7 @@ public class Community {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", shopLink='" + shopLink + '\'' +
+                ", hidden=" + hidden +
                 '}';
     }
 }
