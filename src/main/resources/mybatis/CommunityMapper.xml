@@ -7,7 +7,12 @@
 
     <select id="getAll" resultType="com.niuma.model.Community">
         select *
-        from steambox.community;
+        from steambox.community
+        <where>
+            <if test="id!=0">
+                and id = #{id}
+            </if>
+        </where>;
     </select>
 
     <update id="setCommunityLook">

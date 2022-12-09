@@ -45,6 +45,7 @@ public class ArticleServlet extends BaseServlet {
         ArticleDao articleDao = new ArticleDaoImpl();
         articleDao.publish(article);
         Article getA = articleDao.selectAll(0, 0, putDate).get(0);
+
         getA.getId();
         for (String t :category){
 

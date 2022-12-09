@@ -40,5 +40,10 @@
             </if>
         </where>
     </select>
+    
+    <insert id="newLink">
+        insert into steambox.article_category(article_id, category_id)
+        values (#{articleId},#{categoryId});
+    </insert>
 
 </mapper>

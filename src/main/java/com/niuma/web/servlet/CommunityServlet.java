@@ -1,4 +1,4 @@
-package com.niuma.web.server;
+package com.niuma.web.servlet;
 
 import com.niuma.impl.CommunityDaoImpl;
 
