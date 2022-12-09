@@ -2,6 +2,7 @@ package com.niuma.dao;
 
 import com.niuma.model.Article;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ArticleDao {
@@ -29,6 +30,6 @@ public interface ArticleDao {
      */
     boolean deleteArticle(int id);
 
-    List<Article> selectAll(int id,int aId);
+    List<Article> selectAll(int id, int aId, Date putDate);
 
 }

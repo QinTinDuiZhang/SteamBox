@@ -28,7 +28,7 @@
     </resultMap>
 
     <resultMap id="commentResultMapT" type="comment">
-        <id column="id" property="id"/>
+        <result column="id" property="id"/>
         <result column="content" property="content"/>
         <result column="pubdate" property="pubDate"/>
         <result column="ipaddress" property="ipAddress"/>
@@ -69,11 +69,11 @@
 
     <select id="getAllByArticleIdComments" resultMap="commentResultMapT">
         select c.*, r.id as rid, u.nickname, u.photo
-        from `steambox`.comment as c
-                 left join `steambox`.comment as r on r.reply_for_id = c.id
-                 left join `steambox`.user as u on c.creator = u.id
-        where c.article_id = #{articleId}
-          and c.hidden = #{hidden}
+        from steambox.comment as c
+            left join steambox.comment as r on r.reply_for_id = c.id
+            left join steambox.user as u on c.creator=u.id
+        where c.article_id=#{articleId}
+          and c.hidden=#{hidden};
     </select>
 
     <select id="getLikeNum" resultType="int">
@@ -123,11 +123,15 @@
     </insert>
 
     <select id="getUserComments" resultMap="commentResultMapT">
-        select * from steambox.comment where creator=#{param1}
+        select *
+        from steambox.comment
+        where creator=#{param1}
     </select>
 
     <delete id="deleteComment">
-        delete from steambox.comment where comment.id=#{param1}
+        delete
+        from steambox.comment
+        where comment.id=#{param1}
     </delete>
 
     <select id="searchComments" resultMap="commentResultMapT" >

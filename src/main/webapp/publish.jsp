@@ -46,7 +46,7 @@
                     <label class="h3">社区</label>
                     <select class="form-select" aria-label="Default select example" name="community">
                         <% for (Community community : (List<Community>) session.getAttribute("communities")) {%>
-                        <option value="<%= community.getName()%>"><%= community.getName()%>
+                        <option value="<%= community.getId()%>"><%= community.getName()%>
                         </option>
                         <%}%>
                     </select>

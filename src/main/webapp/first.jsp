@@ -90,7 +90,7 @@
                 String category = request.getParameter("category");
                 UserDao userDao = new UserDaoImpl();
                 ArticleDao articleDao = new ArticleDaoImpl();
-                List<Article> articles = community != null ? articleDao.selectAll(Integer.parseInt(community),0) : articleDao.selectAll(0,0);
+                List<Article> articles = community != null ? articleDao.selectAll(Integer.parseInt(community),0,null) : articleDao.selectAll(0,0,null);
                 if (category != null) articles = categoryDao.getCategoryArticle(Integer.parseInt(category));
                 for (Article article : articles) {%>
             <div>
@@ -123,7 +123,7 @@
                     <div class="list">
                         <%
                             CommunityDao communityDao = new CommunityDaoImpl();
-                            List<Community> communities = communityDao.getAll();
+                            List<Community> communities = communityDao.getAllCommunity();
                             session.setAttribute("communities", communities);
                             for (Community temp : communities) {%>
                         <a href="first.jsp?community=<%= temp.getId()%>">
