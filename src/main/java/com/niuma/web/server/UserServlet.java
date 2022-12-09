@@ -99,7 +99,7 @@ public class UserServlet extends BaseServlet {
     }
 
     /* 注册 */
-    public void Signup(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void Signup(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {       
         HttpSession session = request.getSession();
         if (session.getAttribute("authCode") != null && session.getAttribute("authCode").equals(request.getParameter("emailE"))) {
             String account = request.getParameter("account");
