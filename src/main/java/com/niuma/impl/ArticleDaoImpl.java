@@ -6,21 +6,13 @@ import com.niuma.tool.SqlSessionUtils;
 import mybatis.ArticleMapper;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.Date;
 import java.util.List;
 
 public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public boolean publish(Article article) {
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("title", article.getTitle());
-//        map.put("img", article.getImg());
-//        map.put("content", article.getContent());
-//        map.put("pubdate", new Timestamp(new java.util.Date().getTime()));
-//        map.put("click_count", article.getClickCount());
-//        map.put("creator", article.getCreator());
-//        map.put("auditor", article.getAuditor());
-//        map.put("community_id", article.getCommunityId());
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
         return postMapper.publish(article);
@@ -51,9 +43,9 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
-    public List<Article> selectAll(int id, int aId) {
+    public List<Article> selectAll(int id, int aId, Date pubDate) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
-        return postMapper.selectAll(id,aId);
+        return postMapper.selectAll(id,aId,null);
     }
 }

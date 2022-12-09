@@ -70,7 +70,7 @@
         Map<Long, Comment> longCommentMap = CommentUtil.toMap(comments);
         request.setAttribute("comments", comments);
         request.setAttribute("commentMap", longCommentMap);
-        Article article = articleDao.selectAll(0,Integer.parseInt(request.getParameter("article"))).get(0);
+        Article article = articleDao.selectAll(0,Integer.parseInt(request.getParameter("article")),null).get(0);
         request.setAttribute("article", article);
     %>
     <div class="col-7">
@@ -82,7 +82,7 @@
                     <%
                         CategoryDao categoryDao = new CategoryDaoImpl();
                         CommunityDao communityDao = new CommunityDaoImpl();
-                        List<Community> communities = communityDao.getAll();
+                        List<Community> communities = communityDao.getAllCommunity();
                         List<Category> categories = categoryDao.toGainByArticle(article.getId());
                         for (Category category : categories) {%>
                     <div class="breadcrumb-item active" aria-current="page"
