@@ -54,8 +54,8 @@
                 <td><%=comment.getContent()%></td>
                 <td><%=comment.getPubDate()%></td>
                 <td><%=comment.getIpAddress()%></td>
-                <td><%=comment.getArticle()%></td>
-                <td><%=comment.get%>/td>
+                <td><%=comment.getArticle().getId()%></td>
+                <td><%=comment.getReplyFor()%>/td>
                 <td>
                     <div class="button-group"><a class="button border-red" href="javascript:void(0)"
                                                  onclick="return del(1)"><span class="icon-trash-o"></span> 删除</a></div>
