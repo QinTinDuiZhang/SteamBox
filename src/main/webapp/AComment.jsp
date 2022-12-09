@@ -1,12 +1,16 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.niuma.model.Comment" %><%--
+<%@ page import="com.niuma.model.Comment" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
   User: 41150
   Date: 2022-12-08
   Time: 19:23
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" language="java" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -23,13 +27,15 @@
 <body>
 <form action="" method="post">
     <div class="panel admin-panel">
-        <div class="panel-head"><strong class="icon-reorder">xxx的管理</strong></div>
+        <div class="panel-head"><strong class="icon-reorder">${name}的管理</strong></div>
         <div class="padding border-bottom">
             <ul class="search">
+                <li>搜索：</li>
                 <li>
-                    <button class="button border-green" id="checkall" type="button"><span class="icon-check"></span> 全选
-                    </button>
-                    <button class="button border-red" type="submit"><span class="icon-trash-o"></span> 批量删除</button>
+                    <input class="input" name="keywords" placeholder="请输入搜索关键字"
+                           style="width:250px; line-height:17px;display:inline-block"
+                           type="text"/>
+                    <a class="button border-main icon-search" href="javascript:void(0)" onclick="changesearch()"> 搜索</a>
                 </li>
             </ul>
         </div>
@@ -39,8 +45,7 @@
                 <th>评论内容</th>
                 <th>评论时间</th>
                 <th>IP地址</th>
-                <th>所属文章</th>
-                <th>回复的用户</th>
+                <th>所属文章ID</th>
                 <th>操作</th>
             </tr>
             <%
@@ -52,22 +57,22 @@
                     <%=comment.getId()%>
                 </td>
                 <td><%=comment.getContent()%></td>
-                <td><%=comment.getPubDate()%></td>
+                <%
+                    String dateStr = String.valueOf(comment.getPubDate());
+                    DateFormat cstFormate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    DateFormat gmtFormate = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+                    Date dateTime = gmtFormate.parse(dateStr);
+                    String dateString = cstFormate.format(dateTime);
+                %>
+                <td><%=dateString%></td>
                 <td><%=comment.getIpAddress()%></td>
                 <td><%=comment.getArticle().getId()%></td>
-                <td><%=comment.getReplyFor()%>/td>
                 <td>
                     <div class="button-group"><a class="button border-red" href="javascript:void(0)"
-                                                 onclick="return del(1)"><span class="icon-trash-o"></span> 删除</a></div>
+                                                 onclick="return del(<%=comment.getId()%>)"><span class="icon-trash-o"></span> 删除</a></div>
                 </td>
             </tr>
             <%}%>
-            <tr>
-                <td colspan="8">
-                    <div class="pagelist"><a href="">上一页</a> <span class="current">1</span><a href="">2</a><a
-                            href="">3</a><a href="">下一页</a><a href="">尾页</a></div>
-                </td>
-            </tr>
         </table>
     </div>
 </form>
@@ -75,7 +80,7 @@
 
     function del(id) {
         if (confirm("您确定要删除吗?")) {
-
+            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Comment/DeleteComment?cid="+id);
         }
     }
 

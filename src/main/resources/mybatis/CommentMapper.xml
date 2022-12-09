@@ -116,18 +116,18 @@
         </where>
     </update>
 
-    <delete id="deleteComment">
-
-    </delete>
-
     <insert id="insertComment">
         insert into `steambox`.comment
         VALUES (null, #{content}, #{pubDate}, #{ipaddress}, #{hidden}, #{likeNum}, #{dislikeNum}, #{replyForId},
                 #{creator}, #{articleId});
     </insert>
 
-    <select id="getUserComments" resultType="com.niuma.model.Comment">
+    <select id="getUserComments" resultMap="commentResultMapT">
         select * from steambox.comment where creator=#{param1}
     </select>
+
+    <delete id="deleteComment">
+        delete from steambox.comment where comment.id=#{param1}
+    </delete>
 
 </mapper>

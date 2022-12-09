@@ -29,5 +29,17 @@ public interface CommentDao {
      */
     int updateDislikeNum(int commentId, boolean dislike);
 
+    /**
+     * 得到单个用户的所有评论
+     * @param userid 用户ID
+     * @return 返回一个评论集合
+     */
     List<Comment> getUserComments(int userid);
+
+    /**
+     * 删除用户评论
+     * @param id 评论的id
+     * @return 返回一个布尔值
+     */
+    Boolean deleteComment(int id);
 }

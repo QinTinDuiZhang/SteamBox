@@ -21,4 +21,6 @@ public interface CommentMapper {
     int getDisLikeNum(@Param("id") int id);
 
     List<Comment> getUserComments(int userid);
+
+    Boolean deleteComment(int id);
 }

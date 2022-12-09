@@ -53,11 +53,31 @@ public class CommentServlet extends BaseServlet {
     }
     public void GetUserComment(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userid = request.getParameter("userid");
+        String username = request.getParameter("name");
         CommentDaoImpl commentDao=new CommentDaoImpl();
         List<Comment> userComments = commentDao.getUserComments(Integer.parseInt(userid));
         HttpSession session = request.getSession();
         session.setAttribute("UserComments",userComments);
+        session.setAttribute("name",username);
         response.sendRedirect(request.getContextPath() + "/AComment.jsp");
+    }
+
+    public void DeleteComment(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String commentId=request.getParameter("cid");
+        int id=Integer.parseInt(commentId);
+        CommentDaoImpl commentDao=new CommentDaoImpl();
+        Boolean aBoolean = commentDao.deleteComment(id);
+        if(aBoolean==true){
+            System.out.println("删除成功！");
+            response.sendRedirect(request.getContextPath() + "/AComment.jsp");
+            HttpSession session = request.getSession();
+            session.setAttribute("deleteIndo","删除成功");
+        }else{
+            System.out.println("删除失败！");
+            response.sendRedirect(request.getContextPath() + "/AComment.jsp");
+            HttpSession session = request.getSession();
+            session.setAttribute("deleteIndo","删除失败");
+        }
     }
 
 }

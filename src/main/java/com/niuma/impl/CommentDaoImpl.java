@@ -86,4 +86,11 @@ public class CommentDaoImpl implements CommentDao {
         CommentMapper commentMapper = session.getMapper(CommentMapper.class);
         return commentMapper.getUserComments(userid);
     }
+
+    @Override
+    public Boolean deleteComment(int id) {
+        SqlSession session = SqlSessionUtils.getSqlSession();
+        CommentMapper commentMapper = session.getMapper(CommentMapper.class);
+        return commentMapper.deleteComment(id);
+    }
 }
