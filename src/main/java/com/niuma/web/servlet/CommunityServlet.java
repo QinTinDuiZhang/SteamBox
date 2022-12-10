@@ -1,9 +1,12 @@
 package com.niuma.web.servlet;
 
+import com.niuma.dao.CommunityDao;
 import com.niuma.impl.CommunityDaoImpl;
+import com.niuma.model.User;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/Community/*")
@@ -24,5 +27,14 @@ public class CommunityServlet extends BaseServlet{
             }
         }
         response.sendRedirect(request.getContextPath() + "/AManageCommunity.jsp");
+    }
+
+    public void Like(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int community = Integer.parseInt(request.getParameter("community"));
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        boolean f = Boolean.parseBoolean(request.getParameter("f"));
+        CommunityDao communityDao = new CommunityDaoImpl();
+        boolean sign = f ? communityDao.disLikeCommunity(community,user.getId()) : communityDao.likeCommunity(community,user.getId());
     }
 }

@@ -32,4 +32,6 @@ public interface ArticleDao {
 
     List<Article> selectAll(int id, int aId, Date putDate);
 
+    int newLink(int aid, int cid);
+
 }

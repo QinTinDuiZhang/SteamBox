@@ -38,7 +38,9 @@
                     User user = (User) session.getAttribute("user");
                     List<Community> communities;
                     if (user != null) {
-                        communities = userDao.getLikeCommunity(user.getId());%>
+                        communities = userDao.getLikeCommunity(user.getId());
+                        session.setAttribute("likeCommunities",communities);
+                %>
                 <li class="nav-item px-2 ">
                     <a href="first.jsp"
                        class="nav-link px-2<%if (community == null) {%> text-secondary<%}else{%> text-white<%}%>">首页</a>

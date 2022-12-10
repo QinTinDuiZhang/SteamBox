@@ -112,13 +112,15 @@
             <%
                 HashMap<String, List> selectInfo = (HashMap<String, List>) session.getAttribute("selectInfo");
                 List<Article> articles = selectInfo.get("article");
-                List<Community> community = selectInfo.get("community");
-                Iterator<Community> iterator = community.iterator();
-                int j = 0;
+                List<Community> communities = selectInfo.get("community");
+                Iterator<Community> iterator = communities.iterator();
                 for (int i = 0; i < 5; i++) {%>
             <div class="child">
-                <% for (; iterator.hasNext() && j < community.size() / 5; j++) {%>
-                <a href="<%= iterator.next().getShopLink()%>"><%= iterator.next().getName()%>
+                <%
+                    int j = i < communities.size() % 5 ? -1 : 0;
+                    for (; j < communities.size() / 5; j++) {
+                    Community community = iterator.next();%>
+                <a href="<%= community.getShopLink()%>"><%= community.getName()%>
                 </a>
                 <%}%>
             </div>

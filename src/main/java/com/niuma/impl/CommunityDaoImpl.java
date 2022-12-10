@@ -11,10 +11,10 @@ import java.util.List;
 public class CommunityDaoImpl implements CommunityDao {
 
     @Override
-    public List<Community> getAllCommunity() {
+    public List<Community> getAllCommunity(int id) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         CommunityMapper communityMapper = sqlSession.getMapper(CommunityMapper.class);
-        return communityMapper.getAll();
+        return communityMapper.getAll(id);
     }
 
     @Override
@@ -22,5 +22,19 @@ public class CommunityDaoImpl implements CommunityDao {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         CommunityMapper communityMapper = sqlSession.getMapper(CommunityMapper.class);
         return communityMapper.setCommunityLook(communityId, hidden);
+    }
+
+    @Override
+    public boolean likeCommunity(int communityId,int userId) {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        CommunityMapper communityMapper = sqlSession.getMapper(CommunityMapper.class);
+        return communityMapper.likeCommunity(communityId, userId);
+    }
+
+    @Override
+    public boolean disLikeCommunity(int communityId,int userId) {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        CommunityMapper communityMapper = sqlSession.getMapper(CommunityMapper.class);
+        return communityMapper.disLikeCommunity(communityId, userId);
     }
 }

@@ -82,7 +82,7 @@
                     <%
                         CategoryDao categoryDao = new CategoryDaoImpl();
                         CommunityDao communityDao = new CommunityDaoImpl();
-                        List<Community> communities = communityDao.getAllCommunity();
+                        List<Community> communities = communityDao.getAllCommunity(0);
                         List<Category> categories = categoryDao.toGainByArticle(article.getId());
                         for (Category category : categories) {%>
                     <div class="breadcrumb-item active" aria-current="page"

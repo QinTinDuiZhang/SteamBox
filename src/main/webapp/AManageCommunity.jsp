@@ -7,7 +7,7 @@
   Time: 16:24
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -38,7 +38,7 @@
 <body>
 <%
     CommunityDaoImpl communityDao=new CommunityDaoImpl();
-    List<Community> allCommunity = communityDao.getAllCommunity();
+    List<Community> allCommunity = communityDao.getAllCommunity(0);
 %>
 <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder"> 社区列表</strong></div>

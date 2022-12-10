@@ -10,12 +10,14 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.util.Date;
 
 @WebServlet("/Article/*")
 @MultipartConfig(fileSizeThreshold = 10 * 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 100 * 1024 * 1024)
 public class ArticleServlet extends BaseServlet {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     // 上传文件存储目录
@@ -25,6 +27,7 @@ public class ArticleServlet extends BaseServlet {
      * 发布帖子
      */
     public void Publish(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        boolean f;
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -43,13 +46,14 @@ public class ArticleServlet extends BaseServlet {
         article.setClickCount(0);
         article.setCreator(user.getId());
         ArticleDao articleDao = new ArticleDaoImpl();
-        articleDao.publish(article);
+        f = articleDao.publish(article);
         Article getA = articleDao.selectAll(0, 0, putDate).get(0);
-
-        getA.getId();
-        for (String t :category){
-
-        }
+        int aId = getA.getId();
+        for (String t :category)
+            if (articleDao.newLink(aId, Integer.parseInt(t))!=1)
+                f = false;
+        response.getWriter().write(String.valueOf(f));
+        response.sendRedirect(request.getContextPath() + "/first.jsp");
     }
 
 }

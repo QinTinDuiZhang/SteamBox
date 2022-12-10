@@ -55,6 +55,8 @@
                     <label for="content" class="h3">正文</label>
                     <div id="editor"></div>
                     <input id="content" type="hidden" name="content"/>
+                    <input id="opImg" style="display: none;" type="file" onchange="addImg(this)"
+                           accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
                 </div>
                 <div>
                     <label class="h3">选择封面</label>
@@ -99,7 +101,9 @@
     let options = {
         debug: 'info',
         modules: {
-            toolbar: toolbarOptions
+            toolbar: {
+                container:toolbarOptions,
+            }
         },
         history: {
             delay: 2000,
