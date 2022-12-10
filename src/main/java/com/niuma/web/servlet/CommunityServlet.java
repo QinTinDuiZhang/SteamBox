@@ -28,7 +28,6 @@ public class CommunityServlet extends BaseServlet{
         }
         response.sendRedirect(request.getContextPath() + "/AManageCommunity.jsp");
     }
-
     public void Like(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
         int community = Integer.parseInt(request.getParameter("community"));
         HttpSession session = request.getSession();
@@ -36,5 +35,19 @@ public class CommunityServlet extends BaseServlet{
         boolean f = Boolean.parseBoolean(request.getParameter("f"));
         CommunityDao communityDao = new CommunityDaoImpl();
         boolean sign = f ? communityDao.disLikeCommunity(community,user.getId()) : communityDao.likeCommunity(community,user.getId());
+    }
+
+    public void UpdateCommunityInfo(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
+        String title = request.getParameter("title");
+        String link = request.getParameter("entitle");
+        String comId = request.getParameter("comId");
+        int communityId = Integer.parseInt(comId);
+        CommunityDaoImpl communityDao=new CommunityDaoImpl();
+        Boolean aBoolean = communityDao.updateCommunity(title, link, communityId);
+        if(aBoolean){
+            System.out.println("修改成功！");
+        }
+        response.sendRedirect(request.getContextPath() + "/AManageCommunity.jsp");
     }
 }

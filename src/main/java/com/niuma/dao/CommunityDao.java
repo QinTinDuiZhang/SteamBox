@@ -7,6 +7,7 @@ import java.util.List;
 public interface CommunityDao {
     List<Community> getAllCommunity(int id);
     Boolean setCommunityLook(int communityId,int hidden);
+    Boolean updateCommunity(String name,String link,int id);
 
     boolean likeCommunity(int community,int userId);
 
