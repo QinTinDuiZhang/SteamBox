@@ -73,7 +73,8 @@
                     <div class="form-group">
                         <label for="email" class="col-sm-2 control-label">电子邮件：</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="email" id="email" placeholder="请输入电子邮件">
+                            <input type="text" class="form-control" name="email" id="email"
+                                   placeholder="请输入电子邮件">
                             <p class="alert alert-danger">此邮箱已绑定其他账号</p>
                             <p class="alert alert-warning">暂时只支持QQ邮箱</p>
                         </div>
@@ -93,7 +94,8 @@
                     <div class="form-group">
                         <label for="mobile" class="col-sm-2 control-label">手机号码：</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="mobile" id="mobile" placeholder="请输入手机号码">
+                            <input type="text" class="form-control" name="mobile" id="mobile"
+                                   placeholder="请输入手机号码">
                             <p class="alert alert-danger">请填如正确的手机号</p>
                         </div>
                     </div>

@@ -51,4 +51,18 @@ public class CommunityServlet extends BaseServlet {
         }
         response.sendRedirect(request.getContextPath() + "/AManageCommunity.jsp");
     }
+
+    public void AddCommunity(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
+        String name = request.getParameter("title");
+        String link = request.getParameter("entitle");
+        CommunityDaoImpl communityDao = new CommunityDaoImpl();
+        Boolean aBoolean = communityDao.addCommunity(name, link);
+        if (aBoolean) {
+            System.out.println("添加成功");
+        } else {
+            System.out.println("添加失败");
+        }
+        response.sendRedirect(request.getContextPath() + "/AManageCommunity.jsp");
+    }
 }

@@ -11,14 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.Serial;
 import java.util.Date;
 
 @WebServlet("/Article/*")
 @MultipartConfig(fileSizeThreshold = 10 * 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 100 * 1024 * 1024)
 public class ArticleServlet extends BaseServlet {
 
-    @Serial
     private static final long serialVersionUID = 1L;
 
     // 上传文件存储目录

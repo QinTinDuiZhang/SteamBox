@@ -40,6 +40,8 @@
     CommunityDaoImpl communityDao = new CommunityDaoImpl();
     List<Community> allCommunity = communityDao.getAllCommunity(0);
 %>
+<a class="button border-main" onclick="addCommunity()" type="button" style="margin: 10px"><span
+        class="icon-edit"></span>添加社区</a>
 <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder"> 社区列表</strong></div>
     <table class="table table-hover text-center">
@@ -55,7 +57,7 @@
         <tr>
             <td><%=community.getId()%>
             </td>
-            <td><%=community.getHidden()%>
+            <td style="font-size: 20px;color: <%=!community.getHidden() ? "red":"#00aa00"%>"><%=community.getHidden()%>
             </td>
             <td><%=community.getName()%>
             </td>
@@ -94,6 +96,10 @@
 
     function changeCommunity(comId) {
         window.location.replace("http://localhost:8080/SteamBox_war_exploded/AUpdateCommunity.jsp?comId=" + comId);
+    }
+
+    function addCommunity() {
+        window.location.replace("http://localhost:8080/SteamBox_war_exploded/AAddCommunity.jsp");
     }
 </script>
 </body>

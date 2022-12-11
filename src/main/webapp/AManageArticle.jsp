@@ -1,3 +1,13 @@
+<%@ page import="com.niuma.impl.ArticleDaoImpl" %>
+<%@ page import="com.niuma.model.Article" %>
+<%@ page import="java.util.List" %><%--
+  Created by IntelliJ IDEA.
+  User: 41150
+  Date: 2022-12-10
+  Time: 18:34
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -26,10 +36,14 @@
     </style>
 </head>
 <body>
-<form id="listform" action="" method="post">
+<%
+    ArticleDaoImpl articleDao = new ArticleDaoImpl();
+    List<Article> articles = articleDao.selectAll(0, 0, null);
+%>
+<form action="" id="listform" method="post">
     <div class="panel admin-panel">
         <div class="panel-head"><strong class="icon-reorder"> 帖子列表</strong> <a href=""
-                                                                               style="float:right; display:none;">添加字段</a>
+                                                                                   style="float:right; display:none;">添加字段</a>
         </div>
         <div class="padding border-bottom">
             <ul class="search" style="padding-left:10px;">
@@ -38,13 +52,14 @@
                     <input class="input" name="keywords" placeholder="请输入搜索关键字"
                            style="width:250px; line-height:17px;display:inline-block"
                            type="text"/>
-                    <a class="button border-main icon-search" href="javascript:void(0)" onclick="changesearch()"> 搜索</a>
+                    <a class="button border-main icon-search" href="javascript:void(0)" onclick="changesearch()">
+                        搜索</a>
                 </li>
             </ul>
         </div>
         <table class="table table-hover text-center">
             <tr>
-                <th>状态</th>
+                <th>发布状态</th>
                 <th style="text-align:left; padding-left:20px;" width="100">ID</th>
                 <th width="20%">标题</th>
                 <th>图片</th>
@@ -55,120 +70,32 @@
                 <th width="310">操作</th>
             </tr>
             <volist id="vo" name="list">
+                <%for (Article article : articles) {%>
                 <tr>
-
-                    <td style="text-align:left; padding-left:40px;">
-                        <input name="id[]" type="checkbox" value=""/>
+                    <td><%=article.isHidden()%>
                     </td>
-                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;">1</th>
-                    <td>《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
-                    <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
-                    <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-                    <td><font color="#00CC99">首页</font></td>
-                    <td>产品分类</td>
-                    <td>2016-07-01</td>
+                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;"><%=article.getId()%>
+                    </th>
+                    <td><%=article.getTitle()%>
+                    </td>
+                    <td width="10%"><img alt="" height="50" src="img/cover/<%=article.getImg()%>" width="70"/></td>
+                    <td><%=article.getPubDate()%>
+                    </td>
+                    <td><font color="#00CC99"><%=article.getCreator()%>
+                    </font></td>
+                    <td><%=article.getAuditor()%>
+                    </td>
+                    <td><%=article.getCommunityId()%>
+                    </td>
                     <td>
-                        <div class="button-group"><a class="button border-main" href="add.html"><span
-                                class="icon-edit"></span> 通过</a> <a class="button border-red" href="javascript:void(0)"
-                                                                    onclick="return del(1,1,1)"><span
+                        <div class="button-group"><a class="button border-main" href=""><span
+                                class="icon-edit"></span> 通过</a> <a class="button border-red"
+                                                                      href="javascript:void(0)"
+                                                                      onclick="return del(1,1,1)"><span
                                 class="icon-trash-o"></span> 退回</a></div>
                     </td>
                 </tr>
-                <tr>
-
-                    <td style="text-align:left; padding-left:40px;">
-                        <input name="id[]" type="checkbox" value=""/>
-                    </td>
-                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;">1</th>
-                    <td>《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
-                    <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
-                    <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-                    <td><font color="#00CC99">首页</font></td>
-                    <td>产品分类</td>
-                    <td>2016-07-01</td>
-                    <td>
-                        <div class="button-group"><a class="button border-main" href="add.html"><span
-                                class="icon-edit"></span> 通过</a> <a class="button border-red" href="javascript:void(0)"
-                                                                    onclick="return del(1,1,1)"><span
-                                class="icon-trash-o"></span> 退回</a></div>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td style="text-align:left; padding-left:40px;">
-                        <input name="id[]" type="checkbox" value=""/>
-                    </td>
-                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;">1</th>
-                    <td>《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
-                    <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
-                    <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-                    <td><font color="#00CC99">首页</font></td>
-                    <td>产品分类</td>
-                    <td>2016-07-01</td>
-                    <td>
-                        <div class="button-group"><a class="button border-main" href="add.html"><span
-                                class="icon-edit"></span> 通过</a> <a class="button border-red" href="javascript:void(0)"
-                                                                    onclick="return del(1,1,1)"><span
-                                class="icon-trash-o"></span> 退回</a></div>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td style="text-align:left; padding-left:40px;">
-                        <input name="id[]" type="checkbox" value=""/>
-                    </td>
-                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;">1</th>
-                    <td>《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
-                    <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
-                    <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-                    <td><font color="#00CC99">首页</font></td>
-                    <td>产品分类</td>
-                    <td>2016-07-01</td>
-                    <td>
-                        <div class="button-group"><a class="button border-main" href="add.html"><span
-                                class="icon-edit"></span> 通过</a> <a class="button border-red" href="javascript:void(0)"
-                                                                    onclick="return del(1,1,1)"><span
-                                class="icon-trash-o"></span> 退回</a></div>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td style="text-align:left; padding-left:40px;">
-                        <input name="id[]" type="checkbox" value=""/>
-                    </td>
-                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;">1</th>
-                    <td>《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
-                    <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
-                    <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-                    <td><font color="#00CC99">首页</font></td>
-                    <td>产品分类</td>
-                    <td>2016-07-01</td>
-                    <td>
-                        <div class="button-group"><a class="button border-main" href="add.html"><span
-                                class="icon-edit"></span> 通过</a> <a class="button border-red" href="javascript:void(0)"
-                                                                    onclick="return del(1,1,1)"><span
-                                class="icon-trash-o"></span> 退回</a></div>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td style="text-align:left; padding-left:40px;">
-                        <input name="id[]" type="checkbox" value=""/>
-                    </td>
-                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;">1</th>
-                    <td>《荒野大镖客2》Steam同时在线达6万人！刷新历史纪录</td>
-                    <td width="10%"><img alt="" height="50" src="img/11.jpg" width="70"/></td>
-                    <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-                    <td><font color="#00CC99">首页</font></td>
-                    <td>产品分类</td>
-                    <td>2016-07-01</td>
-                    <td>
-                        <div class="button-group"><a class="button border-main" href="add.html"><span
-                                class="icon-edit"></span> 通过</a> <a class="button border-red" href="javascript:void(0)"
-                                                                    onclick="return del(1,1,1)"><span
-                                class="icon-trash-o"></span> 退回</a></div>
-                    </td>
-                </tr>
+                <%}%>
                 <tr>
                     <td style="text-align:left; padding:19px 0;padding-left:20px;"><input id="checkall"
                                                                                           type="checkbox"/>

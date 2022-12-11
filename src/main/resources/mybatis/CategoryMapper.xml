@@ -31,4 +31,14 @@
         where article_id = #{id};
     </select>
 
+    <update id="setClassLook">
+        update steambox.category
+        set hidden=#{param2}
+        where id = #{param1}
+    </update>
+
+    <insert id="addClass">
+        insert into steambox.category(name)
+        values (#{param1});
+    </insert>
 </mapper>

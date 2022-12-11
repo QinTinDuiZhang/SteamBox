@@ -30,4 +30,18 @@ public class CategoryDaoImpl implements CategoryDao {
         CategoryMapper categoryMapper = sqlSession.getMapper(CategoryMapper.class);
         return categoryMapper.ToGainByArticle(id);
     }
+
+    @Override
+    public Boolean setClassLook(int id, int hidden) {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        CategoryMapper categoryMapper = sqlSession.getMapper(CategoryMapper.class);
+        return categoryMapper.setClassLook(id, hidden);
+    }
+
+    @Override
+    public Boolean addClass(String className) {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        CategoryMapper categoryMapper = sqlSession.getMapper(CategoryMapper.class);
+        return categoryMapper.addClass(className);
+    }
 }

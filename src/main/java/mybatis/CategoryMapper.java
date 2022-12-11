@@ -12,4 +12,8 @@ public interface CategoryMapper {
     List<Article> getCategoryArticle(int categoryId);
 
     List<Category> ToGainByArticle(int id);
+
+    Boolean setClassLook(int id, int hidden);
+
+    Boolean addClass(String name);
 }

@@ -44,4 +44,12 @@ public class CommunityDaoImpl implements CommunityDao {
         CommunityMapper communityMapper = sqlSession.getMapper(CommunityMapper.class);
         return communityMapper.updateCommunity(name, link, id);
     }
+
+    @Override
+    public Boolean addCommunity(String name, String link) {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        CommunityMapper communityMapper = sqlSession.getMapper(CommunityMapper.class);
+        return communityMapper.addCommunity(name, link);
+    }
+
 }

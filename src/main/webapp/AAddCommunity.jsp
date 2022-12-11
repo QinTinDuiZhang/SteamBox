@@ -1,12 +1,3 @@
-<%@ page import="com.niuma.impl.CommunityDaoImpl" %>
-<%@ page import="com.niuma.model.Community" %>
-<%@ page import="java.util.List" %><%--
-  Created by IntelliJ IDEA.
-  User: 41150
-  Date: 2022-12-09
-  Time: 16:50
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -35,15 +26,11 @@
     </style>
 </head>
 <body>
-<%
-    String communityId = request.getParameter("comId");
-    CommunityDaoImpl communityDao = new CommunityDaoImpl();
-    List<Community> community = communityDao.getAllCommunity(Integer.parseInt(communityId));
-%>
+
 <div class="panel admin-panel margin-top">
-    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>修改社区</strong></div>
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>添加社区</strong></div>
     <div class="body-content">
-        <form action="Community/UpdateCommunityInfo?comId=<%=community.get(0).getId()%>" class="form-x" method="post">
+        <form action="Community/AddCommunity" class="form-x" method="post">
             <input name="id" type="hidden" value=""/>
             <div class="form-group">
                 <div class="label">
@@ -55,7 +42,7 @@
                            id="title"
                            name="title"
                            type="text"
-                           value="<%=community.get(0).getName()%>"/>
+                           value=""/>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -66,7 +53,7 @@
                 <div class="field">
                     <input class="input w50" data-validate="required:请输入商店链接" id="ETitle" name="entitle"
                            type="text"
-                           value="<%=community.get(0).getShopLink()%>"/>
+                           value=""/>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -83,3 +70,4 @@
 </div>
 </body>
 </html>
+

@@ -11,4 +11,8 @@ public interface CategoryDao {
     List<Article> getCategoryArticle(int id);
 
     List<Category> toGainByArticle(int id);
+
+    Boolean setClassLook(int id, int hidden);
+
+    Boolean addClass(String className);
 }

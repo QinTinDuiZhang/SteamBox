@@ -75,7 +75,7 @@
             <tr class="lie">
 
                 <td>
-                    <input class="allCheck" name="id[]" <%=allUser.get(i).isForbidden() == false ? "checked" : ""%>
+                    <input class="allCheck" name="id[]" <%=!allUser.get(i).isForbidden() ? "checked" : ""%>
                            type="checkbox"/>
                 </td>
                 <td>

@@ -14,4 +14,6 @@ public interface CommunityDao {
     boolean likeCommunity(int community, int userId);
 
     boolean disLikeCommunity(int communityId, int userId);
+
+    Boolean addCommunity(String name, String link);
 }

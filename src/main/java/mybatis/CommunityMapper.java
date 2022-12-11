@@ -10,10 +10,12 @@ public interface CommunityMapper {
 
     Boolean setCommunityLook(int communityId, int hidden);
 
+    Boolean updateCommunity(String name, String link, int id);
+
+    Boolean addCommunity(String name, String link);
+
     boolean likeCommunity(@Param("communityId") int communityId, @Param("userId") int userId);
 
     boolean disLikeCommunity(@Param("communityId") int communityId, @Param("userId") int userId);
-
-    Boolean updateCommunity(String name, String link, int id);
 
 }

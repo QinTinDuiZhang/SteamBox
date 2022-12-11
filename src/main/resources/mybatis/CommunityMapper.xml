@@ -43,4 +43,9 @@
             shoplink=#{param2}
         where id = #{param3}
     </update>
+
+    <insert id="addCommunity">
+        insert into steambox.community(name, shoplink, hidden)
+        values (#{param1}, #{param2}, 1);
+    </insert>
 </mapper>

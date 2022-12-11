@@ -39,7 +39,7 @@ public class AdminServlet extends BaseServlet {
         String account = admin.getAccount();
         AdminDaoImpl adminDao = new AdminDaoImpl();
         Boolean aBoolean = adminDao.changePassword(account, newPassword);
-        if (aBoolean == true) {
+        if (aBoolean) {
             session.setAttribute("updateInfo", "修改成功");
             response.sendRedirect(request.getContextPath() + "/AChangePassword.jsp");
         } else {
@@ -54,7 +54,7 @@ public class AdminServlet extends BaseServlet {
         String params = br.readLine();
         User user = JSON.parseObject(params, User.class);
         AdminDaoImpl adminDao = new AdminDaoImpl();
-        if (user.isForbidden() == false) {
+        if (!user.isForbidden()) {
             aBoolean = adminDao.setUserBan(0, user.getId());
             System.out.println(aBoolean + "禁用成功");
         } else {

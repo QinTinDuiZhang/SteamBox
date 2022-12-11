@@ -71,7 +71,7 @@ public class CommentServlet extends BaseServlet {
         int id = Integer.parseInt(commentId);
         CommentDaoImpl commentDao = new CommentDaoImpl();
         Boolean aBoolean = commentDao.deleteComment(id);
-        if (aBoolean == true) {
+        if (aBoolean) {
             System.out.println("删除成功！");
             List<Comment> userComments = commentDao.getUserComments(cetId);
             request.getSession().setAttribute("UserComments", userComments);

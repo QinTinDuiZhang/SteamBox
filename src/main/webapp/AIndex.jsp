@@ -57,8 +57,8 @@
     <h2><span class="icon-pencil-square-o"></span>内容管理</h2>
     <ul>
         <li><a href="AManageCommunity.jsp" target="right"><span class="icon-caret-right"></span>社区管理</a></li>
-        <li><a href="list.html" target="right"><span class="icon-caret-right"></span>帖子管理</a></li>
-        <li><a href="cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
+        <li><a href="AManageArticle.jsp" target="right"><span class="icon-caret-right"></span>帖子管理</a></li>
+        <li><a href="AManageClassification.jsp" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
     </ul>
 </div>
 <script type="text/javascript">
@@ -81,7 +81,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;切换语言：<a href="##">中文</a> &nbsp;&nbsp;<a href="##">英文</a></li>
 </ul>
 <div class="admin">
-    <iframe height="100%" name="right" rameborder="0" scrolling="auto" src="list.html" width="100%"></iframe>
+    <iframe height="100%" name="right" rameborder="0" scrolling="auto" src="" width="100%"></iframe>
 </div>
 <div style="text-align:center;">
     <p>来源:<a href="http://down.admin5.com/" target="_blank">A5源码</a></p>

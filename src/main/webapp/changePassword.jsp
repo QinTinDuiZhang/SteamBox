@@ -47,7 +47,8 @@
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="newPassword" id="newPassword"
                                        placeholder="请输入您的新密码" v-model="newPassword" @change="newP()">
-                                <p class="alert alert-danger" v-if="!flogNew">密码不符合规范哦：由8~13位数字、字母或下划线组成，字母至少一位</p>
+                                <p class="alert alert-danger" v-if="!flogNew">
+                                    密码不符合规范哦：由8~13位数字、字母或下划线组成，字母至少一位</p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -60,7 +61,8 @@
                         </div>
                         <div class="form-group" v-model="AllCont">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-primary btn-block" :disabled="flogAll">提交</button>
+                                <button type="submit" class="btn btn-primary btn-block" :disabled="flogAll">提交
+                                </button>
                             </div>
                         </div>
                     </form>
