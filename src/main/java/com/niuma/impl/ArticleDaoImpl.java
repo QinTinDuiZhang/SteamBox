@@ -46,13 +46,13 @@ public class ArticleDaoImpl implements ArticleDao {
     public List<Article> selectAll(int id, int aId, Date pubDate) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
-        return postMapper.selectAll(id,aId,null);
+        return postMapper.selectAll(id, aId, null);
     }
 
     @Override
     public int newLink(int aid, int cid) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
-        return postMapper.newLink(aid,cid);
+        return postMapper.newLink(aid, cid);
     }
 }

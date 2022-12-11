@@ -111,7 +111,7 @@
     }
 </script>
 <div class="panel admin-panel margin-top">
-    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加/修改社区</strong></div>
+    <div id="add" class="panel-head"><strong><span class="icon-pencil-square-o"></span>增加/修改社区</strong></div>
     <div class="body-content">
         <form action="" class="form-x" method="post">
             <input name="id" type="hidden" value=""/>
@@ -120,9 +120,9 @@
                     <label for="title">社区名字：</label>
                 </div>
                 <div class="field">
-                    <input class="input w50"
+                    <input id="title"
+                           class="input w50"
                            data-validate="required:请输入社区名字"
-                           id="title"
                            name="title"
                            type="text"
                            value=""/>
@@ -134,7 +134,7 @@
                     <label for="ETitle">商店链接：</label>
                 </div>
                 <div class="field">
-                    <input class="input w50" data-validate="required:请输入商店链接" id="ETitle" name="entitle" type="text"
+                    <input id="ETitle" class="input w50" data-validate="required:请输入商店链接" name="entitle" type="text"
                            value=""/>
                     <div class="tips"></div>
                 </div>

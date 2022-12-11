@@ -5,7 +5,7 @@
 <mapper namespace="mybatis.ArticleMapper">
     <insert id="publish">
         insert into steambox.article(title, img, content, pubdate, click_count, creator, auditor, community_id, hidden)
-        values (#{title}, #{img}, #{content}, #{pubDate}, #{clickCount}, #{creator}, #{auditor}, #{communityId}, 1)
+        values (#{title}, #{img}, #{content}, #{pubDate}, #{clickCount}, #{creator}, #{auditor}, #{communityId}, 0)
     </insert>
     <update id="updateArticle">
         update steambox.article
@@ -40,10 +40,10 @@
             </if>
         </where>
     </select>
-    
+
     <insert id="newLink">
         insert into steambox.article_category(article_id, category_id)
-        values (#{articleId},#{categoryId});
+        values (#{articleId}, #{categoryId});
     </insert>
 
 </mapper>

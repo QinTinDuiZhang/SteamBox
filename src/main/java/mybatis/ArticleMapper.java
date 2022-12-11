@@ -17,7 +17,7 @@ public interface ArticleMapper {
     //删除帖子
     boolean deleteArticle(int id);
 
-    List<Article> selectAll(@Param("id") int id, @Param("aId") int aId, @Param("pubDate")Date pubDate);
+    List<Article> selectAll(@Param("id") int id, @Param("aId") int aId, @Param("pubDate") Date pubDate);
 
-    int newLink(@Param("articleId") int aid,@Param("categoryId") int id);
+    int newLink(@Param("articleId") int aid, @Param("categoryId") int id);
 }

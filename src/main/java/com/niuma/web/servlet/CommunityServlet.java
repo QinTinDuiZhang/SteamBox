@@ -10,19 +10,19 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/Community/*")
-public class CommunityServlet extends BaseServlet{
+public class CommunityServlet extends BaseServlet {
     public void SetCommunityLook(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
         String comId = request.getParameter("comId");
-        String hidden=request.getParameter("hidden");
-        int communityId=Integer.parseInt(comId);
-        int hiddenId=Integer.parseInt(hidden);
-        CommunityDaoImpl communityDao=new CommunityDaoImpl();
+        String hidden = request.getParameter("hidden");
+        int communityId = Integer.parseInt(comId);
+        int hiddenId = Integer.parseInt(hidden);
+        CommunityDaoImpl communityDao = new CommunityDaoImpl();
         Boolean aBoolean = communityDao.setCommunityLook(communityId, hiddenId);
-        if(aBoolean){
-            if(hiddenId==0){
+        if (aBoolean) {
+            if (hiddenId == 0) {
                 System.out.println("禁用成功");
             }
-            if(hiddenId==1){
+            if (hiddenId == 1) {
                 System.out.println("启用成功");
             }
         }
@@ -35,7 +35,7 @@ public class CommunityServlet extends BaseServlet{
         User user = (User) session.getAttribute("user");
         boolean f = Boolean.parseBoolean(request.getParameter("f"));
         CommunityDao communityDao = new CommunityDaoImpl();
-        boolean sign = f ? communityDao.disLikeCommunity(community,user.getId()) : communityDao.likeCommunity(community,user.getId());
+        boolean sign = f ? communityDao.disLikeCommunity(community, user.getId()) : communityDao.likeCommunity(community, user.getId());
     }
 
     public void UpdateCommunityInfo(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -44,9 +44,9 @@ public class CommunityServlet extends BaseServlet{
         String link = request.getParameter("entitle");
         String comId = request.getParameter("comId");
         int communityId = Integer.parseInt(comId);
-        CommunityDaoImpl communityDao=new CommunityDaoImpl();
+        CommunityDaoImpl communityDao = new CommunityDaoImpl();
         Boolean aBoolean = communityDao.updateCommunity(title, link, communityId);
-        if(aBoolean){
+        if (aBoolean) {
             System.out.println("修改成功！");
         }
         response.sendRedirect(request.getContextPath() + "/AManageCommunity.jsp");

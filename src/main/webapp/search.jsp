@@ -119,7 +119,7 @@
                 <%
                     int j = i < communities.size() % 5 ? -1 : 0;
                     for (; j < communities.size() / 5; j++) {
-                    Community community = iterator.next();%>
+                        Community community = iterator.next();%>
                 <a href="<%= community.getShopLink()%>"><%= community.getName()%>
                 </a>
                 <%}%>

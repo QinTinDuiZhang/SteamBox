@@ -31,6 +31,7 @@ public interface CommentDao {
 
     /**
      * 得到单个用户的所有评论
+     *
      * @param userid 用户ID
      * @return 返回一个评论集合
      */
@@ -38,6 +39,7 @@ public interface CommentDao {
 
     /**
      * 删除用户评论
+     *
      * @param id 评论的id
      * @return 返回一个布尔值
      */
@@ -45,8 +47,9 @@ public interface CommentDao {
 
     /**
      * 模糊查询评论
+     *
      * @param content 评论的内容
      * @return 返回一个评论集合
      */
-    List<Comment> searchComments(String content,int userId);
+    List<Comment> searchComments(String content, int userId);
 }

@@ -18,7 +18,7 @@
   Time: 17:05
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8"  isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,11 +87,11 @@
         <div class="col-7">
             <%
                 String community = request.getParameter("community");
-                request.setAttribute("community",community);
+                request.setAttribute("community", community);
                 String category = request.getParameter("category");
                 UserDao userDao = new UserDaoImpl();
                 ArticleDao articleDao = new ArticleDaoImpl();
-                List<Article> articles = community != null ? articleDao.selectAll(Integer.parseInt(community),0,null) : articleDao.selectAll(0,0,null);
+                List<Article> articles = community != null ? articleDao.selectAll(Integer.parseInt(community), 0, null) : articleDao.selectAll(0, 0, null);
                 if (category != null) articles = categoryDao.getCategoryArticle(Integer.parseInt(category));
                 for (Article article : articles) {%>
             <div>
@@ -136,17 +136,17 @@
                         <%}%>
                     </div>
                 </div>
-                <% if (session.getAttribute("user")!=null && request.getParameter("community")!=null) {%>
+                <% if (session.getAttribute("user") != null && request.getParameter("community") != null) {%>
                 <button class="col offset-md-3"
                         id="like"
                         style="border-radius: 50px; margin-top: 50px">
                     <%
                         boolean f = false;
                         List<Community> likeCommunities = (List<Community>) session.getAttribute("likeCommunities");
-                        for (Community like :likeCommunities)
+                        for (Community like : likeCommunities)
                             if (like.getId() == Integer.parseInt(request.getParameter("community"))) f = true;
-                        request.setAttribute("f",f);
-                        if (f){
+                        request.setAttribute("f", f);
+                        if (f) {
                     %>
                     <svg class="icon"
                          height="55"
@@ -160,7 +160,8 @@
                               fill="#d81e06"
                               p-id="3142">
                         </path>
-                    </svg><%} else {%>
+                    </svg>
+                    <%} else {%>
                     <svg class="icon"
                          height="55"
                          p-id="2938"
@@ -188,7 +189,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     let likeButton = document.getElementById("like");
-    likeButton.addEventListener("click",function (e){
+    likeButton.addEventListener("click", function (e) {
 // 向给定ID的用户发起请求
         axios.get('${pageContext.request.contextPath}/Community/Like?community=${community}&f=${f}')
             .then(function (response) {

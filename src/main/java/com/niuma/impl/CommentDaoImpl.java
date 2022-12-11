@@ -95,10 +95,10 @@ public class CommentDaoImpl implements CommentDao {
     }
 
     @Override
-    public List<Comment> searchComments(String content,int userId) {
+    public List<Comment> searchComments(String content, int userId) {
         SqlSession session = SqlSessionUtils.getSqlSession();
         CommentMapper commentMapper = session.getMapper(CommentMapper.class);
-        List<Comment> commentList = commentMapper.searchComments(content,userId);
+        List<Comment> commentList = commentMapper.searchComments(content, userId);
         return commentList;
     }
 }

@@ -51,36 +51,37 @@ public class CommentServlet extends BaseServlet {
         writer.flush();
         writer.close();
     }
+
     public void GetUserComment(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userid = request.getParameter("userid");
         String username = request.getParameter("name");
-        CommentDaoImpl commentDao=new CommentDaoImpl();
+        CommentDaoImpl commentDao = new CommentDaoImpl();
         List<Comment> userComments = commentDao.getUserComments(Integer.parseInt(userid));
         HttpSession session = request.getSession();
-        session.setAttribute("uId",userid);
-        session.setAttribute("UserComments",userComments);
-        session.setAttribute("name",username);
+        session.setAttribute("uId", userid);
+        session.setAttribute("UserComments", userComments);
+        session.setAttribute("name", username);
         response.sendRedirect(request.getContextPath() + "/AComment.jsp");
     }
 
     public void DeleteComment(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String commentId=request.getParameter("cid");
+        String commentId = request.getParameter("cid");
         String creatorId = request.getParameter("cetId");
-        int cetId=Integer.parseInt(creatorId);
-        int id=Integer.parseInt(commentId);
-        CommentDaoImpl commentDao=new CommentDaoImpl();
+        int cetId = Integer.parseInt(creatorId);
+        int id = Integer.parseInt(commentId);
+        CommentDaoImpl commentDao = new CommentDaoImpl();
         Boolean aBoolean = commentDao.deleteComment(id);
-        if(aBoolean==true){
+        if (aBoolean == true) {
             System.out.println("删除成功！");
             List<Comment> userComments = commentDao.getUserComments(cetId);
-            request.getSession().setAttribute("UserComments",userComments);
+            request.getSession().setAttribute("UserComments", userComments);
             response.sendRedirect(request.getContextPath() + "/AComment.jsp");
             HttpSession session = request.getSession();
-            session.setAttribute("deleteIndo","删除成功");
-        }else{
+            session.setAttribute("deleteIndo", "删除成功");
+        } else {
             System.out.println("删除失败！");
             HttpSession session = request.getSession();
-            session.setAttribute("deleteIndo","删除失败");
+            session.setAttribute("deleteIndo", "删除失败");
             response.sendRedirect(request.getContextPath() + "/AManagerUser.jsp");
         }
     }
@@ -88,15 +89,15 @@ public class CommentServlet extends BaseServlet {
     public void SearchComment(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
         String commentContent = request.getParameter("searchcontent");
         String userId = request.getParameter("userId");
-        int userID=Integer.parseInt(userId);
-        CommentDaoImpl commentDao=new CommentDaoImpl();
-        List<Comment> commentList = commentDao.searchComments(commentContent,userID);
-        if(commentList!=null){
+        int userID = Integer.parseInt(userId);
+        CommentDaoImpl commentDao = new CommentDaoImpl();
+        List<Comment> commentList = commentDao.searchComments(commentContent, userID);
+        if (commentList != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("UserComments",commentList);
+            session.setAttribute("UserComments", commentList);
             System.out.println(commentList);
             response.sendRedirect(request.getContextPath() + "/AComment.jsp");
-        }else{
+        } else {
             System.out.println("没查询到！");
         }
 

@@ -102,7 +102,7 @@
         debug: 'info',
         modules: {
             toolbar: {
-                container:toolbarOptions,
+                container: toolbarOptions,
             }
         },
         history: {

@@ -5,10 +5,11 @@ import com.niuma.impl.ArticleDaoImpl;
 import com.niuma.model.Article;
 import com.niuma.model.User;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
-
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serial;
 import java.util.Date;
@@ -49,8 +50,8 @@ public class ArticleServlet extends BaseServlet {
         f = articleDao.publish(article);
         Article getA = articleDao.selectAll(0, 0, putDate).get(0);
         int aId = getA.getId();
-        for (String t :category)
-            if (articleDao.newLink(aId, Integer.parseInt(t))!=1)
+        for (String t : category)
+            if (articleDao.newLink(aId, Integer.parseInt(t)) != 1)
                 f = false;
         response.getWriter().write(String.valueOf(f));
         response.sendRedirect(request.getContextPath() + "/first.jsp");

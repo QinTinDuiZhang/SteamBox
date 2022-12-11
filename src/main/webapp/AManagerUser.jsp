@@ -118,8 +118,8 @@
         for (var i = 0; i < user.length; i++) {
             user[i].addEventListener('dblclick', function (e) {
                 var a = this.children.item(1).innerText;
-                var b=this.children.item(2).innerText;
-                window.location.replace("http://localhost:8080/SteamBox_war_exploded/Comment/GetUserComment?userid="+a+"&name="+b);
+                var b = this.children.item(2).innerText;
+                window.location.replace("http://localhost:8080/SteamBox_war_exploded/Comment/GetUserComment?userid=" + a + "&name=" + b);
             })
         }
     }

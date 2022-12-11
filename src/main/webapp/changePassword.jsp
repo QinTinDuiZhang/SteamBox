@@ -30,13 +30,15 @@
                         <div class="form-group">
                             <label for="account" class="col-sm-2 control-label">账户：</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control" name="account" id="account" value="${user.account}">
+                                <input type="text" readonly class="form-control" name="account" id="account"
+                                       value="${user.account}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="oldPassword" class="col-sm-2 control-label">原密码：</label>
                             <div class="col-sm-10">
-                                <input v-model="oldPassword" type="text" class="form-control" name="oldPassword" id="oldPassword" @change="old()" placeholder="请输入原密码">
+                                <input v-model="oldPassword" type="text" class="form-control" name="oldPassword"
+                                       id="oldPassword" @change="old()" placeholder="请输入原密码">
                                 <p class="alert alert-danger" v-if="!flogOld">密码不正确，请重新输入</p>
                             </div>
                         </div>
@@ -72,38 +74,38 @@
 <script src="js/lmd5.js"></script>
 <script>
     new Vue({
-        el:"#app",
-        data(){
-            return{
-                oldPassword:"",
-                newPassword:"",
-                enterPassword:"",
-                flogOld:true,
-                flogEnter:true,
-                flogNew:true,
-                flogAll:true
+        el: "#app",
+        data() {
+            return {
+                oldPassword: "",
+                newPassword: "",
+                enterPassword: "",
+                flogOld: true,
+                flogEnter: true,
+                flogNew: true,
+                flogAll: true
             }
         },
-        methods:{
+        methods: {
             //总体判定和注册类似
-            old(){
+            old() {
                 this.flogOld = false;
                 this.flogOld = hex_md5(this.oldPassword) === "${user.password}";
                 this.AllCont();
                 return this.flogOld;
             },
-            newEnter(){
+            newEnter() {
                 this.flogEnter = this.enterPassword === this.newPassword;
                 this.AllCont();
                 return this.flogEnter
             },
-            newP(){
+            newP() {
                 this.flogNew = /^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9 _]{8,13}$/.test(this.newPassword);
                 this.newEnter();
                 this.AllCont();
                 return this.flogNew
             },
-            AllCont(){
+            AllCont() {
                 this.flogAll = !(this.flogOld && this.flogEnter && this.flogNew && this.newPassword !== "");
             }
         }

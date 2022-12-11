@@ -45,7 +45,7 @@
                     <label for="mpass">原始密码：</label>
                 </div>
                 <div class="field">
-                    <input class="input w50" data-validate="required:请输入原始密码" id="mpass" name="mpass"
+                    <input id="mpass" class="input w50" data-validate="required:请输入原始密码" name="mpass"
                            placeholder="请输入原始密码" size="50"
                            type="password"/>
                 </div>
@@ -55,9 +55,9 @@
                     <label for="newpass">新密码：</label>
                 </div>
                 <div class="field">
-                    <input class="input w50"
+                    <input id="newpass"
+                           class="input w50"
                            data-validate="required:请输入新密码,length#>=5:新密码不能小于5位"
-                           id="newpass"
                            name="newpass"
                            placeholder="请输入新密码"
                            size="50"
@@ -69,9 +69,9 @@
                     <label for="enterpass">确认新密码：</label>
                 </div>
                 <div class="field">
-                    <input class="input w50"
+                    <input id="enterpass"
+                           class="input w50"
                            data-validate="required:请再次输入新密码,repeat#newpass:两次输入的密码不一致"
-                           id="enterpass"
                            name="renewpass"
                            placeholder="请再次输入新密码"
                            size="50"

@@ -37,7 +37,7 @@
 </head>
 <body>
 <%
-    CommunityDaoImpl communityDao=new CommunityDaoImpl();
+    CommunityDaoImpl communityDao = new CommunityDaoImpl();
     List<Community> allCommunity = communityDao.getAllCommunity(0);
 %>
 <div class="panel admin-panel">
@@ -51,22 +51,28 @@
             <th width="250">操作</th>
             <th>操作2</th>
         </tr>
-        <%for(Community community:allCommunity){%>
+        <%for (Community community : allCommunity) {%>
         <tr>
-            <td><%=community.getId()%></td>
-            <td><%=community.getHidden()%></td>
-            <td><%=community.getName()%></td>
-            <td ><%=community.getShopLink()%></td>
+            <td><%=community.getId()%>
+            </td>
+            <td><%=community.getHidden()%>
+            </td>
+            <td><%=community.getName()%>
+            </td>
+            <td><%=community.getShopLink()%>
+            </td>
             <td>
                 <div class="button-group">
-                    <a class="button border-main" onclick="startCommunity(<%=community.getId()%>)" type="button"><span class="icon-edit"></span>启用</a>
-                    <a class="button border-red"  onclick="delCommunity(<%=community.getId()%>)"><span
+                    <a class="button border-main" onclick="startCommunity(<%=community.getId()%>)" type="button"><span
+                            class="icon-edit"></span>启用</a>
+                    <a class="button border-red" onclick="delCommunity(<%=community.getId()%>)"><span
                             class="icon-trash-o"></span>禁用</a>
                 </div>
             </td>
             <td>
                 <div>
-                <a class="button border-main" onclick="changeCommunity(<%=community.getId()%>)" type="button"><span class="icon-edit"></span>修改</a>
+                    <a class="button border-main" onclick="changeCommunity(<%=community.getId()%>)" type="button"><span
+                            class="icon-edit"></span>修改</a>
                 </div>
             </td>
         </tr>
@@ -76,16 +82,18 @@
 <script>
     function delCommunity(comId) {
         if (confirm("您确定要禁用吗?")) {
-            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Community/SetCommunityLook?comId="+comId+"&hidden=0");
+            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Community/SetCommunityLook?comId=" + comId + "&hidden=0");
         }
     }
+
     function startCommunity(comId) {
         if (confirm("您确定要启用吗?")) {
-            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Community/SetCommunityLook?comId="+comId+"&hidden=1");
+            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Community/SetCommunityLook?comId=" + comId + "&hidden=1");
         }
     }
-    function changeCommunity(comId){
-        window.location.replace("http://localhost:8080/SteamBox_war_exploded/AUpdateCommunity.jsp?comId="+comId);
+
+    function changeCommunity(comId) {
+        window.location.replace("http://localhost:8080/SteamBox_war_exploded/AUpdateCommunity.jsp?comId=" + comId);
     }
 </script>
 </body>

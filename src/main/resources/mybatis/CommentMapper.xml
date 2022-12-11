@@ -70,10 +70,10 @@
     <select id="getAllByArticleIdComments" resultMap="commentResultMapT">
         select c.*, r.id as rid, u.nickname, u.photo
         from steambox.comment as c
-            left join steambox.comment as r on r.reply_for_id = c.id
-            left join steambox.user as u on c.creator=u.id
-        where c.article_id=#{articleId}
-          and c.hidden=#{hidden};
+                 left join steambox.comment as r on r.reply_for_id = c.id
+                 left join steambox.user as u on c.creator = u.id
+        where c.article_id = #{articleId}
+          and c.hidden = #{hidden};
     </select>
 
     <select id="getLikeNum" resultType="int">
@@ -125,17 +125,19 @@
     <select id="getUserComments" resultMap="commentResultMapT">
         select *
         from steambox.comment
-        where creator=#{param1}
+        where creator = #{param1}
     </select>
 
     <delete id="deleteComment">
         delete
         from steambox.comment
-        where comment.id=#{param1}
+        where comment.id = #{param1}
     </delete>
 
-    <select id="searchComments" resultMap="commentResultMapT" >
-        select * from steambox.comment
-        where content like concat('%', #{param1}, '%') and creator=#{param2}
+    <select id="searchComments" resultMap="commentResultMapT">
+        select *
+        from steambox.comment
+        where content like concat('%', #{param1}, '%')
+          and creator = #{param2}
     </select>
 </mapper>

@@ -35,7 +35,8 @@
                     <input id="search" class="input" name="keywords" placeholder="请输入搜索的评论内容"
                            style="width:250px; line-height:17px;display:inline-block"
                            type="text"/>
-                    <a class="button border-main icon-search" href="javascript:void(0)" onclick="searchComments()"> 搜索</a>
+                    <a class="button border-main icon-search" href="javascript:void(0)" onclick="searchComments()">
+                        搜索</a>
                 </li>
             </ul>
         </div>
@@ -49,14 +50,15 @@
                 <th>操作</th>
             </tr>
             <%
-                List<Comment> commentList=(List<Comment>)session.getAttribute("UserComments");
+                List<Comment> commentList = (List<Comment>) session.getAttribute("UserComments");
             %>
-            <%for(Comment comment:commentList){%>
+            <%for (Comment comment : commentList) {%>
             <tr>
                 <td>
                     <%=comment.getId()%>
                 </td>
-                <td><%=comment.getContent()%></td>
+                <td><%=comment.getContent()%>
+                </td>
                 <%
                     String dateStr = String.valueOf(comment.getPubDate());
                     DateFormat cstFormate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -64,12 +66,16 @@
                     Date dateTime = gmtFormate.parse(dateStr);
                     String dateString = cstFormate.format(dateTime);
                 %>
-                <td><%=dateString%></td>
-                <td><%=comment.getIpAddress()%></td>
-                <td><%=comment.getArticle().getId()%></td>
+                <td><%=dateString%>
+                </td>
+                <td><%=comment.getIpAddress()%>
+                </td>
+                <td><%=comment.getArticle().getId()%>
+                </td>
                 <td>
                     <div class="button-group"><a class="button border-red" href="javascript:void(0)"
-                                                 onclick="return del(<%=comment.getId()%>,<%=comment.getCreator().getId()%>)"><span class="icon-trash-o"></span> 删除</a></div>
+                                                 onclick="return del(<%=comment.getId()%>,<%=comment.getCreator().getId()%>)"><span
+                            class="icon-trash-o"></span> 删除</a></div>
                 </td>
             </tr>
             <%}%>
@@ -77,9 +83,9 @@
     </div>
 </form>
 <script type="text/javascript">
-    function del(id,cetId) {
+    function del(id, cetId) {
         if (confirm("您确定要删除吗?")) {
-            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Comment/DeleteComment?cid="+id+"&cetId="+cetId);
+            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Comment/DeleteComment?cid=" + id + "&cetId=" + cetId);
         }
     }
 
@@ -89,12 +95,13 @@
         });
     })
     var selectContent;
-    var serarch=document.getElementById("search");
-    serarch.addEventListener("change",function (e) {
-        selectContent=serarch.value;
+    var serarch = document.getElementById("search");
+    serarch.addEventListener("change", function (e) {
+        selectContent = serarch.value;
     })
+
     function searchComments() {
-        window.location.replace("http://localhost:8080/SteamBox_war_exploded/Comment/SearchComment?searchcontent="+selectContent+"&userId="+${uId});
+        window.location.replace("http://localhost:8080/SteamBox_war_exploded/Comment/SearchComment?searchcontent=" + selectContent + "&userId=" +${uId});
     }
 
 </script>

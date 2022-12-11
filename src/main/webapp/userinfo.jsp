@@ -26,13 +26,13 @@
 
     p,
     header,
-    a ,h1,h2,h3,h4,h5,h6,label{
+    a, h1, h2, h3, h4, h5, h6, label {
         text-decoration: none;
         font-family: Alimama_ShuHeiTi_Bold, serif;
 
     }
 
-    *{
+    * {
         color: #e5e5e5;
     }
 </style>
@@ -94,12 +94,13 @@
                         <label for="mobile" class="col-sm-2 control-label">手机号码：</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="mobile" id="mobile" placeholder="请输入手机号码">
-                            <p class="alert alert-danger" >请填如正确的手机号</p>
+                            <p class="alert alert-danger">请填如正确的手机号</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="photo" class="col-sm-2 control-label">
-                            <img id="slt" src="img/photo/<%= user.getPhoto()%>" class="img-thumbnail" width="70px" height="70px" alt="">
+                            <img id="slt" src="img/photo/<%= user.getPhoto()%>" class="img-thumbnail" width="70px"
+                                 height="70px" alt="">
                             <br> 头像：
                         </label>
                         <div class="col-sm-10">
@@ -142,6 +143,7 @@
         let files = event.target.files[0];
         this.url = this.getObjectUrl(files);
     }
+
     function getObjectUrl(file) {
         let url = null;
         if (window.createObjectURL !== undefined) {

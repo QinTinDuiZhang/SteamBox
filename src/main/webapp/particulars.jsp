@@ -70,7 +70,7 @@
         Map<Long, Comment> longCommentMap = CommentUtil.toMap(comments);
         request.setAttribute("comments", comments);
         request.setAttribute("commentMap", longCommentMap);
-        Article article = articleDao.selectAll(0,Integer.parseInt(request.getParameter("article")),null).get(0);
+        Article article = articleDao.selectAll(0, Integer.parseInt(request.getParameter("article")), null).get(0);
         request.setAttribute("article", article);
     %>
     <div class="col-7">
@@ -98,7 +98,8 @@
         </div>
         <div>
             <h3>我要评论</h3>
-            <form class="form-horizontal" action="${pageContext.request.contextPath}/Comment/putComment?articleId=${article.id}" method="post"
+            <form class="form-horizontal"
+                  action="${pageContext.request.contextPath}/Comment/putComment?articleId=${article.id}" method="post"
                   onsubmit="return setContent()">
                 <div id="editor"></div>
                 <input type="hidden" name="content" id="content">
