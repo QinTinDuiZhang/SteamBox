@@ -85,14 +85,14 @@ public class UserServlet extends BaseServlet {
                 session.setAttribute("authCodeErr", "验证码错误，请重试");
                 response.sendRedirect(request.getContextPath() + "/userinfo.jsp");
             }
-        }
+        }else return;
         userT.setEmail(request.getParameter("email"));
         userT.setMobile(request.getParameter("mobile"));
         userT.setAccount(request.getParameter("account"));
         UserDaoImpl userDao = new UserDaoImpl();
         if (userDao.updateUser(userT)) {
             session.setAttribute("user", userT);
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/first.jsp");
         } else {
             response.sendRedirect(request.getContextPath() + "/userinfo.jsp");
         }
