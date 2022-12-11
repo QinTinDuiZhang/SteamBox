@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class ArticleDaoImpl implements ArticleDao {
 
@@ -33,10 +34,10 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
-    public List<Article> selectAll(int id, int aId, Date pubDate) {
+    public List<Article> selectAll(Map<String,Object> map) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
-        return postMapper.selectAll(id, aId, null);
+        return postMapper.selectAll(map);
     }
 
     @Override
@@ -44,5 +45,12 @@ public class ArticleDaoImpl implements ArticleDao {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
         return postMapper.newLink(aid, cid);
+    }
+
+    @Override
+    public boolean setArticleLook(int id, int hidden) {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
+        return postMapper.setArticleLook(id, hidden);
     }
 }

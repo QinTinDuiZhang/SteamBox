@@ -14,6 +14,7 @@
 <%@ page import="com.niuma.model.Comment" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.niuma.tool.CommentUtil" %>
+<%@ page import="java.util.HashMap" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -70,7 +71,10 @@
         Map<Long, Comment> longCommentMap = CommentUtil.toMap(comments);
         request.setAttribute("comments", comments);
         request.setAttribute("commentMap", longCommentMap);
-        Article article = articleDao.selectAll(0, Integer.parseInt(request.getParameter("article")), null).get(0);
+        Map<String,Object> map=new HashMap<>();
+        map.put("aId",Integer.parseInt(request.getParameter("article")));
+        map.put("hidden",1);
+        Article article = articleDao.selectAll(map).get(0);
         request.setAttribute("article", article);
     %>
     <div class="col-7">
