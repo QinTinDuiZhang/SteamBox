@@ -122,7 +122,7 @@
         </div>
     </div>
 </div>
-<jsp:include page="common/tail.jsp" flush="true"></jsp:include>
+<jsp:include page="common/footer.jsp" flush="true"></jsp:include>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/jquery.validate.min.js"></script>
