@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/Article/*")
 @MultipartConfig(fileSizeThreshold = 10 * 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 100 * 1024 * 1024)
@@ -46,7 +48,10 @@ public class ArticleServlet extends BaseServlet {
         article.setCreator(user.getId());
         ArticleDao articleDao = new ArticleDaoImpl();
         f = articleDao.publish(article);
-        Article getA = articleDao.selectAll(0, 0, putDate).get(0);
+        Map<String,Object> map=new HashMap<>();
+        map.put("pubDate",putDate);
+        map.put("hidden",1);
+        Article getA = articleDao.selectAll(map).get(0);
         int aId = getA.getId();
         for (String t : category)
             if (articleDao.newLink(aId, Integer.parseInt(t)) != 1)
@@ -54,5 +59,16 @@ public class ArticleServlet extends BaseServlet {
         response.getWriter().write(String.valueOf(f));
         response.sendRedirect(request.getContextPath() + "/first.jsp");
     }
-
+    public void setArticleLook(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String artId = request.getParameter("articleId");
+        String hid = request.getParameter("hidden");
+        int articleId = Integer.parseInt(artId);
+        int hidden = Integer.parseInt(hid);
+        ArticleDaoImpl articleDao=new ArticleDaoImpl();
+        boolean b = articleDao.setArticleLook(articleId, hidden);
+        if(b){
+            System.out.println("执行成功");
+        }
+        response.sendRedirect(request.getContextPath() + "/AManageArticle.jsp");
+    }
 }

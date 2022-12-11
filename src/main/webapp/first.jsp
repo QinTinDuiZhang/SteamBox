@@ -11,7 +11,9 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="com.niuma.model.Community" %>
 <%@ page import="com.niuma.dao.CommunityDao" %>
-<%@ page import="com.niuma.impl.CommunityDaoImpl" %><%--
+<%@ page import="com.niuma.impl.CommunityDaoImpl" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %><%--
   Created by IntelliJ IDEA.
   User: 23686
   Date: 2022/11/30
@@ -91,7 +93,12 @@
                 String category = request.getParameter("category");
                 UserDao userDao = new UserDaoImpl();
                 ArticleDao articleDao = new ArticleDaoImpl();
-                List<Article> articles = community != null ? articleDao.selectAll(Integer.parseInt(community), 0, null) : articleDao.selectAll(0, 0, null);
+                Map<String,Object> map=new HashMap<>();
+                map.put("id",Integer.parseInt(community));
+                map.put("hidden",1);
+                Map<String,Object> map2=new HashMap<>();
+                map2.put("hidden",1);
+                List<Article> articles = community != null ? articleDao.selectAll(map) : articleDao.selectAll(map2);
                 if (category != null) articles = categoryDao.getCategoryArticle(Integer.parseInt(category));
                 for (Article article : articles) {%>
             <div>

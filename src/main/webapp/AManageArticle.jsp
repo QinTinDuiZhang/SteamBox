@@ -1,6 +1,10 @@
 <%@ page import="com.niuma.impl.ArticleDaoImpl" %>
 <%@ page import="com.niuma.model.Article" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="com.niuma.impl.UserDaoImpl" %>
+<%@ page import="com.niuma.model.User" %>
+<%@ page import="java.util.*" %><%--
   Created by IntelliJ IDEA.
   User: 41150
   Date: 2022-12-10
@@ -38,7 +42,9 @@
 <body>
 <%
     ArticleDaoImpl articleDao = new ArticleDaoImpl();
-    List<Article> articles = articleDao.selectAll(0, 0, null);
+    Map<String,Object> map=new HashMap<>();
+    map.put("limit",5);
+    List<Article> articles = articleDao.selectAll(map);
 %>
 <form action="" id="listform" method="post">
     <div class="panel admin-panel">
@@ -66,41 +72,45 @@
                 <th width="10%">发布时间</th>
                 <th>发布者</th>
                 <th>审核员</th>
-                <th>所属分类</th>
                 <th width="310">操作</th>
             </tr>
             <volist id="vo" name="list">
-                <%for (Article article : articles) {%>
+                <%for (int i=0;i<articles.size();i++) {%>
                 <tr>
-                    <td><%=article.isHidden()%>
+                    <td style="color:<%=!articles.get(i).isHidden() ? "red":"#00aa00"%>"><%=articles.get(i).isHidden()%>
                     </td>
-                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;"><%=article.getId()%>
+                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;"><%=articles.get(i).getId()%>
                     </th>
-                    <td><%=article.getTitle()%>
+                    <td><%=articles.get(i).getTitle()%>
                     </td>
-                    <td width="10%"><img alt="" height="50" src="img/cover/<%=article.getImg()%>" width="70"/></td>
-                    <td><%=article.getPubDate()%>
-                    </td>
-                    <td><font color="#00CC99"><%=article.getCreator()%>
+                    <td width="10%"><img alt="" height="50" src="img/cover/<%=articles.get(i).getImg()%>" width="70"/></td>
+                    <%
+                        String dateStr = String.valueOf(articles.get(i).getPubDate());
+                        DateFormat cstFormate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        DateFormat gmtFormate = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+                        Date dateTime = gmtFormate.parse(dateStr);
+                        String dateString = cstFormate.format(dateTime);
+                    %>
+                    <td><%=dateString%></td>
+                    <%
+                        UserDaoImpl userDao=new UserDaoImpl();
+                        User user = userDao.getUserByID(articles.get(i).getCreator());
+                    %>
+                    <td><font color="#00bfff"><%=user.getNickName()%>
                     </font></td>
-                    <td><%=article.getAuditor()%>
-                    </td>
-                    <td><%=article.getCommunityId()%>
+                    <td><%=articles.get(i).getAuditor()%>
                     </td>
                     <td>
-                        <div class="button-group"><a class="button border-main" href=""><span
-                                class="icon-edit"></span> 通过</a> <a class="button border-red"
-                                                                      href="javascript:void(0)"
-                                                                      onclick="return del(1,1,1)"><span
-                                class="icon-trash-o"></span> 退回</a></div>
+                        <div class="button-group">
+                            <a class="button border-main" onclick="setLook(<%=articles.get(i).getId()%>)"><span
+                                class="icon-edit"></span> 通过</a>
+                            <a class="button border-red" onclick="setUnLook(<%=articles.get(i).getId()%>)"><span
+                                class="icon-trash-o"></span> 退回</a>
+                        </div>
                     </td>
                 </tr>
                 <%}%>
                 <tr>
-                    <td style="text-align:left; padding:19px 0;padding-left:20px;"><input id="checkall"
-                                                                                          type="checkbox"/>
-                        全选
-                    </td>
                     <td colspan="7" style="text-align:left;padding-left:20px;"><a class="button border-red icon-trash-o"
                                                                                   href="javascript:void(0)"
                                                                                   onclick="DelSelect()"
@@ -110,8 +120,7 @@
                 </tr>
                 <tr>
                     <td colspan="8">
-                        <div class="pagelist"><a href="">上一页</a> <span class="current">1</span><a href="">2</a><a
-                                href="">3</a><a href="">下一页</a><a href="">尾页</a></div>
+                        <div class="pagelist"><a href="">上一页</a><a href="">下一页</a><a href="">尾页</a></div>
                     </td>
                 </tr>
             </volist>
@@ -125,10 +134,14 @@
 
     }
 
-    //单个删除
-    function del(id, mid, iscid) {
-        if (confirm("您确定要删除吗?")) {
-
+    function setLook(ArticleId) {
+        if(confirm("您确定要通过吗?")){
+            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Article/setArticleLook?articleId=" + ArticleId + "&hidden=1" );
+        }
+    }
+    function setUnLook(ArticleId) {
+        if (confirm("您确定要禁用吗?")) {
+            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Article/setArticleLook?articleId=" + ArticleId + "&hidden=0" );
         }
     }
 

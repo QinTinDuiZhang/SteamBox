@@ -4,6 +4,7 @@ import com.niuma.model.Article;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface ArticleDao {
     /**
@@ -30,8 +31,10 @@ public interface ArticleDao {
      */
     boolean deleteArticle(int id);
 
-    List<Article> selectAll(int id, int aId, Date putDate);
+    List<Article> selectAll(Map<String,Object> map);
 
     int newLink(int aid, int cid);
+
+    boolean setArticleLook(int id,int hidden);
 
 }
