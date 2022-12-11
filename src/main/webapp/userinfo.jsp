@@ -98,7 +98,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="mobile" id="mobile" placeholder="请输入手机号码"
                                    value="<%= user.getMobile()%>">
-                            <p class="alert alert-danger" style="display: none">请填如正确的手机号</p>
+                            <p class="alert alert-danger" style="display: none">请填写正确的手机号</p>
                         </div>
                     </div>
                     <div class="form-group">
