@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet("/Article/*")
@@ -70,5 +72,30 @@ public class ArticleServlet extends BaseServlet {
             System.out.println("执行成功");
         }
         response.sendRedirect(request.getContextPath() + "/AManageArticle.jsp");
+    }
+    public void TurnPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
+        String pg = request.getParameter("page");
+        String status = request.getParameter("status");
+        int page=Integer.parseInt(pg);
+        ArticleDaoImpl articleDao = new ArticleDaoImpl();
+        Map<String,Object> map=new HashMap<>();
+        if(status.equals("up")){
+            page=page-5;
+            map.put("limit",page);
+            List<Article> articles = articleDao.selectAll(map);
+            HttpSession session = request.getSession();
+            session.setAttribute("articles",articles);
+            session.setAttribute("limit",page);
+        }else if(status.equals("down")){
+            page=page+5;
+            map.put("limit",page);
+            List<Article> articles = articleDao.selectAll(map);
+            HttpSession session = request.getSession();
+            session.setAttribute("articles",articles);
+            session.setAttribute("limit",page);
+        }
+        response.sendRedirect(request.getContextPath() + "/AManageArticle.jsp");
+
     }
 }

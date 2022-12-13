@@ -22,4 +22,5 @@ public interface ArticleMapper {
 
     int newLink(@Param("articleId") int aid, @Param("categoryId") int id);
     boolean setArticleLook(int id, int hidden);
+    int getArticleCounts();
 }

@@ -55,4 +55,8 @@
         update steambox.article
         set hidden=#{param2} where id=#{param1}
     </update>
+
+    <select id="getArticleCounts" resultType="int">
+        select count(*) from steambox.article
+    </select>
 </mapper>

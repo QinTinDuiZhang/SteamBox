@@ -37,4 +37,6 @@ public interface ArticleDao {
 
     boolean setArticleLook(int id,int hidden);
 
+    int getArticleCounts();
+
 }

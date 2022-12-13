@@ -41,10 +41,19 @@
 </head>
 <body>
 <%
+    List<Article> articles=null;
+    articles = (List<Article>) session.getAttribute("articles");
+    Object limit = session.getAttribute("limit");
     ArticleDaoImpl articleDao = new ArticleDaoImpl();
     Map<String,Object> map=new HashMap<>();
-    map.put("limit",5);
-    List<Article> articles = articleDao.selectAll(map);
+    if(articles==null &&limit==null){
+        map.put("limit",0);
+        articles = articleDao.selectAll(map);
+    }
+    if(limit!=null){
+        int a= (int) limit;
+        map.put("limit",a);
+    }
 %>
 <form action="" id="listform" method="post">
     <div class="panel admin-panel">
@@ -65,7 +74,8 @@
         </div>
         <table class="table table-hover text-center">
             <tr>
-                <th>发布状态</th>
+                <th>可见状态</th>
+                <th>审核状态</th>
                 <th style="text-align:left; padding-left:20px;" width="100">ID</th>
                 <th width="20%">标题</th>
                 <th>图片</th>
@@ -73,6 +83,7 @@
                 <th>发布者</th>
                 <th>审核员</th>
                 <th width="310">操作</th>
+                <th>操作2</th>
             </tr>
             <volist id="vo" name="list">
                 <%for (int i=0;i<articles.size();i++) {%>
@@ -102,10 +113,13 @@
                     </td>
                     <td>
                         <div class="button-group">
+                            <%if(!articles.get(i).isHidden()){%>
                             <a class="button border-main" onclick="setLook(<%=articles.get(i).getId()%>)"><span
-                                class="icon-edit"></span> 通过</a>
+                                class="icon-edit"></span> 启用</a>
+                            <%}else{%>
                             <a class="button border-red" onclick="setUnLook(<%=articles.get(i).getId()%>)"><span
-                                class="icon-trash-o"></span> 退回</a>
+                                class="icon-trash-o"></span> 禁用</a>
+                            <%}%>
                         </div>
                     </td>
                 </tr>
@@ -120,7 +134,8 @@
                 </tr>
                 <tr>
                     <td colspan="8">
-                        <div class="pagelist"><a href="">上一页</a><a href="">下一页</a><a href="">尾页</a></div>
+                        <div class="pagelist"><a id="upPage" href="Article/TurnPage?page=<%=map.get("limit")%>&status=up">上一页</a>
+                            <a id="downPage" href="Article/TurnPage?page=<%=map.get("limit")%>&status=down">下一页</a><a href="">尾页</a></div>
                     </td>
                 </tr>
             </volist>
@@ -128,6 +143,25 @@
     </div>
 </form>
 <script type="text/javascript">
+    var upPage=document.getElementById("upPage");
+    var downPage=document.getElementById("downPage");
+    window.onload=function () {
+        <%
+            ArticleDaoImpl articleDao1=new ArticleDaoImpl();
+            int articleCounts = articleDao1.getArticleCounts();
+            int yu=articleCounts % 5;
+            int pg=articleCounts / 5;
+        %>
+        if(0===<%=map.get("limit")%>){
+            upPage.style.display='none';
+        }
+        if(<%=yu==0%> && <%=(pg-1)*5%>==<%=map.get("limit")%>){
+            downPage.style.display='none';
+        }
+        if(<%=yu!=0%> && <%=pg*5%>==<%=map.get("limit")%>){
+            downPage.style.display='none';
+        }
+    }
 
     //搜索
     function changesearch() {
