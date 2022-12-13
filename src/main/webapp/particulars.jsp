@@ -137,7 +137,7 @@
         </div>
     </div>
 </div>
-<jsp:include page="common/tail.jsp" flush="true"></jsp:include>
+<jsp:include page="common/footer.jsp" flush="true"></jsp:include>
 <script>
     const toolbarOptions = {
         container: [
