@@ -42,14 +42,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getSingleOne(String email, String email1) {
+    public User getSingleOne(String key, String value) {
         return null;
     }
 
-    public User getUserByID(int id) {
+    public User getUserByID(int id,String email) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        return userMapper.getUserByID(id);
+        return userMapper.getUserByID(id,email);
     }
 
     @Override

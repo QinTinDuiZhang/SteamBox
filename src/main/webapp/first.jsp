@@ -94,7 +94,8 @@
                 UserDao userDao = new UserDaoImpl();
                 ArticleDao articleDao = new ArticleDaoImpl();
                 Map<String,Object> map=new HashMap<>();
-                map.put("id",Integer.parseInt(community));
+                if (community!= null)
+                    map.put("id",Integer.parseInt(community));
                 map.put("hidden",1);
                 Map<String,Object> map2=new HashMap<>();
                 map2.put("hidden",1);
@@ -114,7 +115,7 @@
                         <div class="col-xs-7">
                             <div class="info">
                                 <span class="avatar"><img src="img/game.png" alt=""></span>
-                                <span><%= userDao.getUserByID(article.getCreator()).getNickName() %></span>•
+                                <span><%= userDao.getUserByID(article.getCreator(),null).getNickName() %></span>•
                                 <span>25k评论</span>•
                                 <span><%= TimeFormat.getInterval(article.getPubDate())%></span>
                             </div>

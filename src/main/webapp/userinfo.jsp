@@ -78,7 +78,8 @@
                             <input type="text" class="form-control" name="email" id="email"
                                    value="<%= user.getEmail()%>" placeholder="请输入电子邮件" onblur="emailOnblur(event)">
                             <p class="alert alert-danger" style="display: none" id="existing">此邮箱已绑定其他账号</p>
-                            <p class="alert alert-warning" disabled="true" style="display: none" id="noBrief">暂时只支持QQ邮箱</p>
+                            <p class="alert alert-warning" disabled="true" style="display: none" id="noBrief">
+                                暂时只支持QQ邮箱</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -87,7 +88,9 @@
                             <div class="input-group">
                                 <input type="text" class="form-control" id="emailE" name="emailE">
                                 <div class="input-group-btn" id="getEmail">
-                                    <div class="btn btn-default" style="background-color: #d24c4c" onclick="getEmail()">获取验证码</div>
+                                    <div class="btn btn-default" style="background-color: #d24c4c" onclick="getEmail()">
+                                        获取验证码
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -97,8 +100,8 @@
                         <label for="mobile" class="col-sm-2 control-label">手机号码：</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="mobile" id="mobile" placeholder="请输入手机号码"
-                                   value="<%= user.getMobile()%>">
-                            <p class="alert alert-danger" style="display: none">请填如正确的手机号</p>
+                                   value="<%= user.getMobile()%>" oninput="phoneBlur()">
+                            <p class="alert alert-danger" style="display: none" id="ph">请填如正确的手机号</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -112,10 +115,8 @@
                                    accept="image/jpg,image/jpeg,image/png" onchange="upload">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" disabled="">提交</button>
-                        </div>
+                    <div class="form-group d-grid col-10">
+                        <button class="btn btn-primary" type="submit" id="sub">提交</button>
                     </div>
                 </form>
             </div>
@@ -133,6 +134,9 @@
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
+
+    window.onload = Cont;
+
     $().ready(function () {
         // 设置日期选择器
         $('#birthday').datepicker({
@@ -142,6 +146,9 @@
         });
     });
 
+    let sub = document.getElementById("sub");
+    let emailCont = true;
+    let phoneCont = true;
 
     function upload(event) {
         document.getElementById("slt");
@@ -164,8 +171,9 @@
         return url;
     }
 
-    function getEmail(){
-        axios.get('${pageContext.request.contextPath}/User/GetEmail?email=<%= user.getEmail()%>')
+    function getEmail() {
+        let email = document.getElementById("email");
+        axios.get('${pageContext.request.contextPath}/User/GetEmail?email=' + email.value)
             .then(function (response) {
                 // 处理成功情况
                 console.log(response)
@@ -176,23 +184,31 @@
             });
     }
 
-    function emailOnblur(e){
+    function emailOnblur(e) {
+        let email = document.getElementById("email");
         let existing = document.getElementById("existing");
         let noBrief = document.getElementById("noBrief");
         let reg = /^[1-9]([0-9]{4,10})@qq\.com$/;
         if (reg.test(e.target.value)) {
-            this.cont = 0;
+            //邮箱格式 true
             noBrief.style.display = "none";
             existing.style.display = "none";
         } else {
+            //邮箱格式 false
+            emailCont = false;
             noBrief.style.display = "";
             return;
         }
-        axios.get('${pageContext.request.contextPath}/User/SelectEmail?email=<%= user.getEmail()%>')
+        axios.get('${pageContext.request.contextPath}/User/SelectEmail?email=' + email.value)
             .then(function (response) {
                 // 处理成功情况
-                alert(response.data)
-                location.reload([true])
+                if (response.data) {
+                    existing.style.display = "";
+                    emailCont = false;
+                    return;
+                }
+                emailCont = true;
+                existing.style.display = "none";
             })
             .catch(function (error) {
                 // 处理错误情况
@@ -201,19 +217,23 @@
         Cont();
     }
 
-    function phoneBlur(){
-        if (this.mobile == null || this.mobile === ""){
-            this.phoneCont = true;
-        }else {
-            let mobile = /^1[3456789]\d{9}$/;
-            this.phoneCont = mobile.test(this.mobile);
-        }
+    function phoneBlur() {
+        console.log("11111111111")
+        let ph = document.getElementById("ph");
+        let mobile = document.getElementById("mobile");
+        let mobileEnter = /^1[3456789]\d{9}$/;
+        phoneCont = mobileEnter.test(mobile.value);
+        phoneCont ? ph.style.display = "none" : ph.style.display = ""
         Cont();
     }
 
-    function Cont(){
-        this.AllCont = !(this.emailflog && this.phoneCont);
-        this.birthDay._value = this.dataset.value;
+    function Cont() {
+        console.log(phoneCont + " " + emailCont)
+        if (phoneCont && emailCont) {
+            sub.disabled = false;
+        }else {
+            sub.disabled = true;
+        }
     }
 </script>
 </body>

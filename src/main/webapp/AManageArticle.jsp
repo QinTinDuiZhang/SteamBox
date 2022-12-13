@@ -94,7 +94,7 @@
                     <td><%=dateString%></td>
                     <%
                         UserDaoImpl userDao=new UserDaoImpl();
-                        User user = userDao.getUserByID(articles.get(i).getCreator());
+                        User user = userDao.getUserByID(articles.get(i).getCreator(),null);
                     %>
                     <td><font color="#00bfff"><%=user.getNickName()%>
                     </font></td>
