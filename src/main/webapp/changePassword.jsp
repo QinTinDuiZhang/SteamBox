@@ -71,7 +71,7 @@
         </div>
     </div>
 </div>
-<jsp:include page="common/tail.jsp" flush="true"></jsp:include>
+<jsp:include page="common/footer.jsp" flush="true"></jsp:include>
 <script src="js/vue.js"></script>
 <script src="js/lmd5.js"></script>
 <script>

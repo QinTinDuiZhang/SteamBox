@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -32,13 +33,12 @@ public class UserServlet extends BaseServlet {
     public void SelectEmail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         UserDaoImpl userDao = new UserDaoImpl();
-        User user = userDao.getSingleOne("email", email);
+        User user = userDao.getUserByID(0, email);
         if (user != null) {
             HttpSession session = request.getSession();
             User user1 = (User) session.getAttribute("user");
-            if (user.getId() != user1.getId()) {
+            if (user.getId() != user1.getId())
                 response.getWriter().write("true");
-            }
         }
     }
 
@@ -85,15 +85,17 @@ public class UserServlet extends BaseServlet {
                 session.setAttribute("authCodeErr", "验证码错误，请重试");
                 response.sendRedirect(request.getContextPath() + "/userinfo.jsp");
             }
-        }
+        }else return;
         userT.setEmail(request.getParameter("email"));
         userT.setMobile(request.getParameter("mobile"));
         userT.setAccount(request.getParameter("account"));
         UserDaoImpl userDao = new UserDaoImpl();
         if (userDao.updateUser(userT)) {
             session.setAttribute("user", userT);
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            session.removeAttribute("authCode");
+            request.getRequestDispatcher(request.getContextPath() + "/first.jsp").forward(request, response);
         } else {
+            session.removeAttribute("authCode");
             response.sendRedirect(request.getContextPath() + "/userinfo.jsp");
         }
     }

@@ -33,7 +33,7 @@
 
     <update id="updateUser">
         update steambox.user
-        set nickName=#{nickname},
+        set nickname=#{nickName},
             photo=#{photo},
             birthday=#{birthday},
             email=#{email},
@@ -62,7 +62,14 @@
     <select id="getUserByID" resultType="com.niuma.model.User">
         select *
         from steambox.user
-        where user.id = #{id};
+        <where>
+            <if test="id!=0">
+                and user.id = #{id}
+            </if>
+            <if test="email!=null and email!=''">
+                and user.email = #{email}
+            </if>
+        </where>
     </select>
 
 </mapper>

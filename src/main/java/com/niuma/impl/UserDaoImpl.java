@@ -23,16 +23,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean signup(User user) {
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("account", user.getAccount());
-//        map.put("password", user.getPassword());
-//        map.put("nickname", user.getNickName());
-//        map.put("photo", user.getPhoto());
-//        map.put("birthday", new Date(user.getBirthday().getTime()));
-//        map.put("email", user.getEmail());
-//        map.put("mobile", user.getMobile());
-//        map.put("regdate", new Timestamp(new java.util.Date().getTime()));
-//        map.put("forbidden", false);
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         return userMapper.addUser(user);
@@ -52,14 +42,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getSingleOne(String email, String email1) {
+    public User getSingleOne(String key, String value) {
         return null;
     }
 
-    public User getUserByID(int id) {
+    public User getUserByID(int id,String email) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        return userMapper.getUserByID(id);
+        return userMapper.getUserByID(id,email);
     }
 
     @Override
