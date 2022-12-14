@@ -94,7 +94,8 @@
                 UserDao userDao = new UserDaoImpl();
                 ArticleDao articleDao = new ArticleDaoImpl();
                 Map<String,Object> map=new HashMap<>();
-                map.put("id",Integer.parseInt(community));
+                if (community!=null)
+                    map.put("id",Integer.parseInt(community));
                 map.put("hidden",1);
                 Map<String,Object> map2=new HashMap<>();
                 map2.put("hidden",1);
