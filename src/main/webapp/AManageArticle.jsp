@@ -57,7 +57,7 @@
 %>
 <form action="" id="listform" method="post">
     <div class="panel admin-panel">
-        <div class="panel-head"><strong class="icon-reorder"> 帖子列表</strong> <a href=""
+        <div class="panel-head"><strong class="icon-reorder"> 已审核帖子列表</strong> <a href=""
                                                                                    style="float:right; display:none;">添加字段</a>
         </div>
         <div class="padding border-bottom">
@@ -75,15 +75,13 @@
         <table class="table table-hover text-center">
             <tr>
                 <th>可见状态</th>
-                <th>审核状态</th>
                 <th style="text-align:left; padding-left:20px;" width="100">ID</th>
                 <th width="20%">标题</th>
                 <th>图片</th>
                 <th width="10%">发布时间</th>
                 <th>发布者</th>
                 <th>审核员</th>
-                <th width="310">操作</th>
-                <th>操作2</th>
+                <th width="10%">操作</th>
             </tr>
             <volist id="vo" name="list">
                 <%for (int i=0;i<articles.size();i++) {%>
@@ -210,19 +208,7 @@
 
     //批量排序
     function sorts() {
-        var Checkbox = false;
-        $("input[name='id[]']").each(function () {
-            if (this.checked == true) {
-                Checkbox = true;
-            }
-        });
-        if (Checkbox) {
-
-            $("#listform").submit();
-        } else {
-            alert("请选择要操作的内容!");
-            return false;
-        }
+        window.location.replace("http://localhost:8080/SteamBox_war_exploded/AManageExamine.jsp" );
     }
 
 

@@ -39,4 +39,7 @@ public interface ArticleDao {
 
     int getArticleCounts();
 
+    boolean setArticleThrough(int auditor,int articleId);
+    boolean setArticleBack(int articleId);
+
 }

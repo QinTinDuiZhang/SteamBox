@@ -59,4 +59,12 @@
     <select id="getArticleCounts" resultType="int">
         select count(*) from steambox.article
     </select>
+
+    <update id="setArticleThrough">
+        update steambox.article set auditor=#{param1} where id=#{param2}
+    </update>
+
+    <update id="setArticleBack">
+        update steambox.article set back=0 where id=#{param1}
+    </update>
 </mapper>

@@ -13,8 +13,9 @@ public class Article {
     private int auditor;            //审核员ID
     private int communityId;        //发帖的社区ID
     private boolean hidden;         //是否可见
+    private boolean back;           //是否通过
 
-    public Article(int id, String title, String img, String content, Date pubDate, int clickCount, int creator, int auditor, int communityId, boolean hidden) {
+    public Article(int id, String title, String img, String content, Date pubDate, int clickCount, int creator, int auditor, int communityId, boolean hidden, boolean back) {
         this.id = id;
         this.title = title;
         this.img = img;
@@ -25,6 +26,7 @@ public class Article {
         this.auditor = auditor;
         this.communityId = communityId;
         this.hidden = hidden;
+        this.back = back;
     }
 
     public Article() {
@@ -110,6 +112,14 @@ public class Article {
         this.hidden = hidden;
     }
 
+    public boolean isBack() {
+        return back;
+    }
+
+    public void setBack(boolean back) {
+        this.back = back;
+    }
+
     @Override
     public String toString() {
         return "Article{" +
@@ -123,6 +133,7 @@ public class Article {
                 ", auditor=" + auditor +
                 ", communityId=" + communityId +
                 ", hidden=" + hidden +
+                ", back=" + back +
                 '}';
     }
 }
