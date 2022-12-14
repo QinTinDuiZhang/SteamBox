@@ -16,4 +16,6 @@ public interface CategoryMapper {
     Boolean setClassLook(int id, int hidden);
 
     Boolean addClass(String name);
+
+    List<Category> getCategoryByUserId(int uId);
 }

@@ -1,4 +1,14 @@
-<%--
+<%@ page import="com.niuma.dao.CategoryDao" %>
+<%@ page import="com.niuma.impl.CategoryDaoImpl" %>
+<%@ page import="com.niuma.model.User" %>
+<%@ page import="com.niuma.model.Category" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.niuma.model.Article" %>
+<%@ page import="com.niuma.dao.AdminDao" %>
+<%@ page import="com.niuma.dao.ArticleDao" %>
+<%@ page import="com.niuma.impl.ArticleDaoImpl" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.Collections" %><%--
   Created by IntelliJ IDEA.
   User: 23686
   Date: 2022/12/7
@@ -25,13 +35,51 @@
             text-decoration: none;
             font-family: Alimama_ShuHeiTi_Bold, serif;
         }
+
     </style>
 </head>
 <body>
+<%
+    ArticleDao articleDao = new ArticleDaoImpl();
+    User user;
+    int userId = 0;
+    if(request.getParameter("userId")!= null)
+        userId = Integer.parseInt(request.getParameter("userId"));
+    if (userId == 0){
+        user = (User) session.getAttribute("user");
+        userId = user.getId();
+    }
+    List<Article> articles = articleDao.getUserArticle(userId);
+    if ("1".equals(request.getParameter("sort"))) {
+        class PersonComparator implements Comparator<Article> {
+            @Override
+            public int compare(Article o1, Article o2) {
+                return o1.getPubDate().compareTo(o2.getPubDate());
+            }
+        }
+        articles.sort(new PersonComparator());
+    }
+    CategoryDao categoryDao =new CategoryDaoImpl();
+    List<Category> categories = categoryDao.getCategoryUserId(userId);
+%>
+<div class="container ">
+    <div class="row">
+        <div class="col-10 container" style="color: #ececec;; margin-top: 5%">
+            <h2>Ta的投稿</h2>
+            <div>
+                <a href="${pageContext.request.contextPath}/manuscript.jsp"><span>按时间</span></a>
+                <a href="${pageContext.request.contextPath}/manuscript.jsp?sort=1"><span>按评论量</span></a>
+            </div>
+            <div>
+                <span>全部</span>
+                <%for (Category category :categories){%>
+                <span><%= category.getName()%></span>
+                <%}%>
+            </div>
+        </div>
+        <div class="col-12">
 
-<div class="row">
-    <div class="col-10">
-        <h1> 主页</h1>
+        </div>
     </div>
 </div>
 

@@ -31,7 +31,7 @@
                 <input type="password" id="Spassword" placeholder="密码">
                 <input type="password" id="enterPassword" placeholder="确认密码">
                 <p>
-                    <input type="email" placeholder="邮箱" style="width: 172px;">
+                    <input type="email" placeholder="邮箱" style="width: 172px;" id="email" onchange="getEmail()">
                     <button type="button" style="width: 50px; height: 40px;">
                         <i class="fa-sharp fa-solid fa-paper-plane"></i>
                     </button>
@@ -95,6 +95,69 @@
         register_box.classList.add('hidden');
         login_box.classList.remove('hidden');
     })
+
+    function getEmail() {
+        let email = document.getElementById("email");
+        axios.get('${pageContext.request.contextPath}/User/GetEmail?email=' + email.value)
+            .then(function (response) {
+                // 处理成功情况
+                console.log(response)
+            })
+            .catch(function (error) {
+                // 处理错误情况
+                console.log(error);
+            });
+    }
+
+    function newEnter() {
+        flogEnter = en.value === n.value;
+        enterP.style.display = flogEnter ? "none" : "";
+        Cont();
+    }
+
+    function news() {
+        flogNew = /^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9 _]{8,13}$/.test(n.value);
+        newP.style.display = flogNew ? "none" : "";
+        newEnter();
+        Cont();
+    }
+
+    function emailOnblur(e) {
+        let email = document.getElementById("email");
+        let existing = document.getElementById("existing");
+        let noBrief = document.getElementById("noBrief");
+        let reg = /^[1-9]([0-9]{4,10})@qq\.com$/;
+        if (reg.test(e.target.value)) {
+            //邮箱格式 true
+            noBrief.style.display = "none";
+            existing.style.display = "none";
+        } else {
+            //邮箱格式 false
+            emailCont = false;
+            noBrief.style.display = "";
+            return;
+        }
+        axios.get('${pageContext.request.contextPath}/User/SelectEmail?email=' + email.value)
+            .then(function (response) {
+                // 处理成功情况
+                if (response.data) {
+                    existing.style.display = "";
+                    emailCont = false;
+                    return;
+                }
+                emailCont = true;
+                existing.style.display = "none";
+            })
+            .catch(function (error) {
+                // 处理错误情况
+                console.log(error);
+            });
+        Cont();
+    }
+
+    function Cont() {
+        sub.disabled = !(passCont && emailCont && enterPassCont);
+    }
 </script>
 </body>
 

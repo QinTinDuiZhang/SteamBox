@@ -25,6 +25,10 @@ public interface ArticleMapper {
     boolean setArticleLook(int id, int hidden);
 
     int getArticleCounts();
+
     boolean setArticleThrough(int auditorId,int articleId);
+
     boolean setArticleBack(int articleId);
+
+    List<Article> getUserArticle(int uId);
 }

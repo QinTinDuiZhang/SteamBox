@@ -76,7 +76,7 @@
                         <label for="email" class="col-sm-2 control-label">电子邮件：</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="email" id="email"
-                                   value="<%= user.getEmail()%>" placeholder="请输入电子邮件" onblur="emailOnblur(event)">
+                                   value="<%= user.getEmail()%>" placeholder="请输入电子邮件" >
                             <p class="alert alert-danger" style="display: none" id="existing">此邮箱已绑定其他账号</p>
                             <p class="alert alert-warning" disabled="true" style="display: none" id="noBrief">
                                 暂时只支持QQ邮箱</p>
@@ -112,7 +112,7 @@
                         </label>
                         <div class="col-sm-10">
                             <input type="file" class="form-control" name="photo" id="photo" placeholder="请选择头像照片"
-                                   accept="image/jpg,image/jpeg,image/png" onchange="upload">
+                                   accept="image/jpg,image/jpeg,image/png">
                         </div>
                     </div>
                     <div class="form-group d-grid col-10">
@@ -123,7 +123,7 @@
         </div>
     </div>
 </div>
-<jsp:include page="common/tail.jsp" flush="true"></jsp:include>
+<jsp:include page="common/footer.jsp" flush="true"></jsp:include>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/jquery.validate.min.js"></script>
@@ -135,7 +135,13 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
 
-    window.onload = Cont;
+    window.onload = function (){
+        Cont();
+        let photo = document.getElementById("photo");
+        let email = document.getElementById("email");
+        email.addEventListener("blur" ,emailOnblur)
+        photo.addEventListener("change",upload)
+    } ;
 
     $().ready(function () {
         // 设置日期选择器
@@ -150,24 +156,17 @@
     let emailCont = true;
     let phoneCont = true;
 
-    function upload(event) {
-        document.getElementById("slt");
-        let files = event.target.files[0];
-        this.url = this.getObjectUrl(files);
+    function upload(e) {
+        let slt = document.getElementById(`slt`);
+        let files = e.target.files[0];
+        slt.setAttribute('src', getObjectUrl(files));
     }
 
     function getObjectUrl(file) {
         let url = null;
-        if (window.createObjectURL !== undefined) {
-            // basic
-            url = window.createObjectURL(file);
-        } else if (window.webkitURL !== undefined) {
-            // webkit or chrome
-            url = window.webkitURL.createObjectURL(file);
-        } else if (window.URL !== undefined) {
-            // mozilla(firefox)
-            url = window.URL.createObjectURL(file);
-        }
+        if (window.createObjectURL !== undefined) url = window.createObjectURL(file);
+        else if (window.webkitURL !== undefined) url = window.webkitURL.createObjectURL(file);
+        else if (window.URL !== undefined) url = window.URL.createObjectURL(file);
         return url;
     }
 
@@ -185,6 +184,7 @@
     }
 
     function emailOnblur(e) {
+        console.log(e)
         let email = document.getElementById("email");
         let existing = document.getElementById("existing");
         let noBrief = document.getElementById("noBrief");
@@ -196,6 +196,7 @@
         } else {
             //邮箱格式 false
             emailCont = false;
+            existing.style.display = "none";
             noBrief.style.display = "";
             return;
         }
@@ -218,7 +219,6 @@
     }
 
     function phoneBlur() {
-        console.log("11111111111")
         let ph = document.getElementById("ph");
         let mobile = document.getElementById("mobile");
         let mobileEnter = /^1[3456789]\d{9}$/;
@@ -228,7 +228,6 @@
     }
 
     function Cont() {
-        console.log(phoneCont + " " + emailCont)
         sub.disabled = !(phoneCont && emailCont);
     }
 </script>

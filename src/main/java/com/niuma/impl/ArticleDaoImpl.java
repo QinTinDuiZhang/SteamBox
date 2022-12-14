@@ -74,4 +74,11 @@ public class ArticleDaoImpl implements ArticleDao {
         ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
         return postMapper.setArticleBack(articleId);
     }
+
+    @Override
+    public List<Article> getUserArticle(int uId) {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
+        return postMapper.getUserArticle(uId);
+    }
 }

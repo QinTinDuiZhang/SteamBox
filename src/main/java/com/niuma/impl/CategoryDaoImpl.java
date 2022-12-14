@@ -44,4 +44,11 @@ public class CategoryDaoImpl implements CategoryDao {
         CategoryMapper categoryMapper = sqlSession.getMapper(CategoryMapper.class);
         return categoryMapper.addClass(className);
     }
+
+    @Override
+    public List<Category> getCategoryUserId(int uId) {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        CategoryMapper categoryMapper = sqlSession.getMapper(CategoryMapper.class);
+        return categoryMapper.getCategoryByUserId(uId);
+    }
 }

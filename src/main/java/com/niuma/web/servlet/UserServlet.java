@@ -85,7 +85,8 @@ public class UserServlet extends BaseServlet {
                 session.setAttribute("authCodeErr", "验证码错误，请重试");
                 response.sendRedirect(request.getContextPath() + "/userinfo.jsp");
             }
-        }else return;
+        }else
+            response.sendRedirect(request.getContextPath() + "/userinfo.jsp");
         userT.setEmail(request.getParameter("email"));
         userT.setMobile(request.getParameter("mobile"));
         userT.setAccount(request.getParameter("account"));
