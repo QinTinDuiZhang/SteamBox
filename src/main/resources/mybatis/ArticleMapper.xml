@@ -40,6 +40,15 @@
             <if test="pubDate != null">
                 and pubdate = #{pubDate}
             </if>
+            <if test="auditor != null">
+                <if test="auditor == -1">
+                    AND auditor IS NULL
+                </if>
+                <if test="auditor == 0">
+                    and IFNULL(auditor,'')
+                </if>
+            </if>
+
         </where>
         <if test="limit!=null">
             limit #{limit},5
@@ -54,5 +63,17 @@
     <update id="setArticleLook">
         update steambox.article
         set hidden=#{param2} where id=#{param1}
+    </update>
+
+    <select id="getArticleCounts" resultType="int">
+        select count(*) from steambox.article
+    </select>
+
+    <update id="setArticleThrough">
+        update steambox.article set auditor=#{param1} where id=#{param2}
+    </update>
+
+    <update id="setArticleBack">
+        update steambox.article set back=0 where id=#{param1}
     </update>
 </mapper>

@@ -27,7 +27,7 @@ CREATE TABLE `admin`  (
   `password` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin
@@ -48,7 +48,7 @@ CREATE TABLE `article`  (
   `creator` int(0) NOT NULL,
   `auditor` int(0) NOT NULL,
   `community_id` int(0) NULL DEFAULT NULL,
-  `hidden` tinyint(1) NULL DEFAULT NULL,
+  `hidden` tinyint(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `creator`(`creator`) USING BTREE,
   INDEX `auditor`(`auditor`) USING BTREE,
@@ -56,7 +56,7 @@ CREATE TABLE `article`  (
   CONSTRAINT `article_ibfk_2` FOREIGN KEY (`creator`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `article_ibfk_3` FOREIGN KEY (`auditor`) REFERENCES `admin` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `article_ibfk_4` FOREIGN KEY (`community_id`) REFERENCES `community` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of article
@@ -136,21 +136,22 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `hidden` tinyint(0) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES (1, '单人');
-INSERT INTO `category` VALUES (2, '多人');
-INSERT INTO `category` VALUES (3, '策略');
-INSERT INTO `category` VALUES (4, '剧情');
-INSERT INTO `category` VALUES (5, '动作');
-INSERT INTO `category` VALUES (6, '冒险');
-INSERT INTO `category` VALUES (7, '独立');
-INSERT INTO `category` VALUES (8, '解谜');
-INSERT INTO `category` VALUES (9, '类魂');
+INSERT INTO `category` VALUES (1, '单人',1);
+INSERT INTO `category` VALUES (2, '多人',1);
+INSERT INTO `category` VALUES (3, '策略',1);
+INSERT INTO `category` VALUES (4, '剧情',1);
+INSERT INTO `category` VALUES (5, '动作',1);
+INSERT INTO `category` VALUES (6, '冒险',1);
+INSERT INTO `category` VALUES (7, '独立',1);
+INSERT INTO `category` VALUES (8, '解谜',1);
+INSERT INTO `category` VALUES (9, '类魂',1);
 
 -- ----------------------------
 -- Table structure for comment
@@ -158,7 +159,7 @@ INSERT INTO `category` VALUES (9, '类魂');
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `content` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `content` varchar(16000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `pubdate` datetime(0) NOT NULL,
   `ipaddress` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `hidden` tinyint(1) NULL DEFAULT NULL,
@@ -174,7 +175,7 @@ CREATE TABLE `comment`  (
   CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`reply_for_id`) REFERENCES `comment` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `comment_ibfk_4` FOREIGN KEY (`creator`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of comment
@@ -182,6 +183,11 @@ CREATE TABLE `comment`  (
 INSERT INTO `comment` VALUES (1, '这游戏就是开放世界的艺术品', '2021-12-16 22:07:41', '0:0:0:0:0:0:0:1', 0, 11, 1, NULL, 1, 1);
 INSERT INTO `comment` VALUES (2, '确实是艺术品没错', '2021-12-22 19:46:44', '0:0:0:0:0:0:0:1', 0, 0, 0, 1, 1, 1);
 INSERT INTO `comment` VALUES (3, '你是懂艺术品的', '2021-12-25 19:49:35', '0:0:0:0:0:0:0:1', 0, 1, 0, 2, 1, 1);
+INSERT INTO `comment` VALUES (6, '<p>好</p>', '2022-12-09 11:03:23', '0:0:0:0:0:0:0:1', 0, 0, 0, NULL, 1, 1);
+INSERT INTO `comment` VALUES (7, '<p>我觉得你说的很对</p>', '2022-12-09 15:31:41', '0:0:0:0:0:0:0:1', 0, 0, 0, 2, 1, 1);
+INSERT INTO `comment` VALUES (8, '<p>？</p>', '2022-12-09 15:31:50', '0:0:0:0:0:0:0:1', 0, 0, 0, 6, 1, 1);
+INSERT INTO `comment` VALUES (9, '<p>我超</p>', '2022-12-10 15:33:14', '0:0:0:0:0:0:0:1', 0, 0, 0, 1, 1, 1);
+INSERT INTO `comment` VALUES (10, '<p><span class=\"ql-emojiblot\" data-name=\"grin\">﻿<span contenteditable=\"false\"><span class=\"ap ap-grin\">😁</span></span>﻿</span></p>', '2022-12-10 16:25:11', '0:0:0:0:0:0:0:1', 0, 0, 0, NULL, 1, 3);
 
 -- ----------------------------
 -- Table structure for community
@@ -191,17 +197,26 @@ CREATE TABLE `community`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `shoplink` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `hidden` tinyint(0) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of community
 -- ----------------------------
-INSERT INTO `community` VALUES (1, '荒野大镖客：救赎2', 'https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/');
-INSERT INTO `community` VALUES (2, '只狼：影逝二度', 'https://store.steampowered.com/app/814380/Sekiro_Shadows_Die_Twice__GOTY_Edition/');
-INSERT INTO `community` VALUES (3, '空洞骑士', 'https://store.steampowered.com/app/367520/Hollow_Knight/');
-INSERT INTO `community` VALUES (4, '双人成行', 'https://store.steampowered.com/app/1426210/');
-INSERT INTO `community` VALUES (5, '艾尔登法环', 'https://store.steampowered.com/app/1245620/');
+INSERT INTO `community` VALUES (1, '荒野大镖客：救赎2', 'https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/', 1);
+INSERT INTO `community` VALUES (2, '只狼：影逝二度', 'https://store.steampowered.com/app/814380/Sekiro_Shadows_Die_Twice__GOTY_Edition/', 1);
+INSERT INTO `community` VALUES (3, '空洞骑士', 'https://store.steampowered.com/app/367520/Hollow_Knight/', 1);
+INSERT INTO `community` VALUES (4, '双人成行', 'https://store.steampowered.com/app/1426210/', 1);
+INSERT INTO `community` VALUES (5, '艾尔登法环', 'https://store.steampowered.com/app/1245620/', 1);
+INSERT INTO `community` VALUES (7, '荒野之息', '#', 1);
+INSERT INTO `community` VALUES (8, '荒野', '#', 1);
+INSERT INTO `community` VALUES (9, '荒野', '#', 1);
+INSERT INTO `community` VALUES (10, '荒野', '#', 1);
+INSERT INTO `community` VALUES (11, '荒野', '#', 1);
+INSERT INTO `community` VALUES (12, '荒野', '#', 1);
+INSERT INTO `community` VALUES (7, '英雄联盟', 'https://lol.qq.com/act/a20221208tftset8/index.shtml?e_code=507042', 1);
+INSERT INTO `community` VALUES (9, '燕云十六声', 'https://www.yysls.cn/', 1);
 
 -- ----------------------------
 -- Table structure for user
@@ -222,15 +237,14 @@ CREATE TABLE `user`  (
   UNIQUE INDEX `mobile`(`mobile`) USING BTREE,
   UNIQUE INDEX `email`(`email`) USING BTREE,
   UNIQUE INDEX `nickname`(`nickname`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'test', 'e1adc3949ba59abbe56e057f2f883e', 'Steve', 'NO.0001.png', '2021-12-09', 'abc@qq.com', '15145678910', '2021-12-20 17:26:46', 0);
-INSERT INTO `user` VALUES (2, 'test1', 'e1adc3949ba59abbe56e057f2f883e', '绝地大叔', 'NO.0002.png', '2021-12-14', 'abc123@qq.com', '15145678911', '2021-12-20 18:39:58', 0);
-INSERT INTO `user` VALUES (3, 'test233', 'e1adc3949ba59abbe56e057f2f883e', '三月寒', 'NO.0001.png', '2022-01-18', 'abc456@qq.com', '15145678912', '2022-01-18 12:14:03', 0);
-
+INSERT INTO `user` VALUES (1, 'test', 'e1adc3949ba59abbe56e057f2f883e', 'Steve', 'NO.0001.png', '2021-12-09', '2368688782@qq.com', '13778904962', '2021-12-20 17:26:46', 1);
+INSERT INTO `user` VALUES (2, 'test1', 'e1adc3949ba59abbe56e057f2f883e', '绝地大叔', 'NO.0004.png', '2021-12-14', '2698524807@qq.com', '15145678911', '2021-12-20 18:39:58', 1);
+INSERT INTO `user` VALUES (3, 'test233', 'e1adc3949ba59abbe56e057f2f883e', '三月寒', 'NO.0002.png', '2022-01-18', 'abc456@qq.com', '15145678912', '2022-01-18 12:14:03', 1);
 -- ----------------------------
 -- Table structure for user_community
 -- ----------------------------

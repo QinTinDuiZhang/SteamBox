@@ -32,15 +32,17 @@
                 </div>
                 <div>
                     <h3><label class="h3">分类</label></h3>
-                    <% for (Category category : (List<Category>) session.getAttribute("categories")) {%>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="<%= category.getId()%>"
-                               id="flexCheckChecked<%=category.getId()%>" name="category">
-                        <label class="form-check-label" for="flexCheckChecked<%=category.getId()%>">
-                            <%= category.getName()%>
-                        </label>
+                    <div style="display: flex">
+                        <% for (Category category : (List<Category>) session.getAttribute("categories")) {%>
+                        <div class="form-check" style="margin-right: 20px; ">
+                            <input class="form-check-input" type="checkbox" value="<%= category.getId()%>"
+                                   id="flexCheckChecked<%=category.getId()%>" name="category">
+                            <label class="form-check-label" for="flexCheckChecked<%=category.getId()%>">
+                                <%= category.getName()%>
+                            </label>
+                        </div>
+                        <%}%>
                     </div>
-                    <%}%>
                 </div>
                 <div>
                     <label class="h3">社区</label>
@@ -65,13 +67,10 @@
                 </div>
                 <input type="submit" value="提交" class="opt_sub">
                 <input type="reset" value="重置" class="opt_sub">
-
             </form>
         </div>
-
     </div>
 </div>
-<jsp:include page="common/footer.jsp" flush="true"></jsp:include>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/jquery-3.2.1.min.js"></script>

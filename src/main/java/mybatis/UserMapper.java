@@ -22,5 +22,5 @@ public interface UserMapper {
 
     List<Community> selectCommunity(String content);                                           //模糊查询社区
 
-    User getUserByID(int id);
+    User getUserByID(@Param("id") int id,@Param("email") String email);
 }
