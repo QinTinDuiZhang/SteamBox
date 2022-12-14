@@ -97,9 +97,8 @@
                 if (community!= null)
                     map.put("id",Integer.parseInt(community));
                 map.put("hidden",1);
-                Map<String,Object> map2=new HashMap<>();
-                map2.put("hidden",1);
-                List<Article> articles = community != null ? articleDao.selectAll(map) : articleDao.selectAll(map2);
+                map.put("auditor",1);
+                List<Article> articles = articleDao.selectAll(map);
                 if (category != null) articles = categoryDao.getCategoryArticle(Integer.parseInt(category));
                 for (Article article : articles) {%>
             <div>

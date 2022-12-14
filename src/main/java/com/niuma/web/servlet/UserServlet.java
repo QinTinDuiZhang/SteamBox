@@ -147,6 +147,13 @@ public class UserServlet extends BaseServlet {
         }
     }
 
+    public void P(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        User user = (User) request.getSession().getAttribute("user");
+        String password = request.getParameter("password");
+        if (user.getPassword().equals(Md5Util.md5(password))) response.getWriter().write("true");
+        else response.getWriter().write("false");
+    }
+
     /* 修改密码 */
     public void ChangePassword(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();

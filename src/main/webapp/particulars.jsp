@@ -74,6 +74,7 @@
         Map<String,Object> map=new HashMap<>();
         map.put("aId",Integer.parseInt(request.getParameter("article")));
         map.put("hidden",1);
+        map.put("auditor",1);
         Article article = articleDao.selectAll(map).get(0);
         request.setAttribute("article", article);
     %>

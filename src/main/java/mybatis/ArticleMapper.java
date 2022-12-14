@@ -21,6 +21,8 @@ public interface ArticleMapper {
     List<Article> selectAll(Map<String,Object> map);
 
     int newLink(@Param("articleId") int aid, @Param("categoryId") int id);
+
     boolean setArticleLook(int id, int hidden);
+
     int getArticleCounts();
 }

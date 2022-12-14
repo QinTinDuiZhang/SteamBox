@@ -229,11 +229,7 @@
 
     function Cont() {
         console.log(phoneCont + " " + emailCont)
-        if (phoneCont && emailCont) {
-            sub.disabled = false;
-        }else {
-            sub.disabled = true;
-        }
+        sub.disabled = !(phoneCont && emailCont);
     }
 </script>
 </body>

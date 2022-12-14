@@ -12,6 +12,7 @@
         select *
         from steambox.category;
     </select>
+
     <select id="getCategoryArticle" resultType="Article">
         select
         article.id,article.hidden,article.content,article.img,article.title,article.pubdate,article.creator,article.auditor,article.click_count,article.community_id

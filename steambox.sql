@@ -143,15 +143,15 @@ CREATE TABLE `category`  (
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES (1, '单人');
-INSERT INTO `category` VALUES (2, '多人');
-INSERT INTO `category` VALUES (3, '策略');
-INSERT INTO `category` VALUES (4, '剧情');
-INSERT INTO `category` VALUES (5, '动作');
-INSERT INTO `category` VALUES (6, '冒险');
-INSERT INTO `category` VALUES (7, '独立');
-INSERT INTO `category` VALUES (8, '解谜');
-INSERT INTO `category` VALUES (9, '类魂');
+INSERT INTO `category` VALUES (1, '单人',1);
+INSERT INTO `category` VALUES (2, '多人',1);
+INSERT INTO `category` VALUES (3, '策略',1);
+INSERT INTO `category` VALUES (4, '剧情',1);
+INSERT INTO `category` VALUES (5, '动作',1);
+INSERT INTO `category` VALUES (6, '冒险',1);
+INSERT INTO `category` VALUES (7, '独立',1);
+INSERT INTO `category` VALUES (8, '解谜',1);
+INSERT INTO `category` VALUES (9, '类魂',1);
 
 -- ----------------------------
 -- Table structure for comment
