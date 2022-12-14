@@ -43,6 +43,7 @@
 <%
   ArticleDaoImpl articleDao = new ArticleDaoImpl();
   Map<String,Object> map=new HashMap<>();
+  map.put("auditor",-1);
   List<Article> articles = articleDao.selectAll(map);
 %>
 <form action="" id="listform" method="post">
@@ -62,7 +63,6 @@
       </tr>
       <volist id="vo" name="list">
         <%for (int i=0;i<articles.size();i++) {%>
-        <%if(articles.get(i).getAuditor()==0){%>
         <tr>
           <th style="text-align:left; padding-left:20px;padding-bottom: 20px;"><%=articles.get(i).getId()%>
           </th>
@@ -94,7 +94,6 @@
             </div>
           </td>
         </tr>
-        <%}%>
         <%}%>
       </volist>
     </table>

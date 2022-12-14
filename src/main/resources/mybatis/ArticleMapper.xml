@@ -41,8 +41,14 @@
                 and pubdate = #{pubDate}
             </if>
             <if test="auditor != null">
-                and IFNULL(auditor,'')
+                <if test="auditor == -1">
+                    AND auditor IS NULL
+                </if>
+                <if test="auditor == 0">
+                    and IFNULL(auditor,'')
+                </if>
             </if>
+
         </where>
         <if test="limit!=null">
             limit #{limit},5
