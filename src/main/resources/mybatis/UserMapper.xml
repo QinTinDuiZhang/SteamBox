@@ -33,11 +33,12 @@
 
     <update id="updateUser">
         update steambox.user
-        set nickname=#{nickName},
-            photo=#{photo},
-            birthday=#{birthday},
-            email=#{email},
-            mobile=#{mobile}
+        set nickname = #{nickName},
+            photo = #{photo},
+            birthday = #{birthday},
+            email = #{email},
+            mobile = #{mobile},
+            password = #{password}
         where account = #{account}
     </update>
 
