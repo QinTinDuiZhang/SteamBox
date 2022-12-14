@@ -13,7 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <script src="https://kit.fontawesome.com/d7ff2bf92c.js" crossorigin="anonymous"></script>
-    <title>登陆</title>
+    <title>欢迎来到蒸汽盒论坛</title>
     <link rel="stylesheet" href="css/81.css">
 </head>
 
