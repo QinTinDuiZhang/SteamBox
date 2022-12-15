@@ -4,14 +4,15 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="com.niuma.impl.UserDaoImpl" %>
 <%@ page import="com.niuma.model.User" %>
-<%@ page import="java.util.*" %><%--
+<%@ page import="java.util.*" %>
+<%@ page import="java.text.ParseException" %><%--
   Created by IntelliJ IDEA.
   User: 41150
   Date: 2022-12-10
   Time: 18:34
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -41,24 +42,24 @@
 </head>
 <body>
 <%
-    List<Article> articles=null;
+    List<Article> articles;
     articles = (List<Article>) session.getAttribute("articles");
     Object limit = session.getAttribute("limit");
     ArticleDaoImpl articleDao = new ArticleDaoImpl();
-    Map<String,Object> map=new HashMap<>();
-    if(articles==null &&limit==null){
-        map.put("limit",0);
+    Map<String, Object> map = new HashMap<>();
+    if (articles == null && limit == null) {
+        map.put("limit", 0);
         articles = articleDao.selectAll(map);
     }
-    if(limit!=null){
-        int a= (int) limit;
-        map.put("limit",a);
+    if (limit != null) {
+        int a = (int) limit;
+        map.put("limit", a);
     }
 %>
 <form action="" id="listform" method="post">
     <div class="panel admin-panel">
         <div class="panel-head"><strong class="icon-reorder"> 已审核帖子列表</strong> <a href=""
-                                                                                   style="float:right; display:none;">添加字段</a>
+                                                                                  style="float:right; display:none;">添加字段</a>
         </div>
         <div class="padding border-bottom">
             <ul class="search" style="padding-left:10px;">
@@ -84,39 +85,45 @@
                 <th width="10%">操作</th>
             </tr>
             <volist id="vo" name="list">
-                <%for (int i=0;i<articles.size();i++) {%>
+                <%for (Article article : articles) {%>
                 <tr>
-                    <td style="color:<%=!articles.get(i).isHidden() ? "red":"#00aa00"%>"><%=articles.get(i).isHidden()%>
+                    <td style="color:<%=!article.isHidden() ? "red":"#00aa00"%>"><%=article.isHidden()%>
                     </td>
-                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;"><%=articles.get(i).getId()%>
+                    <th style="text-align:left; padding-left:20px;padding-bottom: 20px;"><%=article.getId()%>
                     </th>
-                    <td><%=articles.get(i).getTitle()%>
+                    <td><%=article.getTitle()%>
                     </td>
-                    <td width="10%"><img alt="" height="50" src="img/cover/<%=articles.get(i).getImg()%>" width="70"/></td>
+                    <td width="10%"><img alt="" height="50" src="img/cover/<%=article.getImg()%>" width="70"/></td>
                     <%
-                        String dateStr = String.valueOf(articles.get(i).getPubDate());
+                        String dateStr = String.valueOf(article.getPubDate());
                         DateFormat cstFormate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         DateFormat gmtFormate = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-                        Date dateTime = gmtFormate.parse(dateStr);
+                        Date dateTime = null;
+                        try {
+                            dateTime = gmtFormate.parse(dateStr);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
                         String dateString = cstFormate.format(dateTime);
                     %>
-                    <td><%=dateString%></td>
+                    <td><%=dateString%>
+                    </td>
                     <%
-                        UserDaoImpl userDao=new UserDaoImpl();
-                        User user = userDao.getUserByID(articles.get(i).getCreator(),null);
+                        UserDaoImpl userDao = new UserDaoImpl();
+                        User user = userDao.getUserByID(article.getCreator(), null, null);
                     %>
                     <td><font color="#00bfff"><%=user.getNickName()%>
                     </font></td>
-                    <td><%=articles.get(i).getAuditor()%>
+                    <td><%=article.getAuditor()%>
                     </td>
                     <td>
                         <div class="button-group">
-                            <%if(!articles.get(i).isHidden()){%>
-                            <a class="button border-main" onclick="setLook(<%=articles.get(i).getId()%>)"><span
-                                class="icon-edit"></span> 启用</a>
-                            <%}else{%>
-                            <a class="button border-red" onclick="setUnLook(<%=articles.get(i).getId()%>)"><span
-                                class="icon-trash-o"></span> 禁用</a>
+                            <%if (!article.isHidden()) {%>
+                            <a class="button border-main" onclick="setLook(<%=article.getId()%>)"><span
+                                    class="icon-edit"></span> 启用</a>
+                            <%} else {%>
+                            <a class="button border-red" onclick="setUnLook(<%=article.getId()%>)"><span
+                                    class="icon-trash-o"></span> 禁用</a>
                             <%}%>
                         </div>
                     </td>
@@ -132,8 +139,10 @@
                 </tr>
                 <tr>
                     <td colspan="8">
-                        <div class="pagelist"><a id="upPage" href="Article/TurnPage?page=<%=map.get("limit")%>&status=up">上一页</a>
-                            <a id="downPage" href="Article/TurnPage?page=<%=map.get("limit")%>&status=down">下一页</a><a href="">尾页</a></div>
+                        <div class="pagelist"><a id="upPage"
+                                                 href="Article/TurnPage?page=<%=map.get("limit")%>&status=up">上一页</a>
+                            <a id="downPage" href="Article/TurnPage?page=<%=map.get("limit")%>&status=down">下一页</a><a
+                                    href="">尾页</a></div>
                     </td>
                 </tr>
             </volist>
@@ -141,23 +150,26 @@
     </div>
 </form>
 <script type="text/javascript">
-    var upPage=document.getElementById("upPage");
-    var downPage=document.getElementById("downPage");
-    window.onload=function () {
+    var upPage = document.getElementById("upPage");
+    var downPage = document.getElementById("downPage");
+    window.onload = function () {
         <%
-            ArticleDaoImpl articleDao1=new ArticleDaoImpl();
-            int articleCounts = articleDao1.getArticleCounts();
+            int articleCounts = articleDao.getArticleCounts();
             int yu=articleCounts % 5;
             int pg=articleCounts / 5;
         %>
-        if(0===<%=map.get("limit")%>){
-            upPage.style.display='none';
+        if (0 ===<%=map.get("limit")%>) {
+            upPage.style.display = 'none';
         }
-        if(<%=yu==0%> && <%=(pg-1)*5%>==<%=map.get("limit")%>){
-            downPage.style.display='none';
+        if (<%=yu==0%> &&
+        <%=(pg-1)*5%>==<%=map.get("limit")%>)
+        {
+            downPage.style.display = 'none';
         }
-        if(<%=yu!=0%> && <%=pg*5%>==<%=map.get("limit")%>){
-            downPage.style.display='none';
+        if (<%=yu!=0%> &&
+        <%=pg*5%>==<%=map.get("limit")%>)
+        {
+            downPage.style.display = 'none';
         }
     }
 
@@ -167,24 +179,21 @@
     }
 
     function setLook(ArticleId) {
-        if(confirm("您确定要通过吗?")){
-            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Article/setArticleLook?articleId=" + ArticleId + "&hidden=1" );
+        if (confirm("您确定要通过吗?")) {
+            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Article/setArticleLook?articleId=" + ArticleId + "&hidden=1");
         }
     }
+
     function setUnLook(ArticleId) {
         if (confirm("您确定要禁用吗?")) {
-            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Article/setArticleLook?articleId=" + ArticleId + "&hidden=0" );
+            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Article/setArticleLook?articleId=" + ArticleId + "&hidden=0");
         }
     }
 
     //全选
     $("#checkall").click(function () {
         $("input[name='id[]']").each(function () {
-            if (this.checked) {
-                this.checked = false;
-            } else {
-                this.checked = true;
-            }
+            this.checked = !this.checked;
         });
     })
 
@@ -208,7 +217,7 @@
 
     //批量排序
     function sorts() {
-        window.location.replace("http://localhost:8080/SteamBox_war_exploded/AManageExamine.jsp" );
+        window.location.replace("http://localhost:8080/SteamBox_war_exploded/AManageExamine.jsp");
     }
 
 

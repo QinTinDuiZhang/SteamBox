@@ -93,11 +93,11 @@
                 String category = request.getParameter("category");
                 UserDao userDao = new UserDaoImpl();
                 ArticleDao articleDao = new ArticleDaoImpl();
-                Map<String,Object> map=new HashMap<>();
-                if (community!= null)
-                    map.put("id",Integer.parseInt(community));
-                map.put("hidden",1);
-                map.put("auditor",0);
+                Map<String, Object> map = new HashMap<>();
+                if (community != null)
+                    map.put("id", Integer.parseInt(community));
+                map.put("hidden", 1);
+                map.put("auditor", 0);
                 List<Article> articles = articleDao.selectAll(map);
                 if (category != null) articles = categoryDao.getCategoryArticle(Integer.parseInt(category));
                 for (Article article : articles) {%>
@@ -114,7 +114,7 @@
                         <div class="col-xs-7">
                             <div class="info">
                                 <span class="avatar"><img src="img/game.png" alt=""></span>
-                                <span><%= userDao.getUserByID(article.getCreator(),null,null).getNickName() %></span>•
+                                <span><%= userDao.getUserByID(article.getCreator(), null, null).getNickName() %></span>•
                                 <span>25k评论</span>•
                                 <span><%= TimeFormat.getInterval(article.getPubDate())%></span>
                             </div>

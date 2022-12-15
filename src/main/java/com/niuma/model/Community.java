@@ -13,15 +13,15 @@ public class Community {
         this.hidden = hidden;
     }
 
+    public Community() {
+    }
+
     public Boolean getHidden() {
         return hidden;
     }
 
     public void setHidden(Boolean hidden) {
         this.hidden = hidden;
-    }
-
-    public Community() {
     }
 
     public int getId() {

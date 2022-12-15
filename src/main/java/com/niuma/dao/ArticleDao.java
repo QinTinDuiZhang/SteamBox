@@ -2,7 +2,6 @@ package com.niuma.dao;
 
 import com.niuma.model.Article;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,17 +30,55 @@ public interface ArticleDao {
      */
     boolean deleteArticle(int id);
 
-    List<Article> selectAll(Map<String,Object> map);
+    /**
+     * 查询帖子
+     *
+     * @param map 条件库 可选[是否可见(0,1),社区分类,id(精确),发布时间,是否过审(-1,0),开始行数(只获取后面五行)]
+     * @return 帖子列表
+     */
+    List<Article> selectAll(Map<String, Object> map);
 
+    /**
+     * 新建社区,帖子连接
+     *
+     * @param aid 帖子id
+     * @param cid 社区id
+     * @return 影响的行数
+     */
     int newLink(int aid, int cid);
 
-    boolean setArticleLook(int id,int hidden);
+    /**
+     * 设置帖子是否可见
+     *
+     * @param id     帖子id
+     * @param hidden 可见/不可见
+     * @return 是否成功
+     */
+    boolean setArticleLook(int id, int hidden);
 
+    /**
+     * @return
+     */
     int getArticleCounts();
 
-    boolean setArticleThrough(int auditor,int articleId);
+    /**
+     * @param auditor
+     * @param articleId
+     * @return
+     */
+    boolean setArticleThrough(int auditor, int articleId);
 
+    /**
+     * @param articleId
+     * @return
+     */
     boolean setArticleBack(int articleId);
 
+    /**
+     * 获取用户发布的帖子
+     *
+     * @param uId 用户id
+     * @return 用户所有的帖子
+     */
     List<Article> getUserArticle(int uId);
 }

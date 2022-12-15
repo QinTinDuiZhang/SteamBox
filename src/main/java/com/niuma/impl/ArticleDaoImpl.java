@@ -6,7 +6,6 @@ import com.niuma.tool.SqlSessionUtils;
 import mybatis.ArticleMapper;
 import org.apache.ibatis.session.SqlSession;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +33,7 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
-    public List<Article> selectAll(Map<String,Object> map) {
+    public List<Article> selectAll(Map<String, Object> map) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
         return postMapper.selectAll(map);
@@ -62,10 +61,10 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
-    public boolean setArticleThrough(int auditor,int articleId) {
+    public boolean setArticleThrough(int auditor, int articleId) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
-        return postMapper.setArticleThrough(articleId,articleId);
+        return postMapper.setArticleThrough(articleId, articleId);
     }
 
     @Override

@@ -29,6 +29,7 @@ public class CommunityServlet extends BaseServlet {
         response.sendRedirect(request.getContextPath() + "/AManageCommunity.jsp");
     }
 
+    /* 关注/取消关注 社区 */
     public void Like(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
         int community = Integer.parseInt(request.getParameter("community"));
         HttpSession session = request.getSession();

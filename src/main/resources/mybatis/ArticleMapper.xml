@@ -3,27 +3,31 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.ArticleMapper">
+
     <insert id="publish">
         insert into steambox.article(title, img, content, pubdate, click_count, creator, auditor, community_id, hidden)
         values (#{title}, #{img}, #{content}, #{pubDate}, #{clickCount}, #{creator}, #{auditor}, #{communityId}, 0)
     </insert>
+
     <update id="updateArticle">
         update steambox.article
-        set title = #{title},
-            img = #{img},
-            content = #{content},
-            pubdate = #{pubDate},
-            click_count = #{clickCount},
-            creator = #{creator},
-            auditor = #{auditor},
+        set title        = #{title},
+            img          = #{img},
+            content      = #{content},
+            pubdate      = #{pubDate},
+            click_count  = #{clickCount},
+            creator      = #{creator},
+            auditor      = #{auditor},
             community_id = #{communityId}
         where id = #{id}
     </update>
+
     <delete id="deleteArticle">
         delete
         from steambox.article
         where id = #{id}
     </delete>
+
     <select id="selectAll" resultType="Article">
         select *
         from steambox.article
@@ -32,7 +36,7 @@
                 and hidden = #{hidden}
             </if>
             <if test="id!=null">
-                and community_id  =  #{id}
+                and community_id = #{id}
             </if>
             <if test="aId!=null">
                 and id = #{aId}
@@ -59,10 +63,10 @@
         values (#{articleId}, #{categoryId});
     </insert>
 
-    <update id = "setArticleLook">
+    <update id="setArticleLook">
         update steambox.article
         set hidden = #{param2}
-        where id  =  #{param1}
+        where id = #{param1}
     </update>
 
     <select id="getArticleCounts" resultType="int">
@@ -70,7 +74,7 @@
         from steambox.article
     </select>
 
-    <update id = "setArticleThrough">
+    <update id="setArticleThrough">
         update steambox.article
         set auditor = #{param1}
         where id = #{param2}
@@ -85,7 +89,7 @@
     <select id="getUserArticle" resultType="article">
         SELECT a.*
         FROM steambox.`user` as u
-            JOIN steambox.article as a on a.creator = u.id
+                 JOIN steambox.article as a on a.creator = u.id
         WHERE u.id = #{uId}
         GROUP BY a.id
     </select>

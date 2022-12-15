@@ -44,9 +44,9 @@
     ArticleDao articleDao = new ArticleDaoImpl();
     User user;
     int userId = 0;
-    if(request.getParameter("userId")!= null)
+    if (request.getParameter("userId") != null)
         userId = Integer.parseInt(request.getParameter("userId"));
-    if (userId == 0){
+    if (userId == 0) {
         user = (User) session.getAttribute("user");
         userId = user.getId();
     }
@@ -60,7 +60,7 @@
         }
         articles.sort(new PersonComparator());
     }
-    CategoryDao categoryDao =new CategoryDaoImpl();
+    CategoryDao categoryDao = new CategoryDaoImpl();
     List<Category> categories = categoryDao.getCategoryUserId(userId);
 %>
 <div class="container ">
@@ -74,7 +74,7 @@
             <hr>
             <div>
                 <span>全部</span>
-                <%for (Category category :categories){%>
+                <%for (Category category : categories) {%>
                 <span><%= category.getName()%></span>
                 <%}%>
             </div>
@@ -82,24 +82,27 @@
         <hr>
         <div class="col-10 container">
             <div class="row">
-                <% for (Article article :articles){%>
-                    <div class="col-3" style="height: 15em; display: flex; justify-content: space-between; flex-direction: column;" >
-                        <a href="particulars.jsp?article=<%= article.getId()%>" style="color: #ececec;">
-                            <div>
-                                <img src="img/cover/<%= article.getImg()%>" alt="" style="width: 100%; height: 130px;">
-                                <p style="overflow: hidden"><%= article.getTitle()%></p>
-                            </div>
-                        </a>
-                        <div style="display: flex; justify-content: space-between;">
-                            <span style="color: #7c7c7c"><%= TimeFormat.getInterval(article.getPubDate()) %></span>
-                            <div class="btn-group dropup">
-                                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                </button>
-                                <ul class="dropdown-menu">
-                                </ul>
-                            </div>
+                <% for (Article article : articles) {%>
+                <div class="col-3"
+                     style="height: 15em; display: flex; justify-content: space-between; flex-direction: column;">
+                    <a href="particulars.jsp?article=<%= article.getId()%>" style="color: #ececec;">
+                        <div>
+                            <img src="img/cover/<%= article.getImg()%>" alt="" style="width: 100%; height: 130px;">
+                            <p style="overflow: hidden"><%= article.getTitle()%>
+                            </p>
+                        </div>
+                    </a>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: #7c7c7c"><%= TimeFormat.getInterval(article.getPubDate()) %></span>
+                        <div class="btn-group dropup">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu">
+                            </ul>
                         </div>
                     </div>
+                </div>
                 <%}%>
             </div>
         </div>

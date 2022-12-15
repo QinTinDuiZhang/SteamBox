@@ -70,8 +70,8 @@
         Map<Long, Comment> longCommentMap = CommentUtil.toMap(comments);
         request.setAttribute("comments", comments);
         request.setAttribute("commentMap", longCommentMap);
-        Map<String,Object> map=new HashMap<>();
-        map.put("aId",Integer.parseInt(request.getParameter("article")));
+        Map<String, Object> map = new HashMap<>();
+        map.put("aId", Integer.parseInt(request.getParameter("article")));
         Article article = articleDao.selectAll(map).get(0);
         request.setAttribute("article", article);
     %>

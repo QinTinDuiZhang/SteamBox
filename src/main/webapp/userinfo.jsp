@@ -76,7 +76,7 @@
                         <label for="email" class="col-sm-2 control-label">电子邮件：</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="email" id="email"
-                                   value="<%= user.getEmail()%>" placeholder="请输入电子邮件" >
+                                   value="<%= user.getEmail()%>" placeholder="请输入电子邮件">
                             <p class="alert alert-danger" style="display: none" id="existing">此邮箱已绑定其他账号</p>
                             <p class="alert alert-warning" disabled="true" style="display: none" id="noBrief">
                                 暂时只支持QQ邮箱</p>
@@ -135,13 +135,13 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
 
-    window.onload = function (){
+    window.onload = function () {
         Cont();
         let photo = document.getElementById("photo");
         let email = document.getElementById("email");
-        email.addEventListener("blur" ,emailOnblur)
-        photo.addEventListener("change",upload)
-    } ;
+        email.addEventListener("blur", emailOnblur)
+        photo.addEventListener("change", upload)
+    };
 
     $().ready(function () {
         // 设置日期选择器

@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -33,11 +32,11 @@ public class UserServlet extends BaseServlet {
     public void SelectEmail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         UserDaoImpl userDao = new UserDaoImpl();
-        User user = userDao.getUserByID(0, email,null);
+        User user = userDao.getUserByID(0, email, null);
         if (user != null) {
             HttpSession session = request.getSession();
             User user1 = (User) session.getAttribute("user");
-            if (user1 == null){
+            if (user1 == null) {
                 response.getWriter().write("sign");
                 return;
             }
@@ -50,7 +49,7 @@ public class UserServlet extends BaseServlet {
     public void SelectUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userName = request.getParameter("userName");
         UserDaoImpl userDao = new UserDaoImpl();
-        User user = userDao.getUserByID(0, null,userName);
+        User user = userDao.getUserByID(0, null, userName);
         if (user != null) {
             response.getWriter().write("true");
         }
@@ -89,7 +88,7 @@ public class UserServlet extends BaseServlet {
                 session.setAttribute("authCodeErr", "验证码错误，请重试");
                 response.sendRedirect(request.getContextPath() + "/userinfo.jsp");
             }
-        }else
+        } else
             response.sendRedirect(request.getContextPath() + "/userinfo.jsp");
         userT.setEmail(request.getParameter("email"));
         userT.setMobile(request.getParameter("mobile"));
@@ -154,6 +153,7 @@ public class UserServlet extends BaseServlet {
         }
     }
 
+    /* 验证输入的密码与原密码 */
     public void P(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User) request.getSession().getAttribute("user");
         String password = request.getParameter("password");

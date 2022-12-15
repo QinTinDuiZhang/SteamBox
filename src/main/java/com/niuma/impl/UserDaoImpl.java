@@ -46,10 +46,10 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
-    public User getUserByID(int id,String email,String acc) {
+    public User getUserByID(int id, String email, String acc) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        return userMapper.getUserByID(id,email,acc);
+        return userMapper.getUserByID(id, email, acc);
     }
 
     @Override

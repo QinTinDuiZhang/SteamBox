@@ -30,15 +30,16 @@
                 <input type="text" id="acc" placeholder="用户名" name="acc">
                 <div id="ac" style="display: none"><span style="color: #ff6d4a; font-size: 10px;">账号已被注册</span></div>
                 <input type="password" id="Spassword" placeholder="密码" name="password">
-                <div id="pa" style="display: none"><span style="color: #ff6d4a; font-size: 10px">密码不符合规范哦：由8~13位数字、字母或下划线组成，字母至少一位</span></div>
+                <div id="pa" style="display: none"><span style="color: #ff6d4a; font-size: 10px">密码不符合规范哦：由8~13位数字、字母或下划线组成，字母至少一位</span>
+                </div>
                 <input type="password" id="enterPassword" placeholder="确认密码" oninput="newEnter()">
                 <div id="epa" style="display: none"><span style="color: #ff6d4a; font-size: 10px">两次密码不同</span></div>
                 <p>
                     <input type="email"
-                        placeholder="邮箱"
-                        style="width: 172px;margin-top: 0;"
-                        name="email"
-                        id="email"
+                           placeholder="邮箱"
+                           style="width: 172px;margin-top: 0;"
+                           name="email"
+                           id="email"
                     >
                     <button type="button" style="width: 50px; height: 40px; margin-top: 0" onclick="getEmail()">
                         <i class="fa-sharp fa-solid fa-paper-plane"></i>
@@ -98,9 +99,9 @@
         let Spassword = document.getElementById("Spassword");
         let account = document.getElementById("acc");
         let email = document.getElementById("email");
-        Spassword.addEventListener("change",news)
-        account.addEventListener("change",acc);
-        email.addEventListener("change",emailOnblur);
+        Spassword.addEventListener("change", news)
+        account.addEventListener("change", acc);
+        email.addEventListener("change", emailOnblur);
     }
     // 要操作到的元素
     let login = document.getElementById('login');
@@ -121,10 +122,10 @@
         login_box.classList.remove('hidden');
     })
 
-    function acc(e){
+    function acc(e) {
         if (e.target.value.length === 0) return;
         axios.get('${pageContext.request.contextPath}/User/SelectUser?userName=' + e.target.value)
-            .then(function (response){
+            .then(function (response) {
                 flogAcc = !response.data;
                 ac.style.display = flogAcc ? "none" : "";
             })
