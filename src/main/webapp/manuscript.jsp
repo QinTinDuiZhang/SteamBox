@@ -8,7 +8,8 @@
 <%@ page import="com.niuma.dao.ArticleDao" %>
 <%@ page import="com.niuma.impl.ArticleDaoImpl" %>
 <%@ page import="java.util.Comparator" %>
-<%@ page import="java.util.Collections" %><%--
+<%@ page import="java.util.Collections" %>
+<%@ page import="com.niuma.tool.TimeFormat" %><%--
   Created by IntelliJ IDEA.
   User: 23686
   Date: 2022/12/7
@@ -63,13 +64,14 @@
     List<Category> categories = categoryDao.getCategoryUserId(userId);
 %>
 <div class="container ">
-    <div class="row">
+    <div class="row container" style="">
         <div class="col-10 container" style="color: #ececec;; margin-top: 5%">
             <h2>Ta的投稿</h2>
             <div>
                 <a href="${pageContext.request.contextPath}/manuscript.jsp"><span>按时间</span></a>
                 <a href="${pageContext.request.contextPath}/manuscript.jsp?sort=1"><span>按评论量</span></a>
             </div>
+            <hr>
             <div>
                 <span>全部</span>
                 <%for (Category category :categories){%>
@@ -77,8 +79,29 @@
                 <%}%>
             </div>
         </div>
-        <div class="col-12">
-
+        <hr>
+        <div class="col-10 container">
+            <div class="row">
+                <% for (Article article :articles){%>
+                    <div class="col-3" style="height: 15em; display: flex; justify-content: space-between; flex-direction: column;" >
+                        <a href="particulars.jsp?article=<%= article.getId()%>" style="color: #ececec;">
+                            <div>
+                                <img src="img/cover/<%= article.getImg()%>" alt="" style="width: 100%; height: 130px;">
+                                <p style="overflow: hidden"><%= article.getTitle()%></p>
+                            </div>
+                        </a>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #7c7c7c"><%= TimeFormat.getInterval(article.getPubDate()) %></span>
+                            <div class="btn-group dropup">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                </button>
+                                <ul class="dropdown-menu">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <%}%>
+            </div>
         </div>
     </div>
 </div>

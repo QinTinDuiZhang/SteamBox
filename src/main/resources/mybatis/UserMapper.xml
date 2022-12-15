@@ -70,6 +70,9 @@
             <if test="email!=null and email!=''">
                 and user.email = #{email}
             </if>
+            <if test="acc!=null">
+                and account = #{acc}
+            </if>
         </where>
     </select>
 

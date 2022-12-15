@@ -203,7 +203,7 @@
         axios.get('${pageContext.request.contextPath}/User/SelectEmail?email=' + email.value)
             .then(function (response) {
                 // 处理成功情况
-                if (response.data) {
+                if (response.data === "update") {
                     existing.style.display = "";
                     emailCont = false;
                     return;

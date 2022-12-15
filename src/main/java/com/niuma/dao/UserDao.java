@@ -65,5 +65,5 @@ public interface UserDao {
      */
     HashMap<String, List> selectInfo(String content);
 
-    User getUserByID(int id,String email);
+    User getUserByID(int id,String email,String acc);
 }

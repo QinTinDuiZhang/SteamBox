@@ -33,12 +33,16 @@ public class UserServlet extends BaseServlet {
     public void SelectEmail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         UserDaoImpl userDao = new UserDaoImpl();
-        User user = userDao.getUserByID(0, email);
+        User user = userDao.getUserByID(0, email,null);
         if (user != null) {
             HttpSession session = request.getSession();
             User user1 = (User) session.getAttribute("user");
+            if (user1 == null){
+                response.getWriter().write("sign");
+                return;
+            }
             if (user.getId() != user1.getId())
-                response.getWriter().write("true");
+                response.getWriter().write("update");
         }
     }
 
@@ -46,7 +50,7 @@ public class UserServlet extends BaseServlet {
     public void SelectUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userName = request.getParameter("userName");
         UserDaoImpl userDao = new UserDaoImpl();
-        User user = userDao.getSingleOne("account", userName);
+        User user = userDao.getUserByID(0, null,userName);
         if (user != null) {
             response.getWriter().write("true");
         }
@@ -104,26 +108,28 @@ public class UserServlet extends BaseServlet {
     /* 注册 */
     public void Signup(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if (session.getAttribute("authCode") != null && session.getAttribute("authCode").equals(request.getParameter("emailE"))) {
-            String account = request.getParameter("account");
+        String authCode = request.getParameter("authCode");
+        if (session.getAttribute("authCode") != null && session.getAttribute("authCode").equals(authCode)) {
+            String account = request.getParameter("acc");
             String email = request.getParameter("email");
             String password = Md5Util.md5(request.getParameter("password"));
             User user = new User();
             user.setAccount(account);
             user.setPassword(password);
             user.setEmail(email);
-            user.setPhoto("1.jpg");
+            user.setNickName("用户" + account);
+            user.setPhoto("NO.0001.png");
             user.setRegDate(new Date());
             UserDaoImpl userDao = new UserDaoImpl();
             if (userDao.signup(user)) {
                 session.setAttribute("user", user);
                 response.sendRedirect(request.getContextPath() + "/first.jsp");
             } else {
-                response.sendRedirect(request.getContextPath() + "/signup.jsp");
+                response.sendRedirect(request.getContextPath() + "/login.jsp");
             }
         } else {
             request.setAttribute("emailE_err", "验证码错误,请再次获取");
-            request.getRequestDispatcher(request.getContextPath() + "/signup.jsp").forward(request, response);
+            request.getRequestDispatcher(request.getContextPath() + "/login.jsp").forward(request, response);
         }
     }
 

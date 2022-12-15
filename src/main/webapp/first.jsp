@@ -114,7 +114,7 @@
                         <div class="col-xs-7">
                             <div class="info">
                                 <span class="avatar"><img src="img/game.png" alt=""></span>
-                                <span><%= userDao.getUserByID(article.getCreator(),null).getNickName() %></span>•
+                                <span><%= userDao.getUserByID(article.getCreator(),null,null).getNickName() %></span>•
                                 <span>25k评论</span>•
                                 <span><%= TimeFormat.getInterval(article.getPubDate())%></span>
                             </div>
