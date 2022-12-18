@@ -27,4 +27,5 @@ public interface ArticleMapper {
     int getArticleCounts();
     boolean setArticleThrough(int auditorId,int articleId);
     boolean setArticleBack(int articleId);
+    List<Article> searchArticles(String content);
 }

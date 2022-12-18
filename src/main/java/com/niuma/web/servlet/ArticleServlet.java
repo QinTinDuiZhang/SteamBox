@@ -2,6 +2,7 @@ package com.niuma.web.servlet;
 
 import com.niuma.dao.ArticleDao;
 import com.niuma.impl.ArticleDaoImpl;
+import com.niuma.model.Admin;
 import com.niuma.model.Article;
 import com.niuma.model.User;
 
@@ -83,6 +84,7 @@ public class ArticleServlet extends BaseServlet {
         if(status.equals("up")){
             page=page-5;
             map.put("limit",page);
+            map.put("auditor",0);
             List<Article> articles = articleDao.selectAll(map);
             HttpSession session = request.getSession();
             session.setAttribute("articles",articles);
@@ -90,12 +92,44 @@ public class ArticleServlet extends BaseServlet {
         }else if(status.equals("down")){
             page=page+5;
             map.put("limit",page);
+            map.put("auditor",0);
             List<Article> articles = articleDao.selectAll(map);
             HttpSession session = request.getSession();
             session.setAttribute("articles",articles);
             session.setAttribute("limit",page);
         }
         response.sendRedirect(request.getContextPath() + "/AManageArticle.jsp");
-
+    }
+    public void setArticleThrough(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String artId = request.getParameter("articleId");
+        HttpSession session = request.getSession();
+        Admin admin = (Admin) session.getAttribute("admin");
+        int id = admin.getId();
+        int articleId = Integer.parseInt(artId);
+        System.out.println(id+"隔开"+articleId);
+        ArticleDaoImpl articleDao=new ArticleDaoImpl();
+        boolean b = articleDao.setArticleThrough(id, articleId);
+        if(b){
+            System.out.println("通过成功");
+        }
+        response.sendRedirect(request.getContextPath() + "/AManageExamine.jsp");
+    }
+    public void setArticleBack(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String artId = request.getParameter("articleId");
+        int articled=Integer.parseInt(artId);
+        ArticleDaoImpl articleDao=new ArticleDaoImpl();
+        boolean b = articleDao.setArticleBack(articled);
+        if(b){
+            System.out.println("退回成功！");
+        }
+        response.sendRedirect(request.getContextPath() + "/AManageExamine.jsp");
+    }
+    public void SearchArticles(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String content=request.getParameter("content");
+        ArticleDaoImpl articleDao=new ArticleDaoImpl();
+        List<Article> articles = articleDao.searchArticles(content);
+        HttpSession session = request.getSession();
+        session.setAttribute("sArticles",articles);
+        response.sendRedirect(request.getContextPath() + "/AManageArticle.jsp");
     }
 }

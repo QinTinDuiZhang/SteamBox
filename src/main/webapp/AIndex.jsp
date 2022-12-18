@@ -78,15 +78,15 @@
     <li><a class="icon-home" href="{:U('Index/info')}" target="right"> 首页</a></li>
     <li><a href="##" id="a_leader_txt">网站信息</a></li>
     <li><b>当前语言：</b><span style="color:red;">中文</span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;切换语言：<a href="##">中文</a> &nbsp;&nbsp;<a href="##">英文</a></li>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;切换语言：<a href="##">中文</a> </li>
+
 </ul>
 <div class="admin">
-    <iframe height="100%" name="right" rameborder="0" scrolling="auto" src="" width="100%"></iframe>
-</div>
-<div style="text-align:center;">
-    <p>来源:<a href="http://down.admin5.com/" target="_blank">A5源码</a></p>
+    <iframe height="100%" name="right" rameborder="0" scrolling="auto" src="AWelcome.jsp" width="100%">
+    </iframe>
 </div>
 <script>
+
 </script>
 </body>
 </html>

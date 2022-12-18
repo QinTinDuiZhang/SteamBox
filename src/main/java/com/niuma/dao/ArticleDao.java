@@ -41,5 +41,6 @@ public interface ArticleDao {
 
     boolean setArticleThrough(int auditor,int articleId);
     boolean setArticleBack(int articleId);
+    List<Article> searchArticles(String content);
 
 }

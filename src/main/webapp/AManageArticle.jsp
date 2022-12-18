@@ -44,15 +44,21 @@
     List<Article> articles=null;
     articles = (List<Article>) session.getAttribute("articles");
     Object limit = session.getAttribute("limit");
+    List<Article> sArticles =(List<Article>) session.getAttribute("sArticles");
     ArticleDaoImpl articleDao = new ArticleDaoImpl();
     Map<String,Object> map=new HashMap<>();
+    if(sArticles!=null){
+        articles=sArticles;
+    }
     if(articles==null &&limit==null){
         map.put("limit",0);
+        map.put("auditor",0);
         articles = articleDao.selectAll(map);
     }
     if(limit!=null){
         int a= (int) limit;
         map.put("limit",a);
+        map.put("auditor",0);
     }
 %>
 <form action="" id="listform" method="post">
@@ -64,7 +70,7 @@
             <ul class="search" style="padding-left:10px;">
                 <li>搜索：</li>
                 <li>
-                    <input class="input" name="keywords" placeholder="请输入搜索关键字"
+                    <input id="searchConten" class="input" name="keywords" placeholder="请输入搜索关键字"
                            style="width:250px; line-height:17px;display:inline-block"
                            type="text"/>
                     <a class="button border-main icon-search" href="javascript:void(0)" onclick="changesearch()">
@@ -123,19 +129,18 @@
                 </tr>
                 <%}%>
                 <tr>
-                    <td colspan="7" style="text-align:left;padding-left:20px;"><a class="button border-red icon-trash-o"
-                                                                                  href="javascript:void(0)"
-                                                                                  onclick="DelSelect()"
-                                                                                  style="padding:5px 15px;"> 删除</a> <a
+                    <td colspan="7" style="text-align:left;padding-left:20px;"><a
                             class="button border-blue icon-edit" href="javascript:void(0)"
                             onclick="sorts()" style="padding:5px 15px; margin:0 10px;"> 查看待审核</a></td>
                 </tr>
+                <%if(sArticles==null){%>
                 <tr>
                     <td colspan="8">
                         <div class="pagelist"><a id="upPage" href="Article/TurnPage?page=<%=map.get("limit")%>&status=up">上一页</a>
-                            <a id="downPage" href="Article/TurnPage?page=<%=map.get("limit")%>&status=down">下一页</a><a href="">尾页</a></div>
+                            <a id="downPage" href="Article/TurnPage?page=<%=map.get("limit")%>&status=down">下一页</a></div>
                     </td>
                 </tr>
+                <%}%>
             </volist>
         </table>
     </div>
@@ -157,13 +162,18 @@
             downPage.style.display='none';
         }
         if(<%=yu!=0%> && <%=pg*5%>==<%=map.get("limit")%>){
+            <%session.setAttribute("yu",yu);%>
             downPage.style.display='none';
         }
     }
 
     //搜索
     function changesearch() {
-
+        var content=document.getElementById("searchConten").value;
+        if(content==null){
+            <%sArticles=null;articles=null;limit=0;%>
+        }
+        window.location.replace("http://localhost:8080/SteamBox_war_exploded/Article/SearchArticles?content=" + content);
     }
 
     function setLook(ArticleId) {

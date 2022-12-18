@@ -103,12 +103,12 @@
 
   function Through(ArticleId) {
     if(confirm("您确定要通过吗?")){
-      window.location.replace("http://localhost:8080/SteamBox_war_exploded/Article/setArticleLook?articleId=" + ArticleId + "&hidden=1" );
+      window.location.replace("http://localhost:8080/SteamBox_war_exploded/Article/setArticleThrough?articleId=" + ArticleId );
     }
   }
   function setBack(ArticleId) {
     if (confirm("您确定要退回吗?")) {
-      window.location.replace("http://localhost:8080/SteamBox_war_exploded/Article/setArticleLook?articleId=" + ArticleId + "&hidden=0" );
+      window.location.replace("http://localhost:8080/SteamBox_war_exploded/Article/setArticleBack?articleId=" + ArticleId  );
     }
   }
 
