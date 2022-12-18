@@ -65,5 +65,13 @@ public interface UserDao {
      */
     HashMap<String, List> selectInfo(String content);
 
-    User getUserByID(int id,String email);
+    /**
+     * 条件获取用户信息
+     *
+     * @param id    用户id
+     * @param email 邮箱
+     * @param acc   用户名
+     * @return 用户
+     */
+    User getUserByID(int id, String email, String acc);
 }

@@ -64,17 +64,14 @@
 <div class="row justify-content-center" id="bg" style="margin-top: 88px">
     <%
         ArticleDao articleDao = new ArticleDaoImpl();
-
         CommentDao commentDao = new CommentDaoImpl();
         int id = Integer.parseInt(request.getParameter("article"));
         List<Comment> comments = commentDao.getCommentsByArticleId(id);
         Map<Long, Comment> longCommentMap = CommentUtil.toMap(comments);
         request.setAttribute("comments", comments);
         request.setAttribute("commentMap", longCommentMap);
-        Map<String,Object> map=new HashMap<>();
-        map.put("aId",Integer.parseInt(request.getParameter("article")));
-        map.put("hidden",1);
-        map.put("auditor",1);
+        Map<String, Object> map = new HashMap<>();
+        map.put("aId", Integer.parseInt(request.getParameter("article")));
         Article article = articleDao.selectAll(map).get(0);
         request.setAttribute("article", article);
     %>
@@ -96,7 +93,6 @@
                     <%}%>
                 </ol>
             </nav>
-
         </div>
         <div class="article-content">
             <%= article.getContent()%>

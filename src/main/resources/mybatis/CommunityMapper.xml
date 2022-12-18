@@ -37,6 +37,7 @@
         set steambox.community.hidden=#{param2}
         where steambox.community.id = #{param1}
     </update>
+
     <update id="updateCommunity">
         update steambox.community
         set name=#{param1},

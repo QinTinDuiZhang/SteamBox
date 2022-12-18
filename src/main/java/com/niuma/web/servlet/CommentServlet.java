@@ -18,6 +18,7 @@ import java.util.Map;
 
 @WebServlet("/Comment/*")
 public class CommentServlet extends BaseServlet {
+    /* 发布评论 */
     public void putComment(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         User user = (User) request.getSession().getAttribute("user");
@@ -36,6 +37,7 @@ public class CommentServlet extends BaseServlet {
         response.sendRedirect(request.getContextPath() + "/particulars.jsp?article=" + request.getParameter("articleId"));
     }
 
+    /* 赞/踩 */
     public void Like(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CommentDao commentDao = new CommentDaoImpl();
         int id = Integer.parseInt(request.getParameter("id"));

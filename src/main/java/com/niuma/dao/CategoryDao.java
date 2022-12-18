@@ -15,4 +15,6 @@ public interface CategoryDao {
     Boolean setClassLook(int id, int hidden);
 
     Boolean addClass(String className);
+
+    List<Category> getCategoryUserId(int uId);
 }

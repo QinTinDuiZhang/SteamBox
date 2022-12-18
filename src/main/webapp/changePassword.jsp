@@ -61,7 +61,8 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">原密码：</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" name="oldPassword" placeholder="请输入原密码" id="old">
+                                <input type="password" class="form-control" name="oldPassword" placeholder="请输入原密码"
+                                       id="old">
                                 <p class="alert alert-danger" id="oldPassword" style="display: none">密码不正确，请重新输入</p>
                             </div>
                         </div>
@@ -111,15 +112,15 @@
     let flogEnter = false;
     let flogAll = true;
 
-    window.onload = function (){
-        o.addEventListener("change",old);
+    window.onload = function () {
+        o.addEventListener("change", old);
     }
 
     function old() {
         axios.get('${pageContext.request.contextPath}/User/P?password=' + event.target.value)
             .then(function (response) {
                 flogOld = Boolean(response.data);
-                oldP.style.display = flogOld ? "none" : "" ;
+                oldP.style.display = flogOld ? "none" : "";
             })
             .catch(function (error) {
                 console.log(error);

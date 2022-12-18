@@ -34,10 +34,10 @@
     <update id="updateUser">
         update steambox.user
         set nickname = #{nickName},
-            photo = #{photo},
+            photo    = #{photo},
             birthday = #{birthday},
-            email = #{email},
-            mobile = #{mobile},
+            email    = #{email},
+            mobile   = #{mobile},
             password = #{password}
         where account = #{account}
     </update>
@@ -69,6 +69,9 @@
             </if>
             <if test="email!=null and email!=''">
                 and user.email = #{email}
+            </if>
+            <if test="acc!=null">
+                and account = #{acc}
             </if>
         </where>
     </select>

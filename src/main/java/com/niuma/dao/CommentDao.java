@@ -7,8 +7,20 @@ import java.util.Map;
 
 public interface CommentDao {
 
+    /**
+     * 发布评论
+     *
+     * @param map 评论信息
+     * @return 影响的行数
+     */
     int insert(Map map);
 
+    /**
+     * 获取帖子所有评论
+     *
+     * @param articleId 帖子id
+     * @return 评论列表
+     */
     List<Comment> getCommentsByArticleId(int articleId);
 
     /**

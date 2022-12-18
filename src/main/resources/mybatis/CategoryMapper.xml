@@ -25,6 +25,7 @@
             </if>
         </where>
     </select>
+
     <select id="ToGainByArticle" resultType="Category">
         select *
         from steambox.category
@@ -42,4 +43,14 @@
         insert into steambox.category(name)
         values (#{param1});
     </insert>
+
+    <select id="getCategoryByUserId" resultType="category">
+        SELECT c.*
+        FROM steambox.`user` as u
+                 JOIN steambox.article as a ON a.creator = u.id
+                 JOIN steambox.article_category as t on t.article_id = a.id
+                 JOIN steambox.category as c on t.category_id = c.id
+        WHERE u.id = #{uId}
+        group by c.id
+    </select>
 </mapper>

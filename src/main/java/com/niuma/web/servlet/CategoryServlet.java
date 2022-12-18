@@ -32,4 +32,6 @@ public class CategoryServlet extends BaseServlet {
         }
         response.sendRedirect(request.getContextPath() + "/AManageClassification.jsp");
     }
+
+
 }
