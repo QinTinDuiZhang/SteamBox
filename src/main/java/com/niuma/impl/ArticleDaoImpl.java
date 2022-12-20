@@ -95,4 +95,5 @@ public class ArticleDaoImpl implements ArticleDao {
         ArticleMapper postMapper = sqlSession.getMapper(ArticleMapper.class);
         return postMapper.Del(id);
     }
+
 }
