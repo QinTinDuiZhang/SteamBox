@@ -82,4 +82,6 @@ public interface ArticleDao {
      * @return 用户所有的帖子
      */
     List<Article> getUserArticle(int uId);
+
+    int Del(int id);
 }

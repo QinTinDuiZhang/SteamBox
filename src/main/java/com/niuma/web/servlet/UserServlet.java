@@ -1,6 +1,8 @@
 package com.niuma.web.servlet;
 
+import com.niuma.dao.ArticleDao;
 import com.niuma.dao.UserDao;
+import com.niuma.impl.ArticleDaoImpl;
 import com.niuma.impl.UserDaoImpl;
 import com.niuma.model.User;
 import com.niuma.tool.MailDemoSum;
@@ -182,4 +184,11 @@ public class UserServlet extends BaseServlet {
         request.getSession().setAttribute("selectInfo", selectInfo);
         response.sendRedirect(request.getContextPath() + "/search.jsp");
     }
+
+    public void Del(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String id = request.getParameter("a");
+        ArticleDao articleDao = new ArticleDaoImpl();
+        articleDao.Del(Integer.parseInt(id));
+    }
+
 }

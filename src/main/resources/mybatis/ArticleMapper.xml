@@ -24,6 +24,11 @@
         from steambox.article
         where id = #{id}
     </delete>
+    <delete id="Del">
+        delete
+        from steambox.article
+        where id = #{id}
+    </delete>
     <select id="selectAll" resultType="Article">
         select *
         from steambox.article
