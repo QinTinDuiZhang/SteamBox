@@ -71,10 +71,10 @@ public class UserServlet extends BaseServlet {
     /* 修改信息 */
     public void Userinfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String realPath = request.getServletContext().getRealPath("");
-        String uploadFilePath = realPath + File.separator + UPLOAD_DIRECTORY;
         HttpSession session = request.getSession();
         User userT = (User) session.getAttribute("user");
+        String realPath = request.getServletContext().getRealPath("");
+        String uploadFilePath = realPath + File.separator + UPLOAD_DIRECTORY;
         //这边我用的servlet3文件上传
         for (Part part : request.getParts()) {
             String submittedFileName = part.getSubmittedFileName();

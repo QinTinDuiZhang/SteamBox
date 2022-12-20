@@ -109,7 +109,7 @@
                     <td><%=dateString%></td>
                     <%
                         UserDaoImpl userDao=new UserDaoImpl();
-                        User user = userDao.getUserByID(articles.get(i).getCreator(),null);
+                        User user = userDao.getUserByID(articles.get(i).getCreator(),null,null);
                     %>
                     <td><font color="#00bfff"><%=user.getNickName()%>
                     </font></td>
@@ -130,7 +130,7 @@
                 <%}%>
                 <tr>
                     <td colspan="7" style="text-align:left;padding-left:20px;"><a
-                            class="button border-blue icon-edit" href="javascript:void(0)"
+                            class="button border-blue icon-edit" href="http://localhost:8080/SteamBox_war_exploded/AManageExamine.jsp"
                             onclick="sorts()" style="padding:5px 15px; margin:0 10px;"> 查看待审核</a></td>
                 </tr>
                 <%if(sArticles==null){%>

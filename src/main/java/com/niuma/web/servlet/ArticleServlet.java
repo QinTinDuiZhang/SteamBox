@@ -6,11 +6,14 @@ import com.niuma.model.Admin;
 import com.niuma.model.Article;
 import com.niuma.model.User;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -30,7 +33,7 @@ public class ArticleServlet extends BaseServlet {
     /**
      * 发布帖子
      */
-    public void Publish(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void Publish(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         boolean f;
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
@@ -51,9 +54,17 @@ public class ArticleServlet extends BaseServlet {
         article.setCreator(user.getId());
         ArticleDao articleDao = new ArticleDaoImpl();
         f = articleDao.publish(article);
+        String realPath = request.getServletContext().getRealPath("");
+        String uploadFilePath = realPath + File.separator + UPLOAD_DIRECTORY;
+        //这边我用的servlet3文件上传
+        for (Part part : request.getParts()) {
+            String submittedFileName = part.getSubmittedFileName();
+            if (submittedFileName != null && !submittedFileName.equals("")) {
+                part.write(uploadFilePath + File.separator + submittedFileName);
+            }
+        }
         Map<String,Object> map=new HashMap<>();
         map.put("pubDate",putDate);
-        map.put("hidden",1);
         Article getA = articleDao.selectAll(map).get(0);
         int aId = getA.getId();
         for (String t : category)
