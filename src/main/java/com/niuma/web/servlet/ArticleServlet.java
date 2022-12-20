@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -63,8 +62,8 @@ public class ArticleServlet extends BaseServlet {
                 part.write(uploadFilePath + File.separator + submittedFileName);
             }
         }
-        Map<String,Object> map=new HashMap<>();
-        map.put("pubDate",putDate);
+        Map<String, Object> map = new HashMap<>();
+        map.put("pubDate", putDate);
         Article getA = articleDao.selectAll(map).get(0);
         int aId = getA.getId();
         for (String t : category)
@@ -73,74 +72,79 @@ public class ArticleServlet extends BaseServlet {
         response.getWriter().write(String.valueOf(f));
         response.sendRedirect(request.getContextPath() + "/first.jsp");
     }
+
     public void setArticleLook(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String artId = request.getParameter("articleId");
         String hid = request.getParameter("hidden");
         int articleId = Integer.parseInt(artId);
         int hidden = Integer.parseInt(hid);
-        ArticleDaoImpl articleDao=new ArticleDaoImpl();
+        ArticleDaoImpl articleDao = new ArticleDaoImpl();
         boolean b = articleDao.setArticleLook(articleId, hidden);
-        if(b){
+        if (b) {
             System.out.println("执行成功");
         }
         response.sendRedirect(request.getContextPath() + "/AManageArticle.jsp");
     }
+
     public void TurnPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         String pg = request.getParameter("page");
         String status = request.getParameter("status");
-        int page=Integer.parseInt(pg);
+        int page = Integer.parseInt(pg);
         ArticleDaoImpl articleDao = new ArticleDaoImpl();
-        Map<String,Object> map=new HashMap<>();
-        if(status.equals("up")){
-            page=page-5;
-            map.put("limit",page);
-            map.put("auditor",0);
+        Map<String, Object> map = new HashMap<>();
+        if (status.equals("up")) {
+            page = page - 5;
+            map.put("limit", page);
+            map.put("auditor", 0);
             List<Article> articles = articleDao.selectAll(map);
             HttpSession session = request.getSession();
-            session.setAttribute("articles",articles);
-            session.setAttribute("limit",page);
-        }else if(status.equals("down")){
-            page=page+5;
-            map.put("limit",page);
-            map.put("auditor",0);
+            session.setAttribute("articles", articles);
+            session.setAttribute("limit", page);
+        } else if (status.equals("down")) {
+            page = page + 5;
+            map.put("limit", page);
+            map.put("auditor", 0);
             List<Article> articles = articleDao.selectAll(map);
             HttpSession session = request.getSession();
-            session.setAttribute("articles",articles);
-            session.setAttribute("limit",page);
+            session.setAttribute("articles", articles);
+            session.setAttribute("limit", page);
         }
         response.sendRedirect(request.getContextPath() + "/AManageArticle.jsp");
     }
+
     public void setArticleThrough(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String artId = request.getParameter("articleId");
         HttpSession session = request.getSession();
         Admin admin = (Admin) session.getAttribute("admin");
         int id = admin.getId();
         int articleId = Integer.parseInt(artId);
-        System.out.println(id+"隔开"+articleId);
-        ArticleDaoImpl articleDao=new ArticleDaoImpl();
+        System.out.println(id + "隔开" + articleId);
+        ArticleDaoImpl articleDao = new ArticleDaoImpl();
         boolean b = articleDao.setArticleThrough(id, articleId);
-        if(b){
+        if (b) {
             System.out.println("通过成功");
         }
         response.sendRedirect(request.getContextPath() + "/AManageExamine.jsp");
     }
+
     public void setArticleBack(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String artId = request.getParameter("articleId");
-        int articled=Integer.parseInt(artId);
-        ArticleDaoImpl articleDao=new ArticleDaoImpl();
+        int articled = Integer.parseInt(artId);
+        ArticleDaoImpl articleDao = new ArticleDaoImpl();
         boolean b = articleDao.setArticleBack(articled);
-        if(b){
+        if (b) {
             System.out.println("退回成功！");
         }
         response.sendRedirect(request.getContextPath() + "/AManageExamine.jsp");
     }
+
     public void SearchArticles(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String content=request.getParameter("content");
-        ArticleDaoImpl articleDao=new ArticleDaoImpl();
+        String content = request.getParameter("content");
+        ArticleDaoImpl articleDao = new ArticleDaoImpl();
         List<Article> articles = articleDao.searchArticles(content);
         HttpSession session = request.getSession();
-        session.setAttribute("sArticles",articles);
+        session.setAttribute("sArticles", articles);
         response.sendRedirect(request.getContextPath() + "/AManageArticle.jsp");
     }
 }

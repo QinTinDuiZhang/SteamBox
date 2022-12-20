@@ -3,7 +3,6 @@ package mybatis;
 import com.niuma.model.Article;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +17,7 @@ public interface ArticleMapper {
     //删除帖子
     boolean deleteArticle(int id);
 
-    List<Article> selectAll(Map<String,Object> map);
+    List<Article> selectAll(Map<String, Object> map);
 
     int newLink(@Param("articleId") int aid, @Param("categoryId") int id);
 
@@ -26,7 +25,7 @@ public interface ArticleMapper {
 
     int getArticleCounts();
 
-    boolean setArticleThrough(int auditorId,int articleId);
+    boolean setArticleThrough(int auditorId, int articleId);
 
     boolean setArticleBack(int articleId);
 

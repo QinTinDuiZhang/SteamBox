@@ -73,6 +73,7 @@ public interface ArticleDao {
      * @return
      */
     boolean setArticleBack(int articleId);
+
     List<Article> searchArticles(String content);
 
     /**

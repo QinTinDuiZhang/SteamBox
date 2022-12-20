@@ -34,7 +34,7 @@
         from steambox.article
         <where>
             <if test="hidden!=null">
-            and hidden=#{hidden}
+                and hidden=#{hidden}
             </if>
             <if test="id!=null">
                 and community_id = #{id}
@@ -67,19 +67,25 @@
 
     <update id="setArticleLook">
         update steambox.article
-        set hidden=#{param2} where id=#{param1}
+        set hidden=#{param2}
+        where id = #{param1}
     </update>
 
     <select id="getArticleCounts" resultType="int">
-        select count(*) from steambox.article
+        select count(*)
+        from steambox.article
     </select>
 
     <update id="setArticleThrough">
-        update steambox.article set auditor=#{param1} where id=#{param2}
+        update steambox.article
+        set auditor=#{param1}
+        where id = #{param2}
     </update>
 
     <update id="setArticleBack">
-        update steambox.article set back=0 where id=#{param1}
+        update steambox.article
+        set back=0
+        where id = #{param1}
     </update>
     <select id="getUserArticle" resultType="article">
         SELECT a.*
@@ -89,6 +95,8 @@
         GROUP BY a.id
     </select>
     <select id="searchArticles" resultType="com.niuma.model.Article">
-        select * from steambox.article where steambox.article.title like concat('%', #{param1}, '%')
+        select *
+        from steambox.article
+        where steambox.article.title like concat('%', #{param1}, '%')
     </select>
 </mapper>
