@@ -137,13 +137,15 @@
         crossorigin="anonymous"></script>
 <script>
     let t = 0;
-    function prompt(f){
+
+    function prompt(f) {
         const toastLiveExample = document.getElementById('liveToast')
         const toast = new bootstrap.Toast(toastLiveExample)
         t = f;
         toast.show();
     }
-    function over(){
+
+    function over() {
         axios.get('${pageContext.request.contextPath}/User/Del?a=' + t);
         location.reload([true])
     }

@@ -10,7 +10,7 @@
   Time: 19:23
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -85,7 +85,7 @@
 <script type="text/javascript">
     function del(id, cetId) {
         if (confirm("您确定要删除吗?")) {
-            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Comment/DeleteComment?cid=" + id + "&cetId=" + cetId);
+            window.location.replace("${pageContext.request.contextPath}/Comment/DeleteComment?cid=" + id + "&cetId=" + cetId);
         }
     }
 
@@ -101,7 +101,7 @@
     })
 
     function searchComments() {
-        window.location.replace("http://localhost:8080/SteamBox_war_exploded/Comment/SearchComment?searchcontent=" + selectContent + "&userId=" +${uId});
+        window.location.replace("${pageContext.request.contextPath}/Comment/SearchComment?searchcontent=" + selectContent + "&userId=" +${uId});
     }
 
 </script>

@@ -7,7 +7,7 @@
   Time: 16:04
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -73,13 +73,13 @@
 <script type="text/javascript">
     function closeClassification(classId) {
         if (confirm("您确定要禁用吗?")) {
-            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Category/SetClassLook?classId=" + classId + "&hidden=0");
+            window.location.replace("${pageContext.request.contextPath}/Category/SetClassLook?classId=" + classId + "&hidden=0");
         }
     }
 
     function openClassification(classId) {
         if (confirm("您确定要启用吗?")) {
-            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Category/SetClassLook?classId=" + classId + "&hidden=1");
+            window.location.replace("${pageContext.request.contextPath}/Category/SetClassLook?classId=" + classId + "&hidden=1");
         }
     }
 </script>

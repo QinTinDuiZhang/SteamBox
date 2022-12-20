@@ -5,7 +5,7 @@
   Time: 18:03
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -43,7 +43,7 @@
     <div class="head-l"><a class="button button-little bg-green"
                            href="index.jsp"
                            target="_blank"><span class="icon-home"></span>
-        前台首页</a> &nbsp;&nbsp;<a class="button button-little bg-blue" href="##"><span class="icon-wrench"></span>
+        前台首页</a> &nbsp;&nbsp;<a class="button button-little bg-blue" href="#"><span class="icon-wrench"></span>
         清除缓存</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="ALogin.jsp"><span
             class="icon-power-off"></span> 退出登录</a></div>
 </div>
@@ -76,10 +76,7 @@
 </script>
 <ul class="bread">
     <li><a class="icon-home" href="{:U('Index/info')}" target="right"> 首页</a></li>
-    <li><a href="##" id="a_leader_txt">网站信息</a></li>
-    <li><b>当前语言：</b><span style="color:red;">中文</span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;切换语言：<a href="##">中文</a> </li>
-
+    <li><a href="#" id="a_leader_txt">网站信息</a></li>
 </ul>
 <div class="admin">
     <iframe height="100%" name="right" rameborder="0" scrolling="auto" src="AWelcome.jsp" width="100%">

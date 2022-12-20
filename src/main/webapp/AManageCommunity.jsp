@@ -7,7 +7,7 @@
   Time: 16:24
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -84,22 +84,22 @@
 <script>
     function delCommunity(comId) {
         if (confirm("您确定要禁用吗?")) {
-            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Community/SetCommunityLook?comId=" + comId + "&hidden=0");
+            window.location.replace("${pageContext.request.contextPath}/Community/SetCommunityLook?comId=" + comId + "&hidden=0");
         }
     }
 
     function startCommunity(comId) {
         if (confirm("您确定要启用吗?")) {
-            window.location.replace("http://localhost:8080/SteamBox_war_exploded/Community/SetCommunityLook?comId=" + comId + "&hidden=1");
+            window.location.replace("${pageContext.request.contextPath}/Community/SetCommunityLook?comId=" + comId + "&hidden=1");
         }
     }
 
     function changeCommunity(comId) {
-        window.location.replace("http://localhost:8080/SteamBox_war_exploded/AUpdateCommunity.jsp?comId=" + comId);
+        window.location.replace("${pageContext.request.contextPath}/AUpdateCommunity.jsp?comId=" + comId);
     }
 
     function addCommunity() {
-        window.location.replace("http://localhost:8080/SteamBox_war_exploded/AAddCommunity.jsp");
+        window.location.replace("${pageContext.request.contextPath}/AAddCommunity.jsp");
     }
 </script>
 </body>

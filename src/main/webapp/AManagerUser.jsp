@@ -12,7 +12,7 @@
   Time: 15:26
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -71,26 +71,26 @@
                 <th width="120">注册时间</th>
                 <th>操作</th>
             </tr>
-            <%for (int i = 0; i < allUser.size(); i++) {%>
+            <%for (User user : allUser) {%>
             <tr class="lie">
 
                 <td>
-                    <input class="allCheck" name="id[]" <%=!allUser.get(i).isForbidden() ? "checked" : ""%>
+                    <input class="allCheck" name="id[]" <%=!user.isForbidden() ? "checked" : ""%>
                            type="checkbox"/>
                 </td>
                 <td>
-                    <%=allUser.get(i).getId()%>
+                    <%=user.getId()%>
                 </td>
-                <td><%=allUser.get(i).getNickName()%>
+                <td><%=user.getNickName()%>
                 </td>
-                <td><%=allUser.get(i).getMobile()%>
+                <td><%=user.getMobile()%>
                 </td>
-                <td><%=allUser.get(i).getEmail()%>
+                <td><%=user.getEmail()%>
                 </td>
-                <td><%=allUser.get(i).getAccount()%>
+                <td><%=user.getAccount()%>
                 </td>
                 <%
-                    String dateStr = String.valueOf(allUser.get(i).getRegDate());
+                    String dateStr = String.valueOf(user.getRegDate());
                     DateFormat cstFormate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     DateFormat gmtFormate = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
                     Date dateTime = gmtFormate.parse(dateStr);
@@ -100,10 +100,10 @@
                 </td>
                 <td>
                     <a class="button border-main"
-                       onclick="up1(<%=allUser.get(i).getId()%>,<%=allUser.get(i).isForbidden()%>)" type="button"><span
+                       onclick="up1(<%=user.getId()%>,<%=user.isForbidden()%>)" type="button"><span
                             class="icon-edit"></span>启用</a>
                     <div class="button-group"><a class="button border-red"
-                                                 onclick="up2(<%=allUser.get(i).getId()%>,<%=allUser.get(i).isForbidden()%>)"><span
+                                                 onclick="up2(<%=user.getId()%>,<%=user.isForbidden()%>)"><span
                             class="icon-trash-o"></span> 禁用</a></div>
                 </td>
             </tr>
@@ -119,7 +119,7 @@
             user[i].addEventListener('dblclick', function (e) {
                 var a = this.children.item(1).innerText;
                 var b = this.children.item(2).innerText;
-                window.location.replace("http://localhost:8080/SteamBox_war_exploded/Comment/GetUserComment?userid=" + a + "&name=" + b);
+                window.location.replace("${pageContext.request.contextPath}/Comment/GetUserComment?userid=" + a + "&name=" + b);
             })
         }
     }
@@ -129,7 +129,7 @@
             if (confirm("您确定要启用吗?")) {
                 axios({
                     method: "post",
-                    url: "http://localhost:8080/SteamBox_war_exploded/Admin/BanUser",
+                    url: "${pageContext.request.contextPath}/Admin/BanUser",
                     data: {
                         id: id,
                         forbidden: 1
@@ -146,7 +146,7 @@
             if (confirm("您确定要禁用吗?")) {
                 axios({
                     method: "post",
-                    url: "http://localhost:8080/SteamBox_war_exploded/Admin/BanUser",
+                    url: "${pageContext.request.contextPath}/Admin/BanUser",
                     data: {
                         id: id,
                         forbidden: 0
@@ -173,7 +173,7 @@
             if (userid != null) {
                 axios({
                     method: "post",
-                    url: "http://localhost:8080/SteamBox_war_exploded/Admin/BanManyUsers",
+                    url: "${pageContext.request.contextPath}/Admin/BanManyUsers",
                     data: userid,
                 }).then(function (resp) {
 
