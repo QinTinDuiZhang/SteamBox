@@ -14,10 +14,10 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <meta content="webkit" name="renderer">
     <title>登录</title>
-    <link href="css/pintuer.css" rel="stylesheet">
-    <link href="css/admin.css" rel="stylesheet">
-    <script src="js/jquery.js"></script>
-    <script src="js/pintuer.js"></script>
+    <link href="../css/pintuer.css" rel="stylesheet">
+    <link href="../css/admin.css" rel="stylesheet">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
 </head>
 <body>
 <%
@@ -30,7 +30,7 @@
             <div style="height:150px;"></div>
             <div class="media media-y margin-big-bottom">
             </div>
-            <form action="Admin/Login" method="post">
+            <form action="../Admin/Login" method="post">
                 <div class="panel loginbox">
                     <div class="text-center margin-big padding-big-top"><h1>后台管理中心</h1></div>
                     <div style="text-align: center;color: red"><%=error != null ? error : ""%>

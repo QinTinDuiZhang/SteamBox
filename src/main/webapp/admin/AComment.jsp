@@ -19,10 +19,10 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <meta content="webkit" name="renderer">
     <title></title>
-    <link href="css/pintuer.css" rel="stylesheet">
-    <link href="css/admin.css" rel="stylesheet">
-    <script src="js/jquery.js"></script>
-    <script src="js/pintuer.js"></script>
+    <link href="../css/pintuer.css" rel="stylesheet">
+    <link href="../css/admin.css" rel="stylesheet">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
 </head>
 <body>
 <form action="" method="post">

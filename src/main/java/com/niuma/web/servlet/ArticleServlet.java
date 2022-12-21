@@ -83,7 +83,7 @@ public class ArticleServlet extends BaseServlet {
         if (b) {
             System.out.println("执行成功");
         }
-        response.sendRedirect(request.getContextPath() + "/AManageArticle.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin/AManageArticle.jsp");
     }
 
     public void TurnPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -110,7 +110,7 @@ public class ArticleServlet extends BaseServlet {
             session.setAttribute("articles", articles);
             session.setAttribute("limit", page);
         }
-        response.sendRedirect(request.getContextPath() + "/AManageArticle.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin/AManageArticle.jsp");
     }
 
     public void setArticleThrough(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -125,7 +125,7 @@ public class ArticleServlet extends BaseServlet {
         if (b) {
             System.out.println("通过成功");
         }
-        response.sendRedirect(request.getContextPath() + "/AManageExamine.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin/AManageExamine.jsp");
     }
 
     public void setArticleBack(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -136,7 +136,7 @@ public class ArticleServlet extends BaseServlet {
         if (b) {
             System.out.println("退回成功！");
         }
-        response.sendRedirect(request.getContextPath() + "/AManageExamine.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin/AManageExamine.jsp");
     }
 
     public void SearchArticles(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -145,6 +145,6 @@ public class ArticleServlet extends BaseServlet {
         List<Article> articles = articleDao.searchArticles(content);
         HttpSession session = request.getSession();
         session.setAttribute("sArticles", articles);
-        response.sendRedirect(request.getContextPath() + "/AManageArticle.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin/AManageArticle.jsp");
     }
 }

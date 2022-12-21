@@ -63,7 +63,7 @@ public class CommentServlet extends BaseServlet {
         session.setAttribute("uId", userid);
         session.setAttribute("UserComments", userComments);
         session.setAttribute("name", username);
-        response.sendRedirect(request.getContextPath() + "/AComment.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin/AComment.jsp");
     }
 
     public void DeleteComment(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -77,14 +77,14 @@ public class CommentServlet extends BaseServlet {
             System.out.println("删除成功！");
             List<Comment> userComments = commentDao.getUserComments(cetId);
             request.getSession().setAttribute("UserComments", userComments);
-            response.sendRedirect(request.getContextPath() + "/AComment.jsp");
+            response.sendRedirect(request.getContextPath() + "/admin/AComment.jsp");
             HttpSession session = request.getSession();
             session.setAttribute("deleteIndo", "删除成功");
         } else {
             System.out.println("删除失败！");
             HttpSession session = request.getSession();
             session.setAttribute("deleteIndo", "删除失败");
-            response.sendRedirect(request.getContextPath() + "/AManagerUser.jsp");
+            response.sendRedirect(request.getContextPath() + "/admin/AManagerUser.jsp");
         }
     }
 
@@ -98,7 +98,7 @@ public class CommentServlet extends BaseServlet {
             HttpSession session = request.getSession();
             session.setAttribute("UserComments", commentList);
             System.out.println(commentList);
-            response.sendRedirect(request.getContextPath() + "/AComment.jsp");
+            response.sendRedirect(request.getContextPath() + "/admin/AComment.jsp");
         } else {
             System.out.println("没查询到！");
         }

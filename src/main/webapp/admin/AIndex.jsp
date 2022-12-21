@@ -14,16 +14,16 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <meta content="webkit" name="renderer">
     <title>后台管理中心</title>
-    <link href="css/pintuer.css" rel="stylesheet">
-    <link href="css/admin.css" rel="stylesheet">
-    <script src="js/jquery.js"></script>
+    <link href="../css/pintuer.css" rel="stylesheet">
+    <link href="../css/admin.css" rel="stylesheet">
+    <script src="../js/jquery.js"></script>
     <style>
         @font-face {
 
             font-family: 'Alimama_ShuHeiTi_Bold';
 
-            src: url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
-            url('./fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
+            src: url('../fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
+            url('../fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
         }
 
         p, header, a {
@@ -38,10 +38,10 @@
         <h1><img alt=""
                  class="radius-circle rotate-hover"
                  height="50"
-                 src="img/y.jpg"/>后台管理中心</h1>
+                 src="../img/y.jpg"/>后台管理中心</h1>
     </div>
     <div class="head-l"><a class="button button-little bg-green"
-                           href="index.jsp"
+                           href="../index.jsp"
                            target="_blank"><span class="icon-home"></span>
         前台首页</a> &nbsp;&nbsp;<a class="button button-little bg-blue" href="#"><span class="icon-wrench"></span>
         清除缓存</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="ALogin.jsp"><span

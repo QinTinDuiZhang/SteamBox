@@ -19,7 +19,7 @@ public class CategoryServlet extends BaseServlet {
         if (aBoolean) {
             System.out.println("修改成功");
         }
-        response.sendRedirect(request.getContextPath() + "/AManageClassification.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin/AManageClassification.jsp");
     }
 
     public void AddClassification(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -30,7 +30,7 @@ public class CategoryServlet extends BaseServlet {
         if (aBoolean) {
             System.out.println("添加分类成功");
         }
-        response.sendRedirect(request.getContextPath() + "/AManageClassification.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin/AManageClassification.jsp");
     }
 
 

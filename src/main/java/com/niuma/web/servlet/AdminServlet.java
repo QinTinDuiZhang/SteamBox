@@ -24,11 +24,11 @@ public class AdminServlet extends BaseServlet {
         if (admin != null) {
             HttpSession session = request.getSession();
             session.setAttribute("admin", admin);
-            response.sendRedirect(request.getContextPath() + "/AIndex.jsp");
+            response.sendRedirect(request.getContextPath() + "/admin/AIndex.jsp");
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("err", "账号或密码输入错误");
-            response.sendRedirect(request.getContextPath() + "/ALogin.jsp");
+            response.sendRedirect(request.getContextPath() + "/admin/ALogin.jsp");
         }
     }
 
@@ -41,10 +41,10 @@ public class AdminServlet extends BaseServlet {
         Boolean aBoolean = adminDao.changePassword(account, newPassword);
         if (aBoolean) {
             session.setAttribute("updateInfo", "修改成功");
-            response.sendRedirect(request.getContextPath() + "/AChangePassword.jsp");
+            response.sendRedirect(request.getContextPath() + "/admin/AChangePassword.jsp");
         } else {
             session.setAttribute("updateInfo", "修改失败");
-            response.sendRedirect(request.getContextPath() + "/AChangePassword.jsp");
+            response.sendRedirect(request.getContextPath() + "/admin/AChangePassword.jsp");
         }
     }
 

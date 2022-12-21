@@ -6,17 +6,17 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <meta content="webkit" name="renderer">
     <title>网站信息</title>
-    <link href="css/pintuer.css" rel="stylesheet">
-    <link href="css/admin.css" rel="stylesheet">
-    <script src="js/jquery.js"></script>
-    <script src="js/pintuer.js"></script>
+    <link href="../css/pintuer.css" rel="stylesheet">
+    <link href="../css/admin.css" rel="stylesheet">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
     <style>
         @font-face {
 
             font-family: 'Alimama_ShuHeiTi_Bold';
 
-            src: url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
-            url('./fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
+            src: url('../fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
+            url('../fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
         }
 
         p, header, a {

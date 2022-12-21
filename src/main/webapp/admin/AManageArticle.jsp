@@ -20,17 +20,17 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <meta content="webkit" name="renderer">
     <title></title>
-    <link href="css/pintuer.css" rel="stylesheet">
-    <link href="css/admin.css" rel="stylesheet">
-    <script src="js/jquery.js"></script>
-    <script src="js/pintuer.js"></script>
+    <link href="../css/pintuer.css" rel="stylesheet">
+    <link href="../css/admin.css" rel="stylesheet">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/pintuer.js"></script>
     <style>
         @font-face {
 
             font-family: 'Alimama_ShuHeiTi_Bold';
 
-            src: url('./fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
-            url('./fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
+            src: url('../fonts/Alimama_ShuHeiTi_Bold.woff') format('woff'),
+            url('../fonts/Alimama_ShuHeiTi_Bold.ttf') format('truetype')
         }
 
         p, header, a {
@@ -98,7 +98,7 @@
                     </th>
                     <td><%=article.getTitle()%>
                     </td>
-                    <td width="10%"><img alt="" height="50" src="img/cover/<%=article.getImg()%>" width="70"/></td>
+                    <td width="10%"><img alt="" height="50" src="../img/cover/<%=article.getImg()%>" width="70"/></td>
                     <%
                         String dateStr = String.valueOf(article.getPubDate());
                         DateFormat cstFormate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -132,15 +132,15 @@
                 <tr>
                     <td colspan="7" style="text-align:left;padding-left:20px;"><a
                             class="button border-blue icon-edit"
-                            href="${pageContext.request.contextPath}/AManageExamine.jsp"
+                            href="${pageContext.request.contextPath}/admin/AManageExamine.jsp"
                             onclick="sorts()" style="padding:5px 15px; margin:0 10px;"> 查看待审核</a></td>
                 </tr>
                 <%if (sArticles == null) {%>
                 <tr>
                     <td colspan="8">
                         <div class="pagelist"><a id="upPage"
-                                                 href="Article/TurnPage?page=<%=map.get("limit")%>&status=up">上一页</a>
-                            <a id="downPage" href="Article/TurnPage?page=<%=map.get("limit")%>&status=down">下一页</a>
+                                                 href="${pageContext.request.contextPath}/Article/TurnPage?page=<%=map.get("limit")%>&status=up">上一页</a>
+                            <a id="downPage" href="${pageContext.request.contextPath}/Article/TurnPage?page=<%=map.get("limit")%>&status=down">下一页</a>
                         </div>
                     </td>
                 </tr>
